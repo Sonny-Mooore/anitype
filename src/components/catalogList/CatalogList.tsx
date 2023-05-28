@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "@/components/releaseList/episodeList.css";
 import "./catalogList.css";
 import CatalogItem from "@/components/catalogItem/CatalogItem";
@@ -19,11 +19,16 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
 
     const [selectItem, setSelectItem] = useState<Anime | null>();
 
+    const initUseEffect = useRef<boolean>(false)
+
     useEffect(() => {
-        const i = setInterval(() => {
-            Scroll();
-            clearInterval(i);
-        }, 750);
+        if (initUseEffect.current){
+            const i = setInterval(() => {
+                Scroll();
+                clearInterval(i);
+            }, 750);
+        }
+        initUseEffect.current = true;
     }, [selectItem]);
 
     function Scroll() {

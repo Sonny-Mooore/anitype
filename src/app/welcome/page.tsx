@@ -26,7 +26,7 @@ const Page = async () => {
     const data = await getData();
 
     return (
-        <div>
+        <div style={{overflow: "scroll"}}>
             <Header selected={"welcome"} />
             <HeaderMobile selected={"welcome"} />
             <div className="welcome_background">
@@ -43,6 +43,7 @@ const Page = async () => {
                                                           key={item.titles.original} item={item} />)}
                 </CatalogList>
             </div>
+            <div style={{height: "50px", marginTop: "10px"}}/>
         </div>
     );
 };
