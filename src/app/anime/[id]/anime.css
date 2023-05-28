@@ -1,0 +1,75 @@
+
+.anime_main_div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.anime_background_image {
+    display: flex;
+    align-self: center;
+    justify-self: flex-start;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    width: 80%;
+    height: 60vh;
+}
+
+.anime_body {
+    display: flex;
+    width: fit-content;
+    justify-content: flex-start;
+    z-index: 2;
+    padding: 280px 150px 0 150px;
+}
+
+.anime_left_body {
+    width: fit-content;
+}
+
+.anime_body_poster {
+    width: 302px;
+    height: 453px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 3px;
+}
+
+.anime_central_body {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    width: 60%;
+}
+
+.anime_central_body_title {
+    display: flex;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.anime_central_body_description {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.catalog_info_watch_button {
+    margin-top: 20px;
+    user-select: none;
+}
+
+.anime_right_body {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    width: fit-content;
+}
+
+.search_rank.anime {
+    text-align: end;
+    color: #41d009;
+    font-size: 32px;
+    font-weight: bold;
+}

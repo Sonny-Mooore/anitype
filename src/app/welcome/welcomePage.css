@@ -1,0 +1,39 @@
+
+.container{
+    width: 100%;
+    height: fit-content;
+    padding: 15px 0 30px 0;
+    margin-top: 25px;
+}
+
+
+.welcome_background{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: calc(100vh - 150px);
+    overflow: hidden;
+    width: 100%;
+    object-fit: cover;
+    background-image: url("https://cdn.discordapp.com/attachments/1109761605010477137/1110893586989465600/-1_.png");
+    background-size: cover;
+    font-weight: 580;
+}
+
+.welcome_text{
+    font-family: "Manrope", sans-serif;
+    margin-top: 200px;
+    font-size: 70px;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    font-weight: bold;
+}
+.welcome_description_text{
+    font-family: "Manrope", sans-serif;
+    margin-top: 5px;
+    font-size: 16px;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    font-weight: bold;
+}
+

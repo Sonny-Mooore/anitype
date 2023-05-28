@@ -1,0 +1,1 @@
+export const URL = "https://anitypes.site:8881";

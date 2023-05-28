@@ -1,0 +1,69 @@
+
+.list_episode_header {
+    font-family: "Manrope", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 70px;
+}
+
+.episode_space {
+    height: 172px;
+    width: 306px;
+    min-width: 306px;
+    min-height: 172px;
+}
+
+.episode_list {
+    margin-top: 5px;
+    margin-left: -236px;
+    display: flex;
+    width: calc(100% + 236px);
+    overflow-y: hidden;
+    overflow-x: auto;
+    max-width: calc(100% + 236px);
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.episode_list::-webkit-scrollbar {
+    height: 0;
+}
+
+.left_button_1 {
+    margin-top: 85px;
+    margin-left: 20px;
+    transform: rotate(180deg);
+    position: absolute;
+    fill: #ababab;
+    transition: .3s;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.left_button_1.active {
+    opacity: 1;
+}
+
+.left_button_1:hover {
+    fill: white;
+}
+
+.right_button_1 {
+    cursor: pointer;
+    margin-top: 85px;
+    right: 20px;
+    position: absolute;
+    fill: #ababab;
+    transition: .3s;
+    opacity: 0;
+    z-index: 20;
+}
+
+.right_button_1.active {
+    opacity: 1;
+}
+
+.right_button_1:hover {
+    fill: white;
+}

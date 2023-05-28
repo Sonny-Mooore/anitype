@@ -1,0 +1,72 @@
+.episode_item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 172px;
+    width: 306px;
+    min-width: 306px;
+    min-height: 172px;
+    border-radius: 10px;
+    margin: 10px 10px 10px 0;
+    background-size: cover;
+    transition: .2s;
+}
+
+.episode_item:hover {
+    z-index: 2;
+    transform: scale(1.075);
+    -webkit-box-shadow: 0 0 20px 0 #000000;
+    box-shadow: 0 0 20px 0 #000000;
+}
+
+.episode_item_name{
+    font-family: "Manrope", sans-serif;
+    user-select: none;
+    font-size: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: 400;
+}
+
+.episode_item_time{
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    user-select: none;
+    margin-left: 25px;
+    white-space: nowrap;
+    font-weight: 200;
+}
+
+.episode_item_container_metadata{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 10px 5px 10px;
+    align-items: center;
+}
+
+.episode_item_container_watch{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 5px;
+    margin-bottom: 5px;
+}
+
+.time_container{
+    width: 95%;
+    height: 3px;
+    background: var(--time_container_background);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.time_fill{
+    display: flex;
+    width: 60%;
+    height: 100%;
+    background: var(--time_fill);
+}

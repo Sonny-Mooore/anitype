@@ -1,0 +1,19 @@
+
+.catalog_container{
+    margin-top: 120px;
+    margin-left: 70px;
+}
+
+.catalog_header{
+    display: flex;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.catalog_List{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-wrap: wrap;
+}
