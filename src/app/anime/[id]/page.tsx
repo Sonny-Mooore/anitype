@@ -6,7 +6,7 @@ import { URL } from "@/utils/constants";
 import Header from "@/components/header/Header";
 import HeaderMobile from "@/components/header/HeaderMobile";
 import Link from "next/link";
-import {getAnimeTitle} from "@/utils/function";
+import {getAnimeTitle, getStringGenres} from "@/utils/function";
 
 interface Props {
     params: { id: string };
@@ -44,6 +44,7 @@ const Page = async ({ params: { id } }: Props) => {
                 </div>
                 <div className={"anime_central_body"}>
                     <div className={"anime_central_body_title"}>{getAnimeTitle(data)} (аниме {data?.year})</div>
+                    <div className={"anime_central_body_genres"}>{data?.genres ? getStringGenres(data?.genres) : ""}</div>
                     <div
                         className={"anime_central_body_description"}>{data?.description !== "none" ? data?.description : ""}</div>
                     <div className={"catalog_info_watch_button_container"}>

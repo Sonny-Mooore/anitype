@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import "./welcomePage.css";
 import Header from "@/components/header/Header";

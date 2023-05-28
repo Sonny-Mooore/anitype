@@ -18,6 +18,14 @@ const Header = (props: HeaderProps) => {
 
     const searchInterval = useRef(setInterval(() => ""));
 
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const handleSpanClick = () => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    };
+
     function getLinkClassName(selected: string, link: string, isSearch: boolean) {
         if (isSearch) return "link hidden";
         if (selected === link) return "link selected";
@@ -65,7 +73,7 @@ const Header = (props: HeaderProps) => {
                 </Link>
 
                 <div className={isSearch ? "search_container active" : "search_container"}>
-                    <input placeholder={"Аниме"} className={isSearch ? "search_input active" : "search_input"}
+                    <input placeholder={"Аниме"} className={isSearch ? "search_input active" : "search_input"} ref={inputRef}
                         value={textSearch} onChange={(e) => setTextSearch(e.target.value)} />
                     <div className={"search_result"}>
                         {searchResult.map((item: any) => <SearchElement id={item.id} imageUrl={item.poster}
@@ -77,7 +85,10 @@ const Header = (props: HeaderProps) => {
                 <div>
                     <span
                         className={isSearch ? "link_icon search_show" : "link_icon"}
-                        onClick={() => setIsSearch(!isSearch)}
+                        onClick={() => {
+                            setIsSearch(!isSearch)
+                            handleSpanClick()
+                        }}
                     >
                         {!isSearch ?
                             <svg viewBox="0 0 24 24" width={23} height={23}

@@ -24,7 +24,7 @@ const Page = async ({ params: { id } }: Props) => {
 
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
-            <iframe style={{ height: "100vh", width: "100vw" }} src={data?.sources?.kodik} />
+            <iframe width={"100%"} height={"100%"} src={data?.sources?.kodik} />
         </div>
     );
 };
