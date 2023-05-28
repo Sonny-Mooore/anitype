@@ -83,6 +83,8 @@
     font-weight: 300;
     margin-left: 5px;
     color: #686a6b;
+    white-space: nowrap;
+    z-index: 5;
 }
 
 .catalog_info_description {

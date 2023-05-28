@@ -6,6 +6,7 @@ import { URL } from "@/utils/constants";
 import Header from "@/components/header/Header";
 import HeaderMobile from "@/components/header/HeaderMobile";
 import Link from "next/link";
+import {getAnimeTitle} from "@/utils/function";
 
 interface Props {
     params: { id: string };
@@ -42,7 +43,7 @@ const Page = async ({ params: { id } }: Props) => {
                     <div className={"anime_body_poster"} style={{ backgroundImage: `url("${data?.poster}")` }} />
                 </div>
                 <div className={"anime_central_body"}>
-                    <div className={"anime_central_body_title"}>{data.titles?.ruAlt} (аниме {data?.year})</div>
+                    <div className={"anime_central_body_title"}>{getAnimeTitle(data)} (аниме {data?.year})</div>
                     <div
                         className={"anime_central_body_description"}>{data?.description !== "none" ? data?.description : ""}</div>
                     <div className={"catalog_info_watch_button_container"}>
@@ -62,7 +63,7 @@ const Page = async ({ params: { id } }: Props) => {
                 </div>
                 <div className={"anime_right_body"}>
                     <div className={"search_rank anime"}>
-                        7.8
+                        {data.ratings.kinopoisk}
                     </div>
                 </div>
             </div>

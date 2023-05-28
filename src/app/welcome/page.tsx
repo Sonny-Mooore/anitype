@@ -7,6 +7,7 @@ import axios from "axios";
 import CatalogList from "@/components/catalogList/CatalogList";
 import CatalogItem from "@/components/catalogItem/CatalogItem";
 import { URL } from "@/utils/constants";
+import {getAnimeTitle} from "@/utils/function";
 
 
 async function getData() {
@@ -37,7 +38,7 @@ const Page = async () => {
             </div>
             <div className="container">
                 <CatalogList header={"Сейчас смотрят"} isMouseScroll={true}>
-                    {data.map((item: any) => <CatalogItem title={item.titles.ruAlt} description={item.description}
+                    {data.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
                                                           image={item.poster}
                                                           numberEpisodes={item.episodesCount}
                                                           key={item.titles.original} item={item} />)}

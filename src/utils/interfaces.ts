@@ -3,6 +3,7 @@ export interface Anime {
     titles?: {
         ruAlt?: string
         original?: string
+        ru?: string
     };
     description?: string;
     poster?: string;
