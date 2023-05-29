@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./header.css";
 import Link from "next/link";
 import axios from "axios";
-import { URL } from "@/utils/constants";
+import { URLServer } from "@/utils/constants";
 import SearchElement from "@/components/header/searchElement/SearchElement";
 import {getRankAnime} from "@/utils/function";
 import {HeaderProps} from "@/utils/interfaces";
@@ -41,7 +41,7 @@ const Header = (props: HeaderProps) => {
             if (textSearch.length !== 0) {
                 axios({
                     method: "get",
-                    url: URL + `/anime/search/title?q=${textSearch}`
+                    url: URLServer + `/anime/search/title?q=${textSearch}`
                 }).then((res: any) => {
                     setSearchResult(res.data);
                     console.log(res.data);
@@ -110,7 +110,7 @@ const Header = (props: HeaderProps) => {
                 </div>
             </div>
             <div className={isSearch ? "header__part search_show" : "header__part"}>
-                <Link href="/">
+                <Link href={"/auth"}>
                     <span className="link">Войти</span>
                 </Link>
             </div>

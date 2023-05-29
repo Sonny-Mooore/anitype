@@ -1,5 +1,5 @@
 import React from "react";
-import { URL } from "@/utils/constants";
+import { URLServer } from "@/utils/constants";
 import axios from "axios";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 async function getData(id: string) {
     return await axios({
         method: "get",
-        url: URL + `/anime/id/${id}`
+        url: URLServer + `/anime/id/${id}`
     }).then((res) => {
         return res.data;
     }).catch((error) => {

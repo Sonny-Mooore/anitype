@@ -17,6 +17,15 @@
     --time_fill: #fa5401;
     --link_un_active: #9ea0a1;
     --link_active: white;
+
+    /*authentication*/
+    --accent-color: #fa5401;
+    --box-shadow-auth-container: rgba(25, 25, 25, 0.75);
+    --background-auth-container: #232323;
+    --background-auth-input: #2f2f2f;
+    --background-auth-separator: #5b5959;
+    --background-accept-button: #3f3f3f;
+    --fill-right-accept-button: #949494;
 }
 
 

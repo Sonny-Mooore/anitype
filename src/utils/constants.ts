@@ -1,1 +1,2 @@
-export const URL = "https://anitypes.site:8881";
+
+export const URLServer = "https://anitypes.site:8881";

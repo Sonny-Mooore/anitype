@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.authBackground{
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    background-image: url("https://cdn.discordapp.com/attachments/1109761605010477137/1110893586989465600/-1_.png");
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+}
+
+.authBackButton {
+    display: flex;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    fill: #D1D1D1;
+    border-radius: 50%;
+    padding: 5px;
+    transition: .3s;
+}
+
+.authBackButton:hover{
+    background: rgba(144, 144, 144, 0.16);
+    fill: white;
+}
+
+.authBackButton:active{
+    transform: translateY(3px);
+}
+
+.authContainer{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    height: 175px;
+    z-index: 2;
+    align-items: center;
+
+    background: var(--background-auth-container);
+    box-shadow: 0 0 19px 3px var(--box-shadow-auth-container);
+    -webkit-box-shadow: 0 0 19px 3px var(--box-shadow-auth-container);
+    -moz-box-shadow: 0 0 19px 3px var(--box-shadow-auth-container);
+
+    transition: .3s;
+}
+
+.authContainer.activePassword{
+    height: 250px;
+}
+
+.authContainer.activePasswordRepeat{
+    height: 300px;
+}
+
+.authTitle{
+    font-family: Montserrat, sans-serif;
+    display: flex;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+.authInputContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 300px;
+    margin-top: 20px;
+}
+
+.authInput{
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    display: flex;
+    background: var(--background-auth-input);
+    border-radius: 13px;
+    border: none;
+    padding: 10px 10px 10px 15px;
+    outline: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 250px;
+    transition: 0.3s;
+}
+
+.authInputAndButtonContainer{
+    display: flex;
+    scale: 1;
+    transition: .3s;
+}
+
+.authInputAndButtonContainer.unActive{
+    scale: 0;
+}
+
+
+
+.authAcceptButton{
+    display: flex;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    margin-left: 210px;
+    margin-top: 10px;
+    position: absolute;
+    fill: var(--fill-right-accept-button);
+    scale: 1;
+    transition: .3s;
+    background: var(--background-accept-button);
+    border-radius: 15%;
+    padding: 5px;
+}
+
+.authAcceptButton:hover{
+    fill: var(--accent-color);
+}
+
+.authAcceptButton.unActive{
+    scale: 0;
+}
+
+.authInput.login{
+    border-radius: 13px;
+}
+
+.authInput.login.textChange{
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.authInput.password{
+    border-top: 1px solid var(--background-auth-separator);
+}
+
+.authInput.password.repeat{
+    border-radius: 0;
+}
+
+.authInput.password.noRepeat{
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.authInput.repeatPassword{
+    border-top: 1px solid var(--background-auth-separator);
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    scale: 0;
+}
+
+.authInput.repeatPassword.active{
+    scale: 1;
+}
