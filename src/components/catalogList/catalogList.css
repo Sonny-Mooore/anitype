@@ -22,6 +22,10 @@
     transition: .3s;
 }
 
+.catalog_button:active{
+    transform: translateX(2px);
+}
+
 .catalog_button.active {
     fill: #959595;
 }

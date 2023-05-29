@@ -6,7 +6,7 @@ import { URL } from "@/utils/constants";
 import Header from "@/components/header/Header";
 import HeaderMobile from "@/components/header/HeaderMobile";
 import Link from "next/link";
-import {getAnimeTitle, getStringGenres} from "@/utils/function";
+import {getAnimeTitle, getRankAnime, getStringGenres} from "@/utils/function";
 
 interface Props {
     params: { id: string };
@@ -63,8 +63,8 @@ const Page = async ({ params: { id } }: Props) => {
                     </div>
                 </div>
                 <div className={"anime_right_body"}>
-                    <div className={"search_rank anime"}>
-                        {data.ratings.kinopoisk}
+                    <div className={"search_rank anime"} style={{color: data ? getRankAnime(data).color : ""}} >
+                        {data && getRankAnime(data).rank !== 0 ? getRankAnime(data).rank : ""}
                     </div>
                 </div>
             </div>

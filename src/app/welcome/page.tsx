@@ -39,7 +39,7 @@ const Page = async () => {
                 <CatalogList header={"Сейчас смотрят"} isMouseScroll={true}>
                     {data.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
                                                           image={item.poster}
-                                                          numberEpisodes={item.episodesCount}
+                                                          numberEpisodes={item?.episodesCount}
                                                           key={item.titles.original} item={item} />)}
                 </CatalogList>
             </div>

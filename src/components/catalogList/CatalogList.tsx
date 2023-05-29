@@ -4,11 +4,9 @@ import "@/components/releaseList/episodeList.css";
 import "./catalogList.css";
 import CatalogItem from "@/components/catalogItem/CatalogItem";
 import List from "@/components/list/List";
-import {getRank, getStringGenres, sliceText} from "@/utils/function";
+import {getRankAnime, getStringGenres, sliceText} from "@/utils/function";
 import Link from "next/link";
 import {Anime, CatalogListProps} from "@/utils/interfaces";
-
-//TODO: full refactor
 
 
 const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
@@ -66,7 +64,7 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
                         {selectItem ? selectItem?.titles?.ruAlt : null}
                     </div>
                     <div className={"catalog_info_rank_genres_container"}>
-                        <div className={"search_rank"}>{selectItem ? getRank(selectItem) : ""}</div>
+                        <div className={"search_rank"} style={{color: selectItem ? getRankAnime(selectItem).color : ""}} >{selectItem && getRankAnime(selectItem).rank !== 0 ? getRankAnime(selectItem).rank : ""}</div>
                         <div className={"catalog_info_genres"}>{`${selectItem?.year}, ${selectItem?.genres ? getStringGenres(selectItem?.genres) : ""}`}</div>
                     </div>
                     <div className={"catalog_info_description"}>

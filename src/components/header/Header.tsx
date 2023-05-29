@@ -5,7 +5,7 @@ import Link from "next/link";
 import axios from "axios";
 import { URL } from "@/utils/constants";
 import SearchElement from "@/components/header/searchElement/SearchElement";
-import { getRank } from "@/utils/function";
+import {getRankAnime} from "@/utils/function";
 import {HeaderProps} from "@/utils/interfaces";
 
 
@@ -20,15 +20,18 @@ const Header = (props: HeaderProps) => {
 
     const inputRef = useRef<HTMLInputElement>(null);
 
+    const [linkActivated, setLinkActivated] = useState<string>("");
+
     const handleSpanClick = () => {
         if (inputRef.current) {
             inputRef.current.focus();
         }
     };
 
-    function getLinkClassName(selected: string, link: string, isSearch: boolean) {
+    function getLinkClassName(selected: string, link: string, isSearch: boolean, linkActivated: string) {
         if (isSearch) return "link hidden";
-        if (selected === link) return "link selected";
+        if (selected === link && linkActivated === "") return "link selected";
+        if (linkActivated === link) return "link activated";
         return "link";
     }
 
@@ -61,15 +64,15 @@ const Header = (props: HeaderProps) => {
                 </Link>
             </div>
             <div className={isSearch ? "header__part search_show" : "header__part"}
-                style={{ display: "flex", alignItems: "flex-start", justifyContent: "flex-start" }}>
-                <Link href={"/welcome"}>
-                    <span className={getLinkClassName(props.selected, "welcome", isSearch)}>Главное</span>
+                style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Link href={"/welcome"} onClick={() => setLinkActivated("welcome")}>
+                    <span className={getLinkClassName(props.selected, "welcome", isSearch, linkActivated)}>Главное</span>
                 </Link>
-                <Link href={"/catalog"}>
-                    <span className={getLinkClassName(props.selected, "catalog", isSearch)}>Каталог</span>
+                <Link href={"/catalog"} onClick={() => setLinkActivated("catalog")}>
+                    <span className={getLinkClassName(props.selected, "catalog", isSearch, linkActivated)}>Каталог</span>
                 </Link>
-                <Link href={"/my"}>
-                    <span className={getLinkClassName(props.selected, "my", isSearch)}>Моё</span>
+                <Link href={"/my"} onClick={() => setLinkActivated("my")}>
+                    <span className={getLinkClassName(props.selected, "my", isSearch, linkActivated)}>Моё</span>
                 </Link>
 
                 <div className={isSearch ? "search_container active" : "search_container"}>
@@ -78,7 +81,7 @@ const Header = (props: HeaderProps) => {
                     <div className={"search_result"}>
                         {searchResult.map((item: any) => <SearchElement id={item.id} imageUrl={item.poster}
                             title={item.titles.ru}
-                            searchRank={getRank(item)}
+                            searchRank={getRankAnime(item).rank}
                             date={item.year} key={item.id} />)}
                     </div>
                 </div>
