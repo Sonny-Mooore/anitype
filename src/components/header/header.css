@@ -24,6 +24,9 @@
 }
 
 .header__part.search_show {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     margin-top: 23px;
 }
 
@@ -128,7 +131,7 @@
 .header__icon.search_show {
     align-self: flex-start;
     justify-self: flex-start;
-    margin-top: -3px;
+    margin-top: 6px;
 }
 
 .link_icon {
@@ -139,6 +142,8 @@
 }
 
 .link_icon.search_show {
+    align-self: flex-start;
+    justify-self: flex-start;
     margin-left: 8px;
 }
 

@@ -63,8 +63,7 @@ const Header = (props: HeaderProps) => {
                     <span className="link logo">AniType</span>
                 </Link>
             </div>
-            <div className={isSearch ? "header__part search_show" : "header__part"}
-                style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div className={isSearch ? "header__part search_show" : "header__part"}>
                 <Link href={"/welcome"} onClick={() => setLinkActivated("welcome")}>
                     <span className={getLinkClassName(props.selected, "welcome", isSearch, linkActivated)}>Главное</span>
                 </Link>
