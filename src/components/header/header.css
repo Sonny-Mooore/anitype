@@ -126,6 +126,8 @@
 }
 
 .header__icon.search_show {
+    align-self: flex-start;
+    justify-self: flex-start;
     margin-top: -3px;
 }
 
