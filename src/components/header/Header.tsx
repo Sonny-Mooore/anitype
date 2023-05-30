@@ -92,7 +92,7 @@ const Header = (props: HeaderProps) => {
                         {searchResult.map((item: any) => <SearchElement id={item.id} imageUrl={item.poster}
                             title={item.titles.ru}
                             searchRank={getRankAnime(item).rank}
-                            date={item.year} key={item.id} />)}
+                            date={item.year} key={item.id} status={item?.status} />)}
                     </div>
                 </div>
                 <div>

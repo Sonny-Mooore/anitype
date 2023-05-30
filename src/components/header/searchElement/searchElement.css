@@ -50,19 +50,39 @@
 }
 
 .search_rank {
+    display: flex;
     color: #41d009;
     font-size: 13px;
     font-weight: bold;
+    text-align: center;
+    margin-right: 5px;
 }
 
 .search_date {
     font-size: 13px;
     font-weight: lighter;
-    margin-left: 5px;
 }
 
 .search_info {
     display: flex;
     flex-direction: column;
 
+}
+
+.search_status{
+    font-family: "Rubik", sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    margin-right: 5px;
+    width: fit-content;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+
+.search_status.released{
+    background: #63c844;
+}
+
+.search_status.ongoing{
+    background: #9f50d3;
 }

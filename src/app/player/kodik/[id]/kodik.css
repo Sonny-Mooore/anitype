@@ -1,19 +1,27 @@
 
-.kodik_close_button{
+.kodik_button{
     display: flex;
     position: absolute;
-    right: 70px;
-    top: 15px;
     z-index: 50;
     fill: #D1D1D1;
     transition: .3s;
     opacity: 1;
 }
 
-.kodik_close_button.close{
+.kodik_button.noActive{
     opacity: 0;
 }
 
-.kodik_close_button:hover{
+.kodik_button.skip{
+    right: 90px;
+    top: 15px;
+}
+
+.kodik_button.close{
+    right: 60px;
+    top: 15px;
+}
+
+.kodik_button:hover{
     fill: white;
 }

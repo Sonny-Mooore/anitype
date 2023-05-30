@@ -46,7 +46,8 @@ export interface SearchElementProps {
     imageUrl: string,
     title: string,
     searchRank: number,
-    date: string
+    date: string,
+    status?: string
 }
 
 export interface HeaderProps {
