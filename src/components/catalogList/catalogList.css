@@ -188,3 +188,11 @@
 .catalog_info_close_button:hover {
     fill: white;
 }
+.search_rank_catalog_list {
+    display: flex;
+    font-size: 15px;
+    font-weight: bold;
+    justify-content: start;
+    text-justify: auto;
+    margin-right: 5px;
+}

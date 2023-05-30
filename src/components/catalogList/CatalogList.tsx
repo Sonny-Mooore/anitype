@@ -64,8 +64,8 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
                         {selectItem ? selectItem?.titles?.ruAlt : null}
                     </div>
                     <div className={"catalog_info_rank_genres_container"}>
-                        <div className={"search_rank"} style={{color: selectItem ? getRankAnime(selectItem).color : ""}} >{selectItem && getRankAnime(selectItem).rank !== 0 ? getRankAnime(selectItem).rank : ""}</div>
-                        <div className={"catalog_info_genres"}>{selectItem?.episodesCount} Серий · {`${selectItem?.year}, ${selectItem?.genres ? getStringGenres(selectItem?.genres) : ""}`}</div>
+                        <div className={"search_rank_catalog_list"} style={{color: selectItem ? getRankAnime(selectItem).color : ""}} >{selectItem && getRankAnime(selectItem).rank !== 0 ? getRankAnime(selectItem).rank : ""}</div>
+                        <div className={"catalog_info_genres"}>{selectItem?.episodesCount} Серий · {`${selectItem?.year} · ${selectItem?.genres ? getStringGenres(selectItem?.genres) : ""}`}</div>
                     </div>
                     <div className={"catalog_info_description"}>
                         {selectItem ? sliceText(selectItem?.description, 300) : null}
