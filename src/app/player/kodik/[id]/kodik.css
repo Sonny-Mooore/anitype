@@ -1,0 +1,14 @@
+
+.kodik_close_button{
+    display: flex;
+    position: absolute;
+    right: 70px;
+    top: 15px;
+    z-index: 50;
+    fill: #D1D1D1;
+    transition: .3s;
+}
+
+.kodik_close_button:hover{
+    fill: white;
+}
