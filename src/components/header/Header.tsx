@@ -3,10 +3,11 @@ import React, { useEffect, useRef, useState } from "react";
 import "./header.css";
 import Link from "next/link";
 import axios from "axios";
-import { URLServer } from "@/utils/constants";
+import { URLBase } from "@/utils/constants";
 import SearchElement from "@/components/header/searchElement/SearchElement";
 import {getRankAnime} from "@/utils/function";
 import {HeaderProps} from "@/utils/interfaces";
+import {getUserName} from "@/utils/UsersCooke";
 
 
 
@@ -22,6 +23,8 @@ const Header = (props: HeaderProps) => {
 
     const [linkActivated, setLinkActivated] = useState<string>("");
 
+    const [userName, setUserName] = useState<string>("");
+
     const handleSpanClick = () => {
         if (inputRef.current) {
             inputRef.current.focus();
@@ -36,12 +39,20 @@ const Header = (props: HeaderProps) => {
     }
 
     useEffect(() => {
+        const userName= getUserName()
+        console.log(userName)
+        if (userName){
+            setUserName(userName)
+        }
+    }, []);
+
+    useEffect(() => {
         clearInterval(searchInterval.current);
         searchInterval.current = setInterval(() => {
             if (textSearch.length !== 0) {
                 axios({
                     method: "get",
-                    url: URLServer + `/anime/search/title?q=${textSearch}`
+                    url: URLBase + `/anime/search/title?q=${textSearch}`
                 }).then((res: any) => {
                     setSearchResult(res.data);
                     console.log(res.data);
@@ -111,7 +122,7 @@ const Header = (props: HeaderProps) => {
             </div>
             <div className={isSearch ? "header__part search_show" : "header__part"}>
                 <Link href={"/auth"}>
-                    <span className="link">Войти</span>
+                    <span className="link">{userName !== "" ? userName : "Войти"}</span>
                 </Link>
             </div>
         </div>

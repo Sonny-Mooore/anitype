@@ -2,7 +2,7 @@ import "./anime.css";
 import "@/components/catalogList/catalogList.css"
 import React from "react";
 import axios from "axios";
-import { URLServer } from "@/utils/constants";
+import { URLBase } from "@/utils/constants";
 import Header from "@/components/header/Header";
 import HeaderMobile from "@/components/header/HeaderMobile";
 import Link from "next/link";
@@ -15,7 +15,7 @@ interface Props {
 async function getData(id: string) {
     return await axios({
         method: "get",
-        url: URLServer + `/anime/id/${id}`
+        url: URLBase + `/anime/id/${id}`
     }).then((res) => {
         return res.data;
     }).catch((error) => {

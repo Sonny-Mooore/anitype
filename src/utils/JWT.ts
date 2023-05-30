@@ -1,6 +1,6 @@
 import {deleteCookie, getCookie, hasCookie, setCookie} from "cookies-next";
 import axios from "axios";
-import {URLServer} from "@/utils/constants";
+import {URLUsers} from "@/utils/constants";
 
 type Token = null | undefined | string
 interface Tokens {
@@ -40,7 +40,7 @@ export async function getJwt() {
 export async function getAccessTokenOrNullFromServer(refreshToken: Token){
     return await axios({
         method: 'post',
-        url: URLServer + 'auth/access',
+        url: URLUsers + 'auth/access',
         headers: {"X-Forwarded-For": refreshToken},
         data: {refreshToken: refreshToken},
     }).then(response => {
@@ -54,7 +54,7 @@ export async function getAccessTokenOrNullFromServer(refreshToken: Token){
 export async function getRefreshAndAccessTokenOrNullFromServer(refreshToken: Token){
     return await axios({
         method: 'post',
-        url: URLServer + 'auth/refresh',
+        url: URLUsers + 'auth/refresh',
         headers: {"X-Forwarded-For": refreshToken},
         data: {refreshToken: refreshToken}
     }).then(resp => {
@@ -67,15 +67,15 @@ export async function getRefreshAndAccessTokenOrNullFromServer(refreshToken: Tok
 export function setJwt(access?: Token, refresh?: Token) {
     if (access != null) {
         setCookie('access', access, {
-            maxAge: 86400 // 1 day
+            maxAge: Math.round(86400 / 2) // 0.5 day
         })
     }
     if (refresh != null) {
         setCookie('refresh', refresh, {
-            maxAge: 86400 * 31 // 7 days
+            maxAge: 86400 * 7 // 7 days
         })
         setCookie('refreshTime', Date.now(), {
-            maxAge: 86400 * 28
+            maxAge: 86400 * 6
         })
     }
 }

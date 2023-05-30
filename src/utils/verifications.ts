@@ -1,7 +1,8 @@
 import {hasCookie, setCookie} from "cookies-next";
 import axios from "axios";
 import {getAccessTokenOrNullFromServer, getJwt, setJwt} from "@/utils/JWT";
-import {URLServer} from "@/utils/constants";
+import {URLUsers} from "@/utils/constants";
+import {setUserName} from "@/utils/UsersCooke";
 
 export async function checkUserAuth(){
     return await getAccessTokenOrNullFromServer((await getJwt()).refresh) != null;
@@ -18,9 +19,9 @@ export function checkTempAuthentication(){
 }
 
 export async function checkUserInDataBase(login: string) {
-    return await axios({
+    return !await axios({
         method: 'get',
-        url: URLServer + `users/isExists?email=${login}`
+        url: URLUsers + `/users/available/username/${login}`
     }).then((response) => {
         return response.data
     }).catch((error) => {
@@ -32,13 +33,13 @@ export async function checkUserInDataBase(login: string) {
 export async function registerUser(login: string, password: string) {
     return await axios({
         method: 'post',
-        url: URLServer + 'auth/signup',
+        url: URLUsers + '/auth/signup',
         data: {
-            email: login,
+            username: login,
             password: password
         }
     }).then((response) => {
-        console.log(response.data.accessToken)
+        setUserName(login)
         setJwt(response.data.accessToken, response.data.refreshToken)
         return true
     }).catch((error) => {
@@ -50,12 +51,13 @@ export async function registerUser(login: string, password: string) {
 export async function signIn(login: string, password: string){
     return await axios({
         method: 'post',
-        url: URLServer + 'auth/login',
+        url: URLUsers + '/auth/login',
         data: {
-            email: login,
+            username: login,
             password: password
         }
     }).then((response) => {
+        setUserName(login)
         setJwt(response.data.accessToken, response.data.refreshToken)
         return true
     }).catch((error) => {
@@ -67,19 +69,15 @@ export async function signIn(login: string, password: string){
 
 
 export function checkLogin(login: string){
-    if (login.length < 1) throw new Error("Введите Email")
-    if (login.length > 32) throw new Error( "Email должен быть не более 32 символов")
-    if (login.search(/@/) === -1) throw new Error( "Введите корректный Email")
-    if (login.search(/\./) === -1) throw new Error( "Введите корректный Email")
-    if (login.search(/[^A-Za-z0-9@.]/) !== -1) throw new Error("Введите корректный Email")
+    if (login.length < 1) throw new Error("Введите имя пользователя")
+    if (login.search(/[^a-zA-Z0-9]/) !== -1) throw new Error("Имя пользователя должно содержать только английские буквы и цифры")
+    if (login.search(/\s/) !== -1) throw new Error("Имя пользователя не должно содержать пробелы")
+    if (login.length > 16) throw new Error( "Login должен быть не более 32 символов")
 }
 
 export function checkPassword(password: string, passwordRepeat: string){
     if (password !== passwordRepeat) throw new Error("Пароли не совпадают")
     if (password.length < 8) throw new Error("Пароль должен быть не менее 8 символов")
     if (password.length > 32) throw new Error("Пароль должен быть не более 32 символов")
-    if (password.search(/[A-Z]/) === -1) throw new Error("Пароль должен содержать хотя бы одну заглавную букву")
-    if (password.search(/[a-z]/) === -1) throw new Error("Пароль должен содержать хотя бы одну строчную букву")
     if (password.search(/[0-9]/) === -1) throw new Error("Пароль должен содержать хотя бы одну цифру")
-    if (password.search(/[^A-Za-z0-9]/) === -1) throw new Error("Пароль должен содержать хотя бы один спецсимвол")
 }

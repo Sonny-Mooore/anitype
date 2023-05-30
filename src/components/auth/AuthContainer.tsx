@@ -32,12 +32,12 @@ const AuthContainer = () => {
 
         let response = await checkUserInDataBase(login)
 
-        if (response === true){
+        if (response){
             setIsVisibleLoginAcceptButton(false)
             setIsVisiblePassword(true)
             setIsVisiblePasswordAcceptButton(true)
         }
-        else if ( response === false){
+        else if ( !response){
             setAuthenticationState('reg')
             setIsVisibleLoginAcceptButton(false)
             setIsVisiblePassword(true)
@@ -85,7 +85,7 @@ const AuthContainer = () => {
         let registrationResult = await registerUser(login, password)
 
         if (registrationResult){
-            router.push('/home')
+            router.push('/welcome')
         }
     }
 
@@ -93,7 +93,7 @@ const AuthContainer = () => {
 
         let loginResult = await signIn(login, password)
         if (loginResult){
-            router.push('/home')
+            router.push('/welcome')
         }
         else {
             setAlertMessage("Неверное имя пользователя или пароль")
@@ -114,7 +114,7 @@ const AuthContainer = () => {
                 <div className="authTitle">{authenticationState === 'log' ? "Вход" : "Создать аккаунт"}</div>
                 <div className="authInputContainer">
                     <div className="authInputAndButtonContainer">
-                        <input className={isVisiblePassword ? "authInput login textChange" : "authInput login"} placeholder="Email" value={login} onChange={e => {setLogin(e.target.value); setDefault()}}/>
+                        <input className={isVisiblePassword ? "authInput login textChange" : "authInput login"} placeholder="Имя пользователя" value={login} onChange={e => {setLogin(e.target.value); setDefault()}}/>
                         {isVisibleLoginAcceptButton && <div className={"authAcceptButton"} onClick={() => checkRegistrationUser(login)}>
                             <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M322.7,128.4L423,233.4c6,5.8,9,13.7,9,22.4c0,8.7-3,16.5-9,22.4L322.7,383.6c-11.9,12.5-31.3,12.5-43.2,0  c-11.9-12.5-11.9-32.7,0-45.2l48.2-50.4h-217C93.7,288,80,273.7,80,256c0-17.7,13.7-32,30.6-32h217l-48.2-50.4  c-11.9-12.5-11.9-32.7,0-45.2C291.4,115.9,310.7,115.9,322.7,128.4z"/>

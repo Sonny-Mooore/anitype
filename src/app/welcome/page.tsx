@@ -5,14 +5,14 @@ import HeaderMobile from "@/components/header/HeaderMobile";
 import axios from "axios";
 import CatalogList from "@/components/catalogList/CatalogList";
 import CatalogItem from "@/components/catalogItem/CatalogItem";
-import { URLServer } from "@/utils/constants";
+import { URLBase } from "@/utils/constants";
 import {getAnimeTitle} from "@/utils/function";
 
 
 async function getData() {
     return await axios({
         method: "get",
-        url: URLServer + "/anime/find/popular"
+        url: URLBase + "/anime/find/popular"
     }).then((response) => {
         return response.data;
     }).catch((error) => {
