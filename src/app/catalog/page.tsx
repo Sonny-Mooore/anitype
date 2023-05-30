@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "@/components/header/Header";
-import HeaderMobile from "@/components/header/HeaderMobile";
 import "./catalog.css";
 import CatalogList from "@/components/catalogList/CatalogList";
 import axios from "axios";
@@ -27,7 +26,6 @@ const Page = async () => {
     return (
         <div style={{ height: "100vh" }}>
             <Header selected={"catalog"} />
-            <HeaderMobile selected={"catalog"} />
             <div style={{ height: "100px" }} />
             <CatalogList header={"Сейчас смотрят"} isMouseScroll={false}>
                 {data.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}

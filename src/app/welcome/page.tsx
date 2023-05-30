@@ -1,7 +1,6 @@
 import React from "react";
 import "./welcomePage.css";
 import Header from "@/components/header/Header";
-import HeaderMobile from "@/components/header/HeaderMobile";
 import axios from "axios";
 import CatalogList from "@/components/catalogList/CatalogList";
 import CatalogItem from "@/components/catalogItem/CatalogItem";
@@ -28,7 +27,6 @@ const Page = async () => {
     return (
         <div style={{overflow: "scroll"}}>
             <Header selected={"welcome"} />
-            <HeaderMobile selected={"welcome"} />
             <div className="welcome_background">
                 <div className="welcome_text">Смотри аниме на AniType</div>
                 <div className={"welcome_description_text"}>Огромное количество релизов с озвучкой от любимых студий,

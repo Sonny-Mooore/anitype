@@ -4,9 +4,10 @@ import "@/components/releaseList/episodeList.css";
 import "./catalogList.css";
 import CatalogItem from "@/components/catalogItem/CatalogItem";
 import List from "@/components/list/List";
-import {getRankAnime, getStringGenres, sliceText} from "@/utils/function";
+import {episodeDeclension, getRankAnime, getStringGenres, sliceText} from "@/utils/function";
 import Link from "next/link";
 import {Anime, CatalogListProps} from "@/utils/interfaces";
+import AddToFavoriteButton from "@/components/addToFavoriteButton/AddToFavoriteButton";
 
 
 const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
@@ -52,7 +53,7 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
                 </div>
             </div>
             <List onHover={onHover} isMouseScroll={isMouseScroll}>
-                {props.children.map((i: any) => <CatalogItem title={i.props.title} description={i.props.description}
+                {props?.children?.map((i: any) => <CatalogItem title={i.props.title} description={i.props.description}
                     image={i.props.image}
                     numberEpisodes={i.numberEpisodes}
                     setSelectItem={setSelectItem} item={i.props.item}
@@ -65,7 +66,7 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
                     </div>
                     <div className={"catalog_info_rank_genres_container"}>
                         <div className={"search_rank_catalog_list"} style={{color: selectItem ? getRankAnime(selectItem).color : ""}} >{selectItem && getRankAnime(selectItem).rank !== 0 ? getRankAnime(selectItem).rank : ""}</div>
-                        <div className={"catalog_info_genres"}>{selectItem?.episodesCount} Серий · {`${selectItem?.year} · ${selectItem?.genres ? getStringGenres(selectItem?.genres) : ""}`}</div>
+                        <div className={"catalog_info_genres"}>{selectItem?.episodesCount} {episodeDeclension(selectItem?.episodesCount)} · {`${selectItem?.year} · ${selectItem?.genres ? getStringGenres(selectItem?.genres) : ""}`}</div>
                     </div>
                     <div className={"catalog_info_description"}>
                         {selectItem ? sliceText(selectItem?.description, 300) : null}
@@ -81,14 +82,7 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
                                 Подробнее
                             </div>
                         </Link>
-
-                        <div className={"catalog_info_watch_button add_to_favorites"}>
-                            <svg width={20} height={20} xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 384 512">
-                                <path
-                                    d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z" />
-                            </svg>
-                        </div>
+                        <AddToFavoriteButton id={selectItem?.id ? selectItem?.id : 0}/>
                     </div>
                 </div>
                 <div className={selectItem ? "catalog_info_container active" : "catalog_info_container"}

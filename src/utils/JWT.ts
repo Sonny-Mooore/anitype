@@ -9,7 +9,7 @@ interface Tokens {
 }
 
 
-export async function getJwt() {
+export async function getJwt(): Promise<Tokens> {
     const tokens : Tokens = {
         access: null,
         refresh: null

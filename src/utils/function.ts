@@ -1,4 +1,7 @@
 import {Anime} from "@/utils/interfaces";
+import axios from "axios";
+import {URLUsers} from "@/utils/constants";
+import {getJwt} from "@/utils/JWT";
 
 export function sliceText(text: string | undefined, length: number) {
     return text && text.length > length ? text.slice(0, length) + "..." : text;
@@ -57,3 +60,34 @@ export function getAScoreFromAnime(anime: Anime): number {
     }
     return 0;
 }
+
+export async function addToFavorite(id: number | undefined){
+    axios({
+        method: "post",
+        url: URLUsers + "/folders/add",
+        data: {
+            folderTitle: "Буду смотреть",
+            releaseId: id
+        },
+        headers: {"Authorization": "Bearer " + (await getJwt()).access}
+    })
+}
+
+export function episodeDeclension(number: number | undefined): string {
+    if (!number){
+        return 'эпизода'
+    }
+    const remainder  = number % 10;
+    const remainderTens  = number % 100;
+
+    if (remainderTens  >= 11 && remainderTens  <= 19) {
+        return 'эпизодов';
+    } else if (remainder  === 1) {
+        return 'эпизод';
+    } else if (remainder  >= 2 && remainder  <= 4) {
+        return 'эпизода';
+    } else {
+        return 'эпизодов';
+    }
+}
+

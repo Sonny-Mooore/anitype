@@ -58,6 +58,7 @@ export async function signIn(login: string, password: string){
         }
     }).then((response) => {
         setUserName(login)
+        console.log(response.data.accessToken, response.data.refreshToken)
         setJwt(response.data.accessToken, response.data.refreshToken)
         return true
     }).catch((error) => {

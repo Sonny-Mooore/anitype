@@ -1,0 +1,25 @@
+.catalog_info_watch_button {
+    margin-top: 20px;
+    user-select: none;
+}
+
+.catalog_info_watch_button.add_to_favorites {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #1e1d1e;
+    fill: #454545;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+}
+
+.catalog_info_watch_button.add_to_favorites:hover {
+    scale: 1.03;
+    background: #2f2f2f;
+}
+
+.catalog_info_watch_button.add_to_favorites.active {
+    fill: white;
+}

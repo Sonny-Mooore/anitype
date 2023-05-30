@@ -4,10 +4,10 @@ import React from "react";
 import axios from "axios";
 import { URLBase } from "@/utils/constants";
 import Header from "@/components/header/Header";
-import HeaderMobile from "@/components/header/HeaderMobile";
 import Link from "next/link";
-import {getAnimeTitle, getRankAnime, getStringGenres} from "@/utils/function";
+import {episodeDeclension, getAnimeTitle, getRankAnime, getStringGenres} from "@/utils/function";
 import Image from "next/image";
+import AddToFavoriteButton from "@/components/addToFavoriteButton/AddToFavoriteButton";
 
 interface Props {
     params: { id: string };
@@ -33,7 +33,6 @@ const Page = async ({ params: { id } }: Props) => {
     return (
         <div className={"anime_main_div"}>
             <Header selected={""} />
-            <HeaderMobile selected={""} />
             <div className={"anime_background_image"} style={{
                 backgroundImage: ` radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 1) 100%),
     linear-gradient(0deg, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 0) 100%),
@@ -51,7 +50,7 @@ const Page = async ({ params: { id } }: Props) => {
                         {data?.status === "released" && <div className={`anime_status ${data?.status}`}>
                             <Image src={"/done.svg"} width={15} height={15} alt={"done"}/>
                         </div>}
-                        {data?.episodesCount} Серий · {data?.year} год · {data?.genres ? getStringGenres(data?.genres) : ""}</div>
+                        {data?.episodesCount} {episodeDeclension(data?.episodesCount)} · {data?.year} год · {data?.genres ? getStringGenres(data?.genres) : ""}</div>
                     <div
                         className={"anime_central_body_description"}>{data?.description !== "none" ? data?.description : ""}</div>
                     <div className={"catalog_info_watch_button_container"}>
@@ -60,13 +59,7 @@ const Page = async ({ params: { id } }: Props) => {
                                 Смотреть
                             </div>
                         </Link>
-                        <div className={"catalog_info_watch_button add_to_favorites"}>
-                            <svg width={20} height={20} xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 384 512">
-                                <path
-                                    d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z" />
-                            </svg>
-                        </div>
+                        <AddToFavoriteButton id={data?.id}/>
                     </div>
                 </div>
                 <div className={"anime_right_body"}>
