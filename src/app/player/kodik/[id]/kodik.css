@@ -7,6 +7,11 @@
     z-index: 50;
     fill: #D1D1D1;
     transition: .3s;
+    opacity: 1;
+}
+
+.kodik_close_button.close{
+    opacity: 0;
 }
 
 .kodik_close_button:hover{

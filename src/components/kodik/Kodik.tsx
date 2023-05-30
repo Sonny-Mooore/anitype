@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import "./kodik.css";
 interface KodikProps{
     src: string
@@ -8,6 +8,10 @@ interface KodikProps{
 const Kodik = ({src}: KodikProps) => {
 
     const time= useRef(0)
+
+    const [showHud, setShowHud] = useState(true)
+
+    const interval = useRef(setInterval(() => {}))
 
     function setEpisodeAndSeason(season:number, episode: number){
         sendMethodKodik({method: "change_episode", seconds: {method: "change_episode", season: season, episode: episode}})
@@ -54,9 +58,17 @@ const Kodik = ({src}: KodikProps) => {
         };
     }, []);
 
+    function onMouseEnter(){
+        clearInterval(interval.current)
+        setShowHud(true)
+        interval.current = setInterval(() => {
+            setShowHud(false)
+        }, 5000)
+    }
+
     return (
         <>
-            <div className={"kodik_close_button"} onClick={() => setTime(time.current + 80)}>
+            <div className={showHud ? "kodik_close_button" : "kodik_close_button close"} title={"+80s"} onClick={() => setTime(time.current + 80)}>
                 <svg height="20px" width="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.2,10.6l-9-5.4c-1-0.6-2.2,0.2-2.2,1.4v3.2L3.2,5.2C2.2,4.6,1,5.4,1,6.6v10.7c0,1.2,1.2,2,2.2,1.4l7.8-4.6   v3.2c0,1.2,1.2,2,2.2,1.4l9-5.4C23.3,12.8,23.3,11.2,22.2,10.6z"/>
                 </svg>
