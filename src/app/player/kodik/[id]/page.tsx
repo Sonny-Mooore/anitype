@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { URLBase } from "@/utils/constants";
 import axios from "axios";
@@ -24,7 +25,7 @@ const Page = async ({ params: { id } }: Props) => {
 
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
-            <iframe width={"100%"} height={"100%"} src={data?.sources?.kodik} />
+            <iframe style={{border: "none"}} allowFullScreen allow="autoplay ; fullscreen" width={"100%"} height={"100%"} src={data?.sources?.kodik} />
         </div>
     );
 };
