@@ -1,6 +1,7 @@
 import {deleteCookie, getCookie, hasCookie, setCookie} from "cookies-next";
 import axios from "axios";
 import {URLUsers} from "@/utils/constants";
+import {confirmTempAuthentication} from "@/utils/verifications";
 
 type Token = null | undefined | string
 interface Tokens {
@@ -40,10 +41,11 @@ export async function getJwt(): Promise<Tokens> {
 export async function getAccessTokenOrNullFromServer(refreshToken: Token){
     return await axios({
         method: 'post',
-        url: URLUsers + 'auth/access',
+        url: URLUsers + '/auth/access',
         headers: {"X-Forwarded-For": refreshToken},
         data: {refreshToken: refreshToken},
     }).then(response => {
+        confirmTempAuthentication()
         return response.data.accessToken
     }).catch(e => {
         console.log(e.response?.data)
@@ -54,10 +56,11 @@ export async function getAccessTokenOrNullFromServer(refreshToken: Token){
 export async function getRefreshAndAccessTokenOrNullFromServer(refreshToken: Token){
     return await axios({
         method: 'post',
-        url: URLUsers + 'auth/refresh',
+        url: URLUsers + '/auth/refresh',
         headers: {"X-Forwarded-For": refreshToken},
         data: {refreshToken: refreshToken}
     }).then(resp => {
+        confirmTempAuthentication()
         return {accessToken: resp.data.accessToken, refreshToken: resp.data.refreshToken}
     }).catch(() => {
         return {accessToken: null, refreshToken: null}
@@ -69,6 +72,7 @@ export function setJwt(access?: Token, refresh?: Token) {
         setCookie('access', access, {
             maxAge: Math.round(86400 / 2) // 0.5 day
         })
+        confirmTempAuthentication()
     }
     if (refresh != null) {
         setCookie('refresh', refresh, {
@@ -77,6 +81,7 @@ export function setJwt(access?: Token, refresh?: Token) {
         setCookie('refreshTime', Date.now(), {
             maxAge: 86400 * 6
         })
+        confirmTempAuthentication()
     }
 }
 

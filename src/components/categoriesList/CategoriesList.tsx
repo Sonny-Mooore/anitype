@@ -21,7 +21,7 @@ const CategoriesList = ({data, title, ids, setIds}: CategoriesListProps) => {
                 {data?.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
                                                        image={item.poster}
                                                        numberEpisodes={item?.episodesCount ? item?.episodesCount : 0}
-                                                       key={item.titles.original+ "catalogList"} item={item}/>)}
+                                                       key={item.titles.original + "CatalogItem"} item={item}/>)}
             </CatalogList>
         </>
     );

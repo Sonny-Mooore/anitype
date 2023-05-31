@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Header from "@/components/header/Header";
 import CatalogList from "@/components/catalogList/CatalogList";
 import CatalogItem from "@/components/catalogItem/CatalogItem";
@@ -13,6 +13,8 @@ const WelcomeFrame = () => {
 
     const [data, setData] = useState<Array<Anime>>()
     const [ids, setIds] = useState<Array<number>>([])
+
+    const iterateUseEffect = useRef(0)
 
     useEffect(() => {
         async function get(){
@@ -41,13 +43,18 @@ const WelcomeFrame = () => {
             setIds(ids.map((e: any)=> e.releaseId))
         }
 
-
-        get().catch(e => console.log(e))
+        if (iterateUseEffect.current === 0){
+            get().catch(e => console.log(e))
+            iterateUseEffect.current += 1
+        }
     }, [])
 
     return (
-        <div style={{overflow: "scroll"}}>
+        <>
             <Header selected={"welcome"} />
+            {data &&
+        <div style={{overflow: "scroll"}}>
+
             <div className="welcome_background">
                 <div className="welcome_text">Смотри аниме на AniType</div>
                 <div className={"welcome_description_text"}>Огромное количество релизов с озвучкой от любимых студий,
@@ -63,7 +70,8 @@ const WelcomeFrame = () => {
                 </CatalogList>
             </div>
             <div style={{height: "50px", marginTop: "10px"}}/>
-        </div>
+        </div>}
+        </>
     );
 };
 

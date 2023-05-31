@@ -5,6 +5,7 @@ import {URLUsers} from "@/utils/constants";
 import {setUserName} from "@/utils/UsersCooke";
 
 export async function checkUserAuth(){
+    if (checkTempAuthentication()) return true
     return await getAccessTokenOrNullFromServer((await getJwt()).refresh) != null;
 }
 

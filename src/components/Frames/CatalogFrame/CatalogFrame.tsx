@@ -4,12 +4,16 @@ import axios from "axios";
 import {URLBase, URLUsers} from "@/utils/constants";
 import {getJwt} from "@/utils/JWT";
 import CategoriesList from "@/components/categoriesList/CategoriesList";
-import {capitalizeFirstLetter} from "@/utils/function";
+import {capitalizeFirstLetter, getAnimeTitle} from "@/utils/function";
+import CatalogItem from "@/components/catalogItem/CatalogItem";
+import CatalogList from "@/components/catalogList/CatalogList";
+import {Anime} from "@/utils/interfaces";
 
 const CatalogFrame = () => {
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState<Array<any>>()
     const [ids, setIds] = useState<Array<number>>([])
+    const [popular, setPopular] = useState<Array<Anime>>()
 
     useEffect(() => {
         async function get(){
@@ -36,6 +40,18 @@ const CatalogFrame = () => {
 
             setData(data)
             setIds(ids.map((e: any)=> e.releaseId))
+
+
+            let popular = await axios({
+                method: "get",
+                url: URLBase + "/anime/find/popular"
+            }).then((response) => {
+                return response.data;
+            }).catch((error) => {
+                console.log(error);
+                return [];
+            });
+            setPopular(popular)
         }
 
 
@@ -43,9 +59,20 @@ const CatalogFrame = () => {
     }, [])
 
     return (
+        <>
+            {data &&
         <div style={{overflow: "hidden"}}>
-            {data?.map((item: any) => <CategoriesList title={capitalizeFirstLetter(item?.genre)} ids={ids} setIds={setIds} data={item?.releases} key={item?.genre + "list"}/>)}
+            <CatalogList header={"Сейчас смотрят"} isMouseScroll={false}>
+                {popular?.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
+                                                      image={item.poster}
+                                                      numberEpisodes={item?.episodesCount ? item?.episodesCount : 0}
+                                                      key={item.titles.original + "Сейчас смотрят"} item={item} />)}
+            </CatalogList>
+            {data?.map((item: any) => <CategoriesList title={capitalizeFirstLetter(item?.genre)} ids={ids} setIds={setIds} data={item?.releases} key={item?.genre + "CategoriesList"}/>)}
+            <div style={{ height: "40px" }} />
         </div>
+            }
+            </>
     );
 };
 

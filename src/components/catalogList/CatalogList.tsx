@@ -20,24 +20,28 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
 
     const initUseEffect = useRef<boolean>(false)
 
+    const elementScroll = useRef(null)
+
     useEffect(() => {
         if (initUseEffect.current){
             const i = setInterval(() => {
-                Scroll();
+                scrollToElement(elementScroll)
                 clearInterval(i);
             }, 750);
         }
         initUseEffect.current = true;
     }, [selectItem]);
 
-    function Scroll() {
-        if (props.isAutoScroll){
-            window.scrollTo({
-                top: 800,
-                behavior: "smooth"
+
+    const scrollToElement = (ref: React.RefObject<HTMLElement>) => {
+        if (ref.current) {
+            ref.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
             });
         }
-    }
+    };
+
 
 
     return (
@@ -59,9 +63,9 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
                     image={i.props.image}
                     numberEpisodes={i.numberEpisodes}
                     setSelectItem={setSelectItem} item={i.props.item}
-                    selectItem={selectItem} key={i.props.id} />)}
+                    selectItem={selectItem} key={i.props.item.id + props.header} />)}
             </List>
-            <div className={selectItem ? "catalog_full_info_container active" : "catalog_full_info_container"}>
+            <div className={selectItem ? "catalog_full_info_container active" : "catalog_full_info_container"} ref={elementScroll}>
                 <div className={"catalog_left_info_container"}>
                     <div className={"catalog_left_info_header"}>
                         {selectItem ? selectItem?.titles?.ruAlt : null}
@@ -70,9 +74,9 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
                         <div className={"search_rank_catalog_list"} style={{color: selectItem ? getRankAnime(selectItem).color : ""}} >{selectItem && getRankAnime(selectItem).rank !== 0 ? getRankAnime(selectItem).rank : ""}</div>
                         <div className={"catalog_info_genres"}>{selectItem?.episodesCount} {episodeDeclension(selectItem?.episodesCount)} · {`${selectItem?.year} · ${selectItem?.genres ? getStringGenres(selectItem?.genres) : ""}`}</div>
                     </div>
-                    <div className={"catalog_info_description"}>
+                    {selectItem?.description != "none" && <div className={"catalog_info_description"}>
                         {selectItem ? sliceText(selectItem?.description, 300) : null}
-                    </div>
+                    </div>}
                     <div className={"catalog_info_watch_button_container"}>
                         <Link href={`/player/kodik/${selectItem?.id}`}>
                             <div className={"catalog_info_watch_button"}>
