@@ -1,14 +1,28 @@
 "use client"
 import React from 'react';
-import {addToFavorite} from "@/utils/function";
+import {addToFavorite, removeToFavorite} from "@/utils/function";
 import "./addToFavoriteButton.css"
 
 interface AddToFavoriteButtonProps{
     id: number
+    isActive: boolean
+    setIds: any
+    ids: any
 }
-const AddToFavoriteButton = ({id}: AddToFavoriteButtonProps) => {
+const AddToFavoriteButton = ({id, isActive, setIds, ids}: AddToFavoriteButtonProps) => {
     return (
-        <div className={"catalog_info_watch_button add_to_favorites"} onClick={() => addToFavorite(id)}>
+        <div className={isActive ? "catalog_info_watch_button add_to_favorites active" : "catalog_info_watch_button add_to_favorites"} onClick={() => {
+            if (isActive) {
+                const newArray: number[] = ids.filter((element: any) => element !== id);
+                setIds(newArray)
+                removeToFavorite(id).catch(e => console.log(e))
+            }
+            else {
+                const copiedArray: number[] = [...ids];
+                setIds([...copiedArray, id])
+                addToFavorite(id).catch(e => console.log(e))
+            }
+        }}>
             <svg width={20} height={20} xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 384 512">
                 <path

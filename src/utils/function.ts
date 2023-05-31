@@ -73,6 +73,18 @@ export async function addToFavorite(id: number | undefined){
     })
 }
 
+export async function removeToFavorite(id: number | undefined){
+    axios({
+        method: "post",
+        url: URLUsers + "/folders/remove",
+        data: {
+            folderTitle: "Буду смотреть",
+            releaseId: id
+        },
+        headers: {"Authorization": "Bearer " + (await getJwt()).access}
+    })
+}
+
 export function episodeDeclension(number: number | undefined): string {
     if (!number){
         return 'эпизода'

@@ -6,6 +6,7 @@ import axios from "axios";
 import { URLBase } from "@/utils/constants";
 import CatalogItem from "@/components/catalogItem/CatalogItem";
 import {getAnimeTitle} from "@/utils/function";
+import CatalogFrame from "@/components/Frames/CatalogFrame/CatalogFrame";
 
 async function getData() {
     return await axios({
@@ -24,15 +25,16 @@ const Page = async () => {
     const data = await getData();
 
     return (
-        <div style={{ height: "100vh" }}>
+        <div>
             <Header selected={"catalog"} />
             <div style={{ height: "100px" }} />
             <CatalogList header={"Сейчас смотрят"} isMouseScroll={false}>
                 {data.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
                     image={item.poster}
                     numberEpisodes={item?.episodesCount ? item?.episodesCount : 0}
-                    key={item.titles.original} item={item} />)}
+                    key={item.titles.original+ "Сейчас смотрят"} item={item} />)}
             </CatalogList>
+            <CatalogFrame/>
         </div>
     );
 };

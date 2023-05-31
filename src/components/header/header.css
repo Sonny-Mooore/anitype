@@ -180,7 +180,7 @@
     100% {border-bottom: 2px solid #f8702c;}
 }
 
-
+/* мобильные устройства */
 @media (hover: none) and (pointer: coarse) {
     .header {
         display: none;

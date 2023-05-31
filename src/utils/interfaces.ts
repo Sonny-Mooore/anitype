@@ -1,5 +1,6 @@
 export interface Anime {
     id?: number;
+    status: string
     titles?: {
         ruAlt?: string
         original?: string
@@ -33,6 +34,8 @@ export interface CatalogListProps {
     header: string,
     isMouseScroll?: boolean | true
     children?: any
+    ids?: any
+    setIds?: any
 }
 
 export interface ListProps {

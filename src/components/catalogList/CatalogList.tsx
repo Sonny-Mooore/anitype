@@ -57,7 +57,7 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
                     image={i.props.image}
                     numberEpisodes={i.numberEpisodes}
                     setSelectItem={setSelectItem} item={i.props.item}
-                    selectItem={selectItem} key={i.props.title} />)}
+                    selectItem={selectItem} key={i.props.id} />)}
             </List>
             <div className={selectItem ? "catalog_full_info_container active" : "catalog_full_info_container"}>
                 <div className={"catalog_left_info_container"}>
@@ -82,7 +82,7 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
                                 Подробнее
                             </div>
                         </Link>
-                        <AddToFavoriteButton id={selectItem?.id ? selectItem?.id : 0}/>
+                        <AddToFavoriteButton id={selectItem?.id ? selectItem?.id : 0} isActive={props.ids?.includes(selectItem?.id ? selectItem?.id : -1)} ids={props.ids} setIds={props.setIds}/>
                     </div>
                 </div>
                 <div className={selectItem ? "catalog_info_container active" : "catalog_info_container"}

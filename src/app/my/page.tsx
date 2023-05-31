@@ -4,9 +4,7 @@ import EpisodeList from "@/components/releaseList/EpisodeList";
 import "./my.css";
 import axios from "axios";
 import {URLUsers} from "@/utils/constants";
-import {getAnimeTitle} from "@/utils/function";
-import CatalogItem from "@/components/catalogItem/CatalogItem";
-import CatalogList from "@/components/catalogList/CatalogList";
+import FolderList from "@/components/folderList/FolderList";
 
 async function getData(name: string){
     return await axios({
@@ -22,18 +20,13 @@ async function getData(name: string){
 
 const Page = async () => {
 
-    const favorite = await getData("Буду смотреть")
+    //const favorite = await getData("Буду смотреть")
 
     return (
         <div>
             <Header selected={"my"} />
             <div style={{ height: "100px" }} />
-            <CatalogList header={"Буду смотреть"} isMouseScroll={true}>
-                {favorite?.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
-                                                      image={item.poster}
-                                                      numberEpisodes={item?.episodesCount ? item?.episodesCount : 0}
-                                                      key={item.titles.original} item={item} />)}
-            </CatalogList>
+            <FolderList folderName={"Буду смотреть"}/>
             <div className={"separator"} />
             <EpisodeList header={"История просмотра"} isMouseScroll={false} />
             <div className={"separator"} />
