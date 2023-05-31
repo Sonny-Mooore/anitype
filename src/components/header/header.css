@@ -122,6 +122,8 @@
     display: flex;
     fill: var(--link_un_active);
     transition: .3s;
+
+    cursor: pointer;
 }
 
 .header__icon:hover {

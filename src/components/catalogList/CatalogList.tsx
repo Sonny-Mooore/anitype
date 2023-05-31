@@ -46,7 +46,7 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
                 onMouseLeave={() => setHeaderOnHover(false)}>
                 <div className={"list_catalog_header_text"}>{props.header}</div>
                 <div className={!headerOnHover ? "catalog_button active" : "catalog_button"}>
-                    <svg style={{ marginTop: "5.5px" }} height={20} width={20}
+                    <svg style={{ marginTop: "2px" }} height={20} width={20}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512">
                         <path

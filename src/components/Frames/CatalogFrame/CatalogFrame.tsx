@@ -4,6 +4,7 @@ import axios from "axios";
 import {URLBase, URLUsers} from "@/utils/constants";
 import {getJwt} from "@/utils/JWT";
 import CategoriesList from "@/components/categoriesList/CategoriesList";
+import {capitalizeFirstLetter} from "@/utils/function";
 
 const CatalogFrame = () => {
 
@@ -43,7 +44,7 @@ const CatalogFrame = () => {
 
     return (
         <div style={{overflow: "hidden"}}>
-            {data?.map((item: any) => <CategoriesList title={item?.genre} ids={ids} setIds={setIds} data={item?.releases} key={item?.genre + "list"}/>)}
+            {data?.map((item: any) => <CategoriesList title={capitalizeFirstLetter(item?.genre)} ids={ids} setIds={setIds} data={item?.releases} key={item?.genre + "list"}/>)}
         </div>
     );
 };

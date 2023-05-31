@@ -30,6 +30,10 @@
     fill: #959595;
 }
 
+.catalog_button {
+    cursor: pointer;
+}
+
 .catalog_full_info_container {
     padding-left: 35px;
     display: flex;
@@ -146,6 +150,7 @@
     border-radius: 50%;
     width: 52px;
     height: 52px;
+    cursor: pointer;
 }
 
 .catalog_info_watch_button.add_to_favorites:hover {

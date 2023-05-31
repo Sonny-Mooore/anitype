@@ -9,6 +9,7 @@
     margin: 10px 10px 10px 0;
     background-size: cover;
     transition: .5s;
+    cursor: pointer;
 }
 
 .catalog_item:hover {

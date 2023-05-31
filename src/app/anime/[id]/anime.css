@@ -115,6 +115,7 @@
     margin-top: 10px;
     user-select: none;
     transition: .3s;
+    cursor: pointer;
 }
 
 .add_rating:hover{
