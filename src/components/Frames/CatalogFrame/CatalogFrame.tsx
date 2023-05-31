@@ -42,9 +42,9 @@ const CatalogFrame = () => {
     }, [])
 
     return (
-        <>
+        <div style={{overflow: "hidden"}}>
             {data?.map((item: any) => <CategoriesList title={item?.genre} ids={ids} setIds={setIds} data={item?.releases} key={item?.genre + "list"}/>)}
-        </>
+        </div>
     );
 };
 
