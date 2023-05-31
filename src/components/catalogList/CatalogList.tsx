@@ -31,10 +31,12 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
     }, [selectItem]);
 
     function Scroll() {
-        window.scrollTo({
-            top: 800,
-            behavior: "smooth"
-        });
+        if (props.isAutoScroll){
+            window.scrollTo({
+                top: 800,
+                behavior: "smooth"
+            });
+        }
     }
 
 

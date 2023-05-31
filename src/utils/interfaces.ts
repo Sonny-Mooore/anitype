@@ -36,6 +36,7 @@ export interface CatalogListProps {
     children?: any
     ids?: any
     setIds?: any
+    isAutoScroll?: boolean
 }
 
 export interface ListProps {

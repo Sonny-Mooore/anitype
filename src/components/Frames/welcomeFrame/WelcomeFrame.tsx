@@ -55,7 +55,7 @@ const WelcomeFrame = () => {
                 </div>
             </div>
             <div className="container">
-                <CatalogList header={"Сейчас смотрят"} isMouseScroll={true} ids={ids} setIds={setIds}>
+                <CatalogList header={"Сейчас смотрят"} isMouseScroll={true} ids={ids} setIds={setIds} isAutoScroll={true}>
                     {data?.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
                                                           image={item.poster}
                                                           numberEpisodes={item?.episodesCount ? item?.episodesCount : 0}
