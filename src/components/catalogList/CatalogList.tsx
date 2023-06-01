@@ -25,12 +25,14 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
     useEffect(() => {
         if (initUseEffect.current){
             const i = setInterval(() => {
-                scrollToElement(elementScroll)
+                if (props.isAutoScroll){
+                    scrollToElement(elementScroll)
+                }
                 clearInterval(i);
             }, 750);
         }
         initUseEffect.current = true;
-    }, [selectItem]);
+    }, [props.isAutoScroll, selectItem]);
 
 
     const scrollToElement = (ref: React.RefObject<HTMLElement>) => {

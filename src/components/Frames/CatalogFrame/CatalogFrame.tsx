@@ -62,7 +62,7 @@ const CatalogFrame = () => {
         <>
             {data &&
         <div style={{overflow: "hidden"}}>
-            <CatalogList header={"Сейчас смотрят"} isMouseScroll={false}>
+            <CatalogList header={"Сейчас смотрят"} isMouseScroll={false} isAutoScroll={true} setIds={setIds} ids={ids} >
                 {popular?.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
                                                       image={item.poster}
                                                       numberEpisodes={item?.episodesCount ? item?.episodesCount : 0}
