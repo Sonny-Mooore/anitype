@@ -107,3 +107,23 @@ export function capitalizeFirstLetter(str: string | undefined): string {
     if (!str) return '';
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+export function formatTime(seconds: number): string {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+
+    const formattedHours = hours > 0 ? hours.toString().padStart(2, '0') : '';
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+    const formattedSeconds = remainingSeconds.toString().padStart(2, '0');
+
+    let formattedTime = '';
+
+    if (formattedHours !== '') {
+        formattedTime += `${formattedHours}:`;
+    }
+
+    formattedTime += `${formattedMinutes}:${formattedSeconds}`;
+
+    return formattedTime;
+}

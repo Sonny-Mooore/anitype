@@ -10,6 +10,7 @@ import axios from "axios";
 import {URLBase, URLUsers} from "@/utils/constants";
 import {getJwt} from "@/utils/JWT";
 import "../../../app/anime/[id]/anime.css"
+import WatchTogetherButton from "@/components/watchTogetherButton/WatchTogetherButton";
 
 interface AnimeFrameProps{
     id: string
@@ -78,11 +79,7 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
                                     Смотреть
                                 </div>
                             </Link>
-                            <Link href={`watch_together/player/kodik/${id}`}>
-                                <div className={"catalog_info_watch_button watch_together"}>
-                                    Смотреть вместе
-                                </div>
-                            </Link>
+                            <WatchTogetherButton id={id}/>
                             <AddToFavoriteButton id={+id} isActive={ids.includes(data?.id ? data?.id : -1)}
                                                  setIds={setIds} ids={ids}/>
                         </div>

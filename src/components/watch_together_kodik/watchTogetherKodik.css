@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.watch_together_hud{
+    height: 25%;
+    width: 100%;
+    background: #232323;
+    padding: 15px 20px;
+}
+
+.watch_together_hud_header{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+
+    color: #FFFFFF;
+}
+
+.watch_together_hud_names{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+
+    color: #FFFFFF;
+
+}
+
+
+.watch_together_hud_user_list{
+    width: 100%;
+    height: 100%;
+    margin-top: 5px;
+    overflow: scroll;
+}
+
+.watch_together_hud_user{
+    display: flex;
+    width: 100%;
+    height: 38px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 10px;
+    background: #535353;
+    margin-top: 5px;
+    align-items: center;
+    justify-content: space-between;
+
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+}
+
+.watch_together_hud_text_item{
+    width: 150px;
+    text-align: center;
+    white-space: nowrap;
+}

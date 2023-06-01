@@ -7,11 +7,11 @@ interface Props {
 }
 
 
-const Page = async ({ params: { id } }: Props) => {
-
+const Page = async ({ params: { id }, ...props }: Props) => {
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
-            <WatchTogetherFrame id={id}/>
+            {/*@ts-ignore*/}
+            <WatchTogetherFrame id={id} hubId={props.searchParams?.hub}/>
         </div>
     );
 };

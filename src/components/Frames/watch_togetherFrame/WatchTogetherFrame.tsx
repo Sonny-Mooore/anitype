@@ -5,9 +5,10 @@ import {URLBase} from "@/utils/constants";
 import axios from "axios";
 interface WatchTogetherFrameProps{
     id: string
+    hubId?: any
 }
 
-const WatchTogetherFrame = ({id}: WatchTogetherFrameProps) => {
+const WatchTogetherFrame = ({id, hubId}: WatchTogetherFrameProps) => {
 
     const [data, setData] = useState<any>()
     
@@ -31,7 +32,7 @@ const WatchTogetherFrame = ({id}: WatchTogetherFrameProps) => {
 
     return (
         <>
-            {data && <WatchTogetherKodik src={data?.sources?.kodik}/>}
+            {data && <WatchTogetherKodik src={data?.sources?.kodik} id={id} hubId={hubId}/>}
         </>
     );
 };

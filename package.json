@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@stomp/stompjs": "^7.0.0",
     "@types/node": "20.2.5",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
@@ -19,6 +20,12 @@
     "next": "13.4.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "socket.io-client": "^4.6.2",
+    "sockjs-client": "^1.6.1",
+    "stomp": "^0.1.1",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/sockjs-client": "^1.5.1"
   }
 }
