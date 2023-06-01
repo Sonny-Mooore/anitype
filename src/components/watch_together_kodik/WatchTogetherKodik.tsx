@@ -74,7 +74,9 @@ const WatchTogetherKodik = ({src}: WatchTogetherKodikProps) => {
         <>
             <>
                 <iframe id="kodik-player" style={{border: "none"}} allowFullScreen allow="autoplay ; fullscreen" width={"100%"} height={"80%"} src={src} />
-                <div style={{height: "20%", width: "100%", background: "white"}}></div>
+                <div style={{height: "20%", width: "100%", background: "white"}}>
+
+                </div>
             </>
         </>
     );

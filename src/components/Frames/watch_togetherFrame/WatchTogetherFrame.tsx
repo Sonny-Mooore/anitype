@@ -31,7 +31,7 @@ const WatchTogetherFrame = ({id}: WatchTogetherFrameProps) => {
 
     return (
         <>
-            {data && <WatchTogetherKodik id={id} src={data?.sources?.kodik}/>}
+            {data && <WatchTogetherKodik src={data?.sources?.kodik}/>}
         </>
     );
 };
