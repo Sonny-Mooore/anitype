@@ -78,6 +78,11 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
                                     Смотреть
                                 </div>
                             </Link>
+                            <Link href={`watch_together/player/kodik/${id}`}>
+                                <div className={"catalog_info_watch_button watch_together"}>
+                                    Смотреть вместе
+                                </div>
+                            </Link>
                             <AddToFavoriteButton id={+id} isActive={ids.includes(data?.id ? data?.id : -1)}
                                                  setIds={setIds} ids={ids}/>
                         </div>

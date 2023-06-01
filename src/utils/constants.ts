@@ -1,4 +1,4 @@
 
-export const URLBase = "https://anitypes.site:8881";
+export const URLBase = "https://s.anitype.ru:8881";
 
-export const URLUsers = "https://anitypes.site:8882";
+export const URLUsers = "https://s.anitype.ru:8882";
