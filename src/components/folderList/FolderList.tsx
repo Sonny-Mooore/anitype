@@ -24,14 +24,14 @@ const FolderList = ({folderName}: FolderListProps) => {
                 url: URLUsers + `/folders/items/${folderName}`,
                 headers: {"Authorization": "Bearer " + (await getJwt()).access}
             }).then(res => {
-                return res.data.map((e: any)=> e.releaseId)
+                return res.data?.map((e: any)=> e.releaseId)
             }).catch(e => {
                 console.log(e)
             })
 
             let listAnime =  await axios({
                 method: "get",
-                url: URLBase + `/anime/ids?ids=${listId.join(",")}`,
+                url: URLBase + `/anime/ids?ids=${listId?.join(",")}`,
             }).then(res => {
                 return res.data
             }).catch(e => {

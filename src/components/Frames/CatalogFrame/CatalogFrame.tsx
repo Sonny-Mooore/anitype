@@ -39,7 +39,7 @@ const CatalogFrame = () => {
             });
 
             setData(data)
-            setIds(ids.map((e: any)=> e.releaseId))
+            setIds(ids?.map((e: any)=> e.releaseId))
 
 
             let popular = await axios({

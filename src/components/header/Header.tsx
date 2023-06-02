@@ -44,7 +44,6 @@ const Header = (props: HeaderProps) => {
 
     useEffect(() => {
         const userName = getUserName()
-        console.log(userName)
         if (userName) {
             setUserName(userName)
         }
@@ -59,7 +58,6 @@ const Header = (props: HeaderProps) => {
                     url: URLBase + `/anime/search/title?q=${textSearch}`
                 }).then((res: any) => {
                     setSearchResult(res.data);
-                    console.log(res.data);
                 }).catch((err: any) => {
                     console.log(err);
                 });

@@ -8,6 +8,7 @@ import {episodeDeclension, getRankAnime, getStringGenres, sliceText} from "@/uti
 import Link from "next/link";
 import {Anime, CatalogListProps} from "@/utils/interfaces";
 import AddToFavoriteButton from "@/components/addToFavoriteButton/AddToFavoriteButton";
+import WatchTogetherButton from "@/components/watchTogetherButton/WatchTogetherButton";
 
 
 const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
@@ -85,6 +86,7 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
                                 Смотреть
                             </div>
                         </Link>
+                        <WatchTogetherButton id={selectItem?.id?.toString() || "1"}/>
                         <Link href={`/anime/${selectItem?.id}`}>
                             <div className={"catalog_info_watch_button more_detailed"}>
                                 Подробнее

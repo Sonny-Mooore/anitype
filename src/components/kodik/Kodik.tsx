@@ -2,12 +2,13 @@
 import React, {useEffect, useRef, useState} from 'react';
 import "./kodik.css";
 import {useRouter} from "next/navigation";
+import axios from "axios";
+import {URLBase} from "@/utils/constants";
 interface KodikProps{
-    src: string
     id: any
 }
 
-const Kodik = ({src, id}: KodikProps) => {
+const Kodik = ({id}: KodikProps) => {
 
     const time= useRef(0)
 
@@ -17,9 +18,7 @@ const Kodik = ({src, id}: KodikProps) => {
 
     const router = useRouter()
 
-    function setEpisodeAndSeason(season:number, episode: number){
-        sendMethodKodik({method: "change_episode", seconds: {method: "change_episode", season: season, episode: episode}})
-    }
+    const [src, setSrc] = useState("")
 
     function setTime(time: number){
         sendMethodKodik( {method: "seek", seconds: time})
@@ -35,6 +34,17 @@ const Kodik = ({src, id}: KodikProps) => {
     }
 
     useEffect(() => {
+
+        async function getData(id: string) {
+            await axios({
+                method: "get",
+                url: URLBase + `/anime/id/${id}`
+            }).then((res) => {
+                setSrc(res.data?.sources?.kodik)
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
         const kodikMessageListener = (message: any) => {
             if (message.data.key === 'kodik_player_time_update') {
                 time.current = message.data.value
@@ -52,6 +62,8 @@ const Kodik = ({src, id}: KodikProps) => {
             window?.attachEvent('onmessage', kodikMessageListener);
         }
 
+        getData(id).catch(e => console.log(e))
+
         return () => {
             if (window.removeEventListener) {
                 window.removeEventListener('message', kodikMessageListener);
@@ -60,7 +72,8 @@ const Kodik = ({src, id}: KodikProps) => {
                 window?.detachEvent('onmessage', kodikMessageListener);
             }
         };
-    }, []);
+
+    }, [id]);
 
     function onMouseEnter(){
         clearInterval(interval.current)
@@ -71,7 +84,7 @@ const Kodik = ({src, id}: KodikProps) => {
     }
 
     return (
-        <>
+        <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
             <div className={showHud ? "kodik_button skip " : "kodik_button skip noActive"} title={"+80s"} onClick={() => setTime(time.current + 80)}>
                 <svg height="20px" width="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.2,10.6l-9-5.4c-1-0.6-2.2,0.2-2.2,1.4v3.2L3.2,5.2C2.2,4.6,1,5.4,1,6.6v10.7c0,1.2,1.2,2,2.2,1.4l7.8-4.6   v3.2c0,1.2,1.2,2,2.2,1.4l9-5.4C23.3,12.8,23.3,11.2,22.2,10.6z"/>
@@ -83,7 +96,7 @@ const Kodik = ({src, id}: KodikProps) => {
                 </svg>
             </div>
             <iframe id="kodik-player" style={{border: "none"}} allowFullScreen allow="autoplay ; fullscreen" width={"100%"} height={"100%"} src={src} />
-        </>
+        </div>
     );
 };
 

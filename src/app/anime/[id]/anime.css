@@ -69,6 +69,7 @@
 .catalog_info_watch_button {
     margin-top: 20px;
     user-select: none;
+    z-index: 2;
 }
 
 .anime_right_body {

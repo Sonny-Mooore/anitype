@@ -23,7 +23,6 @@ const WelcomeFrame = () => {
                 url: URLUsers + `/folders/items/Буду смотреть`,
                 headers: {"Authorization": "Bearer " + (await getJwt()).access}
             }).then(res => {
-                console.log(res.data)
                 return res.data
             }).catch(e => {
                 console.log(e)
@@ -40,7 +39,7 @@ const WelcomeFrame = () => {
             });
 
             setData(data)
-            setIds(ids.map((e: any)=> e.releaseId))
+            setIds(ids?.map((e: any)=> e.releaseId))
         }
 
         if (iterateUseEffect.current === 0){
@@ -63,7 +62,7 @@ const WelcomeFrame = () => {
             </div>
             <div className="container">
                 <CatalogList header={"Сейчас смотрят"} isMouseScroll={true} ids={ids} setIds={setIds} isAutoScroll={true}>
-                    {data?.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
+                    {data && data?.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
                                                           image={item.poster}
                                                           numberEpisodes={item?.episodesCount ? item?.episodesCount : 0}
                                                           key={item.titles.original} item={item}/>)}

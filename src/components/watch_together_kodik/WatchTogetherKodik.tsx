@@ -42,10 +42,8 @@ interface User {
 const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
     useRef(0);
     const [showHud, setShowHud] = useState(true)
-
-    const interval = useRef(setInterval(() => {
-    }))
-
+    useRef(setInterval(() => {
+    }));
     const router = useRouter()
 
     const [hubTitle, setHubTitle] = useState("")
@@ -58,6 +56,8 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
 
     const ArrayUser = useRef<Array<User>>([])
     const [userList, setUserList] = useState<Array<User>>()
+
+    const [isShowHub, setIsShowHud] = useState(true)
 
     const updateUser = (user: User, isHost: boolean) => {
 
@@ -225,14 +225,13 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
             checkHost().catch(e => console.log(e))
         }
 
-    }, [hubId, leave])
+    }, [hubId, leave, updateUser])
 
     return (
-        <>
             <>
-                <iframe id="kodik-player" style={{border: "none"}} allowFullScreen allow="autoplay ; fullscreen"
+                <iframe id="kodik-player" style={{border: "none"}} allowFullScreen allow="autoplay; fullscreen"
                         width={"100%"} height={"75%"} src={src}/>
-                <div className={"watch_together_hud"}>
+                <div className={isShowHub ? "watch_together_hud" : "watch_together_hud close"}>
                     <div style={{textAlign: "right", cursor: "pointer", fontSize: "12px"}} onClick={() => leave()}>Выйти из комнаты</div>
                     <div className={"watch_together_hud_header"}>{hubTitle}</div>
                     <div className={"watch_together_hud_names"}>
@@ -253,7 +252,6 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                     </div>
                 </div>
             </>
-        </>
     );
 };
 

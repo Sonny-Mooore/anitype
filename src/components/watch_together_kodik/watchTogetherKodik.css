@@ -5,6 +5,13 @@
     width: 100%;
     background: #232323;
     padding: 15px 20px;
+    transition: .3s;
+}
+
+.watch_together_hud.close{
+    opacity: 0;
+    height: 0;
+    pointer-events: none;
 }
 
 .watch_together_hud_header{
