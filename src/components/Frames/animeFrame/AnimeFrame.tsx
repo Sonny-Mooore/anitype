@@ -66,9 +66,9 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
                     <div className={"anime_central_body"}>
                         <div className={"anime_central_body_title"}>{getAnimeTitle(data)}</div>
                         <div className={"anime_central_body_genres"}>
-                            {data?.status === "released" && <div className={`anime_status ${data?.status}`}>
+                            {data?.status === "released" ? <div className={`anime_status ${data?.status}`}>
                                 <Image src={"/done.svg"} width={15} height={15} alt={"done"}/>
-                            </div>}
+                            </div> : <Image style={{marginRight: "7px"}} src={"/car.svg"} width={30} height={30} alt={"done"}/>}
                             {data?.episodesCount} {episodeDeclension(data?.episodesCount)} · {data?.year} год
                             · {data?.genres ? getStringGenres(data?.genres) : ""}</div>
                         <div
