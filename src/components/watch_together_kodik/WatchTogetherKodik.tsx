@@ -64,9 +64,17 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
         if (!isHost){
             if (user.main){
                 if (watchLogs.current?.isPaused != user.isPaused){
-                    sendMethodKodik({
-                        method: user.isPaused ? "pause" : "play",
-                    })
+
+                    if (user.isPaused){
+                        sendMethodKodik({
+                            method: "pause"
+                        })
+                    }
+                    else {
+                        sendMethodKodik({
+                            method: "play"
+                        })
+                    }
                 }
                 if (watchLogs.current?.season != user.season || watchLogs.current?.episode != user.episode){
                     sendMethodKodik({
@@ -135,7 +143,7 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                 season: key === 'kodik_player_current_episode' ? value.season : watchLogs?.current?.season || 0,
                 translationTitle: key === 'kodik_player_current_episode' ? value.translation.title : watchLogs?.current?.translationTitle || "",
                 accessToken: Token || "",
-                isPaused: checkPause(key)
+                isPaused: checkPause(key) || true
             };
         };
 
@@ -167,9 +175,9 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
     }
 
     useEffect(() => {
-        async function ConnectHub(stompClient: any, isHost: boolean) {
+            async function ConnectHub(stompClient: any, isHost: boolean, title: string, socket: any) {
                 hubIdHost.current = hubId
-
+                setHubTitle(title)
                 const handleConnect = () => {
                     console.log('Соединение установлено.', hubId);
 
@@ -179,17 +187,29 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                     });
 
                     setInterval(async () => {
-                        if (watchLogs.current) {
-                            console.log(watchLogs.current)
-                            const watchLogDto = watchLogs.current
+                        try {
+                            if (watchLogs.current) {
+                                const watchLogDto = watchLogs.current
 
-                            const headers: any = {};
-                            stompClient.publish({
-                                destination: '/app/watchlogs',
-                                body: JSON.stringify(watchLogDto),
-                                headers,
+                                const headers: any = {};
+                                stompClient.publish({
+                                    destination: '/app/watchlogs',
+                                    body: JSON.stringify(watchLogDto),
+                                    headers,
+                                });
+                            }
+                        } catch (e) {
+                            stompClient = new Client({
+                                webSocketFactory: () => socket,
+                                debug: (str: string) => console.log(str),
+                            });
+
+                            stompClient.subscribe(`/topic/watchlogs-${hubId}`, (message: any) => {
+                                const watchLogResultDto = JSON.parse(message.body);
+                                updateUser(watchLogResultDto, isHost)
                             });
                         }
+
                     }, 1000)
                 };
 
@@ -202,29 +222,38 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
 
                 stompClient.activate();
 
-        }
+            }
 
-        async function checkHost(){
-            axios({
-                method: "get",
-                url: URLUsers + `/hubs/is/host/${hubId}`,
-                headers: {"Authorization": "Bearer " + (await getJwt()).access}
-            }).then(res => {
-                ConnectHub(stompClient, res.data).catch(e => console.log(e))
-                useEffectIterate.current += 1
-            }).catch(e => console.log(e))
-        }
+            async function checkHost(stompClient: any, socket: any) {
+                axios({
+                    method: "get",
+                    url: URLUsers + `/hubs/is/host/${hubId}`,
+                    headers: {"Authorization": "Bearer " + (await getJwt()).access}
+                }).then(res => {
+                    getInfo(stompClient, hubId, res.data, socket).catch(e => console.log(e))
+                    useEffectIterate.current += 1
+                }).catch(e => console.log(e))
+            }
 
-        const socket = new SockJS(URLUsers + '/websocket');
-        const stompClient = new Client({
-            webSocketFactory: () => socket,
-            debug: (str: string) => console.log(str),
-        });
+            async function getInfo(stompClient: any, id: string | number, isHost: boolean, socket: any) {
+                axios({
+                    method: "get",
+                    url: URLUsers + `/hubs/find/id/${id}`,
+                    headers: {"Authorization": "Bearer " + (await getJwt()).access}
+                }).then(res => {
+                    ConnectHub(stompClient, isHost, res.data.title, socket).catch(e => console.log(e))
+                    useEffectIterate.current += 1
+                }).catch(e => console.log(e))
+            }
 
-        if (useEffectIterate.current === 0) {
-            checkHost().catch(e => console.log(e))
-        }
-
+            if (useEffectIterate.current === 0) {
+                const socket = new SockJS(URLUsers + '/websocket');
+                const stompClient = new Client({
+                    webSocketFactory: () => socket,
+                    debug: (str: string) => console.log(str),
+                });
+                checkHost(stompClient, socket).catch(e => console.log(e))
+            }
     }, [hubId, leave, updateUser])
 
     return (
