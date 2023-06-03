@@ -171,7 +171,7 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
             headers: {"Authorization": "Bearer " + (await getJwt()).access}
         }).then(() => {
             router.push("/welcome")
-        })
+        }).catch(e => console.log(e))
     }
 
     useEffect(() => {
@@ -186,7 +186,7 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                         updateUser(watchLogResultDto, isHost)
                     });
 
-                    setInterval(async () => {
+                    setInterval( () => {
                         try {
                             if (watchLogs.current) {
                                 const watchLogDto = watchLogs.current
@@ -259,9 +259,17 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
     return (
             <>
                 <iframe id="kodik-player" style={{border: "none"}} allowFullScreen allow="autoplay; fullscreen"
-                        width={"100%"} height={"75%"} src={src}/>
+                        width={"100%"} height={isShowHub ? "75%" : "94%"} src={src}/>
+                <div style={{background: "#232323", width: "100%", display: "flex", justifyContent: "space-between", padding: "5px 20px", alignItems: "center"}}>
+                    <div style={{cursor: "pointer", fontSize: "12px", width: "fit-content", opacity: 1}} onClick={leave}>Выйти из комнаты</div>
+                    <div className={isShowHub ? "watch_together_hud_hide_button" : "watch_together_hud_hide_button close"} onClick={() => setIsShowHud(!isShowHub)}>
+                        <svg fill={"white"} width={20} height={20} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.88,15.53,7,5.66A1,1,0,0,0,5.59,7.07l9.06,9.06-8.8,8.8a1,1,0,0,0,0,1.41h0a1,1,0,0,0,1.42,0l9.61-9.61A.85.85,0,0,0,16.88,15.53Z"/>
+                            <path d="M26.46,15.53,16.58,5.66a1,1,0,0,0-1.41,1.41l9.06,9.06-8.8,8.8a1,1,0,0,0,0,1.41h0a1,1,0,0,0,1.41,0l9.62-9.61A.85.85,0,0,0,26.46,15.53Z"/>
+                        </svg>
+                    </div>
+                </div>
                 <div className={isShowHub ? "watch_together_hud" : "watch_together_hud close"}>
-                    <div style={{textAlign: "right", cursor: "pointer", fontSize: "12px"}} onClick={() => leave()}>Выйти из комнаты</div>
                     <div className={"watch_together_hud_header"}>{hubTitle}</div>
                     <div className={"watch_together_hud_names"}>
                         <div className={"watch_together_hud_text_item"}>Имя</div>

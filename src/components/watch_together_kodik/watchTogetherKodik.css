@@ -14,6 +14,15 @@
     pointer-events: none;
 }
 
+.watch_together_hud_hide_button{
+    transform: rotate(270deg);
+    transition: .3s;
+}
+
+.watch_together_hud_hide_button.close{
+    transform: rotate(90deg);
+}
+
 .watch_together_hud_header{
     font-family: 'Inter', sans-serif;
     font-style: normal;

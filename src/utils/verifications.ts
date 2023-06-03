@@ -11,7 +11,7 @@ export async function checkUserAuth(){
 
 export function confirmTempAuthentication(){
     setCookie('tempAuthentication', "true", {
-        maxAge: 43200 // 0.5 day
+        maxAge: 3600 // 1 hour
     })
 }
 

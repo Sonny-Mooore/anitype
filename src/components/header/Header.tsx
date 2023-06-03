@@ -39,15 +39,11 @@ const Header = (props: HeaderProps) => {
     }
 
     useEffect(() => {
-        checkUserAuth().then(r => setIsAuthed(r))
+        checkUserAuth().then(r => {
+            setIsAuthed(r)
+            setUserName(getUserName())
+        }).catch(() => console.log("no"))
     }, [])
-
-    useEffect(() => {
-        const userName = getUserName()
-        if (userName) {
-            setUserName(userName)
-        }
-    }, []);
 
     useEffect(() => {
         clearInterval(searchInterval.current);
