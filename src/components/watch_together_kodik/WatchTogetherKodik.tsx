@@ -258,12 +258,20 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
 
     return (
             <>
-                <iframe id="kodik-player" style={{border: "none"}} allowFullScreen allow="autoplay; fullscreen"
+                <iframe id="kodik-player" style={{border: "none", transition: ".8s"}} allowFullScreen allow="autoplay; fullscreen"
                         width={"100%"} height={isShowHub ? "75%" : "94%"} src={src}/>
                 <div style={{background: "#232323", width: "100%", display: "flex", justifyContent: "space-between", padding: "5px 20px", alignItems: "center"}}>
-                    <div style={{cursor: "pointer", fontSize: "12px", width: "fit-content", opacity: 1}} onClick={leave}>Выйти из комнаты</div>
+                    <div style={{cursor: "pointer", fontSize: "12px", width: "fit-content", display: "flex", alignItems: "center"}} onClick={leave}>
+                        <svg width={20} height={20} fill={"white"} viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M30,28H9a1,1,0,0,1,0-2H30a1,1,0,0,1,0,2Z"/>
+                            <path d="M36,57a1,1,0,0,1-.53-.15A1,1,0,0,1,35,56V18a1,1,0,0,1,.57-.9L52.66,9H45a1,1,0,0,1,0-2h9a3,3,0,0,1,3,3V44.76a3,3,0,0,1-1.66,2.69L36.45,56.89A1,1,0,0,1,36,57Zm1-38.37V54.38l17.45-8.72a1,1,0,0,0,.55-.9V10.11Z"/>
+                            <path d="M17,37a1,1,0,0,1-.71-.29l-9-9a1,1,0,0,1,0-1.42l9-9a1,1,0,0,1,1.42,1.42L9.41,27l8.3,8.29a1,1,0,0,1,0,1.42A1,1,0,0,1,17,37Z"/>
+                            <path d="M36,47H27a3,3,0,0,1-3-3V36a1,1,0,0,1,2,0v8a1,1,0,0,0,1,1h9a1,1,0,0,1,0,2Z"/>
+                            <path d="M25,19a1,1,0,0,1-1-1V10a3,3,0,0,1,3-3H49a1,1,0,0,1,0,2H27a1,1,0,0,0-1,1v8A1,1,0,0,1,25,19Z"/>
+                        </svg>
+                    </div>
                     <div className={isShowHub ? "watch_together_hud_hide_button" : "watch_together_hud_hide_button close"} onClick={() => setIsShowHud(!isShowHub)}>
-                        <svg fill={"white"} width={20} height={20} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <svg width={20} height={20} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16.88,15.53,7,5.66A1,1,0,0,0,5.59,7.07l9.06,9.06-8.8,8.8a1,1,0,0,0,0,1.41h0a1,1,0,0,0,1.42,0l9.61-9.61A.85.85,0,0,0,16.88,15.53Z"/>
                             <path d="M26.46,15.53,16.58,5.66a1,1,0,0,0-1.41,1.41l9.06,9.06-8.8,8.8a1,1,0,0,0,0,1.41h0a1,1,0,0,0,1.41,0l9.62-9.61A.85.85,0,0,0,26.46,15.53Z"/>
                         </svg>
@@ -280,7 +288,7 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                     </div>
                     <div className={"watch_together_hud_user_list"}>
                         {userList?.map(user => <div className={"watch_together_hud_user"} key={user.username}>
-                            <div className={"watch_together_hud_text_item"}>{user.username}</div>
+                            <div className={"watch_together_hud_text_item"} style={{color: user.main ? "goldenrod" : ""}}>{user.username}</div>
                             <div className={"watch_together_hud_text_item"}>{user.season}</div>
                             <div className={"watch_together_hud_text_item"}>{user.episode}</div>
                             <div className={"watch_together_hud_text_item"}>{user.translationTitle}</div>

@@ -5,22 +5,32 @@
     width: 100%;
     background: #232323;
     padding: 15px 20px;
-    transition: .3s;
+    transition: .8s;
 }
 
 .watch_together_hud.close{
-    opacity: 0;
     height: 0;
     pointer-events: none;
 }
 
+.watch_together_hud.close > *{
+    transition: .8s;
+    opacity: 0;
+}
+
 .watch_together_hud_hide_button{
+    cursor: pointer;
+    fill: white;
     transform: rotate(270deg);
     transition: .3s;
 }
 
 .watch_together_hud_hide_button.close{
     transform: rotate(90deg);
+}
+
+.watch_together_hud_hide_button:hover{
+    fill: #999797;
 }
 
 .watch_together_hud_header{
