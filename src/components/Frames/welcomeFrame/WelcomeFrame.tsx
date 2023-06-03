@@ -8,6 +8,7 @@ import {Anime} from "@/utils/interfaces";
 import {URLBase, URLUsers} from "@/utils/constants";
 import {getJwt} from "@/utils/JWT";
 import axios from "axios";
+import LoadingScreen from "@/components/loadingScreen/LoadingScreen";
 
 const WelcomeFrame = () => {
 
@@ -51,7 +52,7 @@ const WelcomeFrame = () => {
     return (
         <>
             <Header selected={"welcome"} />
-            {data &&
+            {data ?
         <div style={{overflow: "scroll"}}>
 
             <div className="welcome_background">
@@ -69,7 +70,7 @@ const WelcomeFrame = () => {
                 </CatalogList>
             </div>
             <div style={{height: "50px", marginTop: "10px"}}/>
-        </div>}
+        </div> : <LoadingScreen/>}
         </>
     );
 };

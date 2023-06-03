@@ -1,0 +1,35 @@
+.l-7 {
+    animation-delay: 2.2s;
+}
+
+.load_container{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.square {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    background-color: #d76a21;
+    scale: 5;
+}
+
+.load-7 .square {
+    animation: loadingG 2.5s cubic-bezier(0.17, 0.37, 0.43, 0.67) infinite;
+}
+
+@keyframes loadingG {
+    0% {
+        transform: translate(-70px, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate(70px, 0) rotate(360deg);
+    }
+    100% {
+        transform: translate(-70px, 0) rotate(0deg);
+    }
+}

@@ -11,6 +11,7 @@ import {URLBase, URLUsers} from "@/utils/constants";
 import {getJwt} from "@/utils/JWT";
 import "../../../app/anime/[id]/anime.css"
 import WatchTogetherButton from "@/components/watchTogetherButton/WatchTogetherButton";
+import LoadingScreen from "@/components/loadingScreen/LoadingScreen";
 
 interface AnimeFrameProps{
     id: string
@@ -52,7 +53,7 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
 
     return (
         <>
-            {data && <div className={"anime_main_div"}>
+            {data ? <div className={"anime_main_div"}>
                 <Header selected={""}/>
                 <div className={"anime_background_image"} style={{
                     backgroundImage: ` radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 1) 100%),
@@ -92,7 +93,7 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
                     </div>
                 </div>
                 <div style={{height: "100px"}}></div>
-            </div>}
+            </div> : <LoadingScreen/>}
         </>
 
     );

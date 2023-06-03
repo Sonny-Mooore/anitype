@@ -41,7 +41,9 @@ const Header = (props: HeaderProps) => {
     useEffect(() => {
         checkUserAuth().then(r => {
             setIsAuthed(r)
-            setUserName(getUserName())
+            if (r) {
+                setUserName(getUserName())
+            }
         }).catch(() => console.log("no"))
     }, [])
 
