@@ -40,10 +40,7 @@ interface User {
 }
 
 const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
-    useRef(0);
-    const [showHud, setShowHud] = useState(true)
-    useRef(setInterval(() => {
-    }));
+
     const router = useRouter()
 
     const [hubTitle, setHubTitle] = useState("")
@@ -167,11 +164,11 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
     async function leave() {
         axios({
             method: "get",
-            url: URLUsers + `/hubs/leave/${hubIdHost}`,
+            url: URLUsers + `/hubs/leave/${hubId}`,
             headers: {"Authorization": "Bearer " + (await getJwt()).access}
         }).then(() => {
             router.push("/welcome")
-        }).catch(e => console.log(e))
+        }).catch(e => router.push("/welcome"))
     }
 
     useEffect(() => {
