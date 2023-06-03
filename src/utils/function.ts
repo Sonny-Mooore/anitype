@@ -82,24 +82,28 @@ export async function removeToFavorite(id: number | undefined){
             releaseId: id
         },
         headers: {"Authorization": "Bearer " + (await getJwt()).access}
-    })
+    }).catch(e => console.log(e))
 }
 
 export function episodeDeclension(number: number | undefined): string {
     if (!number){
-        return 'эпизода'
+        return ''
     }
+    if (number < 0){
+        return 'Фильм'
+    }
+
     const remainder  = number % 10;
     const remainderTens  = number % 100;
 
     if (remainderTens  >= 11 && remainderTens  <= 19) {
-        return 'эпизодов';
+        return number + ' эпизодов';
     } else if (remainder  === 1) {
-        return 'эпизод';
+        return number + ' эпизод';
     } else if (remainder  >= 2 && remainder  <= 4) {
-        return 'эпизода';
+        return number + ' эпизода';
     } else {
-        return 'эпизодов';
+        return number + ' эпизодов';
     }
 }
 

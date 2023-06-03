@@ -43,6 +43,7 @@
     flex-direction: column;
     margin-left: 50px;
     width: 100%;
+    max-width: 50%;
 }
 
 .anime_central_body_title {
@@ -58,6 +59,15 @@
     margin-top: 5px;
     font-size: 14px;
     font-weight: normal;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.anime_central_body_genres_text{
+    white-space: nowrap; /* Запрещает перенос текста на новую строку */
+    text-overflow: ellipsis; /* Добавляет многоточие в конце */
+    display: block;
+    overflow: hidden;
 }
 
 .anime_central_body_description {

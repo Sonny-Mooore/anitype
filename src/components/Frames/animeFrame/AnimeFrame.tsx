@@ -70,8 +70,11 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
                             {data?.status === "released" ? <div className={`anime_status ${data?.status}`}>
                                 <Image src={"/done.svg"} width={15} height={15} alt={"done"}/>
                             </div> : <Image style={{marginRight: "7px"}} src={"/car.svg"} width={30} height={30} alt={"done"}/>}
-                            {data?.episodesCount} {episodeDeclension(data?.episodesCount)} · {data?.year} год
-                            · {data?.genres ? getStringGenres(data?.genres) : ""}</div>
+                            <div className={"anime_central_body_genres_text"}>
+                                {episodeDeclension(data?.episodesCount)} · {data?.year} год
+                                · {data?.genres ? getStringGenres(data?.genres) : ""}
+                            </div>
+                        </div>
                         <div
                             className={"anime_central_body_description"}>{data?.description !== "none" ? data?.description : ""}</div>
                         <div className={"catalog_info_watch_button_container"}>
