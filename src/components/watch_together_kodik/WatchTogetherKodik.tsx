@@ -133,13 +133,13 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
             }
 
             watchLogs.current = {
-                hubId: hubIdHost.current || "0",
+                hubId: hubIdHost.current ?? "0",
                 releaseId: +id,
-                seconds: key === "kodik_player_time_update" ? value : watchLogs?.current?.seconds || 0,
-                episode: key === 'kodik_player_current_episode' ? value.episode : watchLogs?.current?.episode || 0,
-                season: key === 'kodik_player_current_episode' ? value.season : watchLogs?.current?.season || 0,
-                translationTitle: key === 'kodik_player_current_episode' ? value.translation.title : watchLogs?.current?.translationTitle || "",
-                accessToken: Token || "",
+                seconds: key === "kodik_player_time_update" ? value : watchLogs?.current?.seconds ?? 0,
+                episode: key === 'kodik_player_current_episode' ? value.episode : watchLogs?.current?.episode ?? 0,
+                season: key === 'kodik_player_current_episode' ? value.season : watchLogs?.current?.season ?? 0,
+                translationTitle: key === 'kodik_player_current_episode' ? value.translation.title : watchLogs?.current?.translationTitle ?? "",
+                accessToken: Token ?? "",
                 isPaused: checkPause(key) || true
             };
         };
