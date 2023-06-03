@@ -60,7 +60,7 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
 
         if (!isHost){
             if (user.main){
-                if (watchLogs.current?.isPaused != user.isPaused){
+                if (watchLogs.current?.isPaused || watchLogs.current?.isPaused !== user.isPaused){
 
                     if (user.isPaused){
                         sendMethodKodik({
@@ -140,7 +140,7 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                 season: key === 'kodik_player_current_episode' ? value.season : watchLogs?.current?.season ?? 0,
                 translationTitle: key === 'kodik_player_current_episode' ? value.translation.title : watchLogs?.current?.translationTitle ?? "",
                 accessToken: Token ?? "",
-                isPaused: checkPause(key) || true
+                isPaused: checkPause(key)
             };
         };
 
@@ -181,6 +181,7 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                     stompClient.subscribe(`/topic/watchlogs-${hubId}`, (message: any) => {
                         const watchLogResultDto = JSON.parse(message.body);
                         updateUser(watchLogResultDto, isHost)
+                        console.log(watchLogResultDto)
                     });
 
                     setInterval( () => {
@@ -204,6 +205,7 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                             stompClient.subscribe(`/topic/watchlogs-${hubId}`, (message: any) => {
                                 const watchLogResultDto = JSON.parse(message.body);
                                 updateUser(watchLogResultDto, isHost)
+                                console.log(watchLogResultDto)
                             });
                         }
 
