@@ -25,7 +25,7 @@ const CatalogItem = ({ watchEpisode = 0, ...props }: CatalogItemProps) => {
                 border: props.selectItem === props.item ? "1px solid rgb(134,134,134)" : "none"
             }}>
             <div className={"hovered"}>
-                {description != "none" && <div className={"catalog_item_description"}>{description}</div>}
+                {description != "none" ? <div className={"catalog_item_description"}>{description}</div> : <div className={"catalog_item_description none"}>Нет описания</div>}
                 <div className="catalog_item_container_metadata">
                     <div className="catalog_item_name">{props?.title}</div>
                 </div>

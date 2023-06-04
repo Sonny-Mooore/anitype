@@ -21,7 +21,7 @@
 .anime_body {
     display: flex;
     width: fit-content;
-    justify-content: flex-start;
+    justify-content: center;
     z-index: 2;
     padding: 280px 150px 0 150px;
 }
@@ -74,6 +74,10 @@
     margin-top: 10px;
     font-size: 18px;
     font-weight: normal;
+}
+
+.anime_central_body_description.none{
+    color: #3e3e3e;
 }
 
 .catalog_info_watch_button {

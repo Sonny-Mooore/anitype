@@ -22,12 +22,12 @@
 .watch_together_hud_hide_button{
     cursor: pointer;
     fill: white;
-    transform: rotate(270deg);
+    transform: rotate(90deg);
     transition: .3s;
 }
 
 .watch_together_hud_hide_button.close{
-    transform: rotate(90deg);
+    transform: rotate(270deg);
 }
 
 .watch_together_hud_hide_button:hover{

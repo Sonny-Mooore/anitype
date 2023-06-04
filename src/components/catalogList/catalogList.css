@@ -98,6 +98,10 @@
     z-index: 15;
 }
 
+.catalog_info_description.none{
+    color: #3e3e3e;
+}
+
 .catalog_info_watch_button_container {
     display: flex;
     margin-top: 25px;
