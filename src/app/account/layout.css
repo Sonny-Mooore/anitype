@@ -1,0 +1,60 @@
+.account-layout {
+    max-width: 995px;
+    margin: 76px auto 0;
+    display: flex;
+    column-gap: 81px;
+}
+
+.account-layout .account-layout_sidebar {
+    display: flex;
+    flex-flow: column;
+    row-gap: 18px;
+    width: 234px;
+}
+
+.account-layout .account-layout_sidebar .account-layout_sidebar_block {
+    display: flex;
+    flex-flow: column;
+    row-gap: 9px;
+    padding-bottom: 10px;
+}
+
+.account-layout .account-layout_sidebar .account-layout_sidebar_block:not(:last-child) {
+    border-bottom: 2px solid #161616;
+}
+
+.account-layout .account-layout_sidebar .account-layout_sidebar_block .account-layout_sidebar_block-title {
+    padding-left: 9px;
+    font-weight: 600;
+    font-size: 12px;
+    color: #747474;
+    text-transform: uppercase;
+}
+
+.account-layout .account-layout_sidebar .account-layout_sidebar_block .account-layout_sidebar_block-item {
+    display: flex;
+    padding: 6px 9px;
+    align-items: center;
+    column-gap: 14px;
+    border-radius: 4px;
+}
+
+.account-layout .account-layout_sidebar .account-layout_sidebar_block .account-layout_sidebar_block-item img {
+    display: block;
+}
+
+.account-layout .account-layout_sidebar .account-layout_sidebar_block .account-layout_sidebar_block-item span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #B1B1B1;
+}
+
+.account-layout .account-layout_sidebar .account-layout_sidebar_block .account-layout_sidebar_block-item.selected,
+.account-layout .account-layout_sidebar .account-layout_sidebar_block .account-layout_sidebar_block-item:hover {
+    background-color: #151515;
+}
+
+.account-layout .account-layout_sidebar .account-layout_sidebar_block .account-layout_sidebar_block-item.selected span {
+    color: white;
+    font-weight: 500;
+}

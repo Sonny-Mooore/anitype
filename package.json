@@ -10,10 +10,8 @@
   },
   "dependencies": {
     "@stomp/stompjs": "^7.0.0",
-    "@types/node": "20.2.5",
-    "@types/react": "18.2.7",
-    "@types/react-dom": "18.2.4",
     "axios": "^1.4.0",
+    "clsx": "^1.2.1",
     "cookies-next": "^2.1.1",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
@@ -26,6 +24,9 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@types/node": "20.2.5",
+    "@types/react": "18.2.7",
+    "@types/react-dom": "18.2.4",
     "@types/sockjs-client": "^1.5.1"
   }
 }

@@ -1,0 +1,172 @@
+.account {
+    width: 680px;
+}
+
+.account_title {
+    display: flex;
+    column-gap: 11px;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.account_title img {
+    display: block;
+}
+
+.account_title span {
+    font-weight: 500;
+    font-size: 20px;
+    color: white;
+}
+
+.account .account_main {
+    border-radius: 8px;
+    background-color: #151515;
+}
+
+.account .account_main_header {
+    width: 100%;
+    height: 134px;
+    position: relative;
+}
+
+.account .account_main_header img {
+    display: block;
+    object-fit: cover;
+}
+
+.account .account_main_block {
+    padding: 0 25px 33px;
+}
+
+.account .account_main_block_head {
+    display: flex;
+    align-items: flex-end;
+    padding-right: 27px;
+    margin-bottom: 38px;
+}
+
+.account .account_main_block_head .account_main_block_head_avatar-container {
+    position: relative;
+    margin: -27px 27px 0 0;
+}
+
+.account .account_main_block_head .account_main_block_head_avatar-container .account_main_block_head_avatar {
+    position: relative;
+    border-radius: 80px;
+    width: 80px;
+    height: 80px;
+    border: 5px solid #151515;
+    overflow: hidden
+}
+
+.account .account_main_block_head .account_main_block_head_avatar-container .account_main_block_head_avatar img {
+    display: block;
+    object-fit: cover;
+}
+
+.account .account_main_block_head .account_main_block_head_avatar-container .account_main_block_head_online-status {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 16px;
+    border: 4px solid #151515;
+    background-color: #23A55A;
+}
+
+.account .account_main_block_head .account_main_block_head_name-and-desc {
+    display: flex;
+    flex-flow: column;
+}
+
+.account .account_main_block_head .account_main_block_head_name-and-desc span {
+    font-size: 14px;
+    color: #5C5C5C;
+}
+
+.account .account_main_block_head .account_main_block_head_name-and-desc span:first-child {
+    color: #E9E9E9;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.account .account_main_block_head button {
+    cursor: pointer;
+    border: 0;
+    background-color: #7F5EC7;
+    display: flex;
+    align-items: center;
+    height: 32px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    padding-inline: 27px;
+    color: white;
+    margin-left: auto;
+    padding-bottom: 2px;
+}
+
+.account .account_main_block_data {
+    display: flex;
+    flex-flow: column;
+    row-gap: 36px;
+    padding: 20px 27px 25px 20px;
+    background-color: #1A1A1A;
+    border-radius: 8px;
+}
+
+.account .account_main_block_data .account_main_block_data_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.account .account_main_block_data .account_main_block_data_row .account_main_block_data_row_info {
+    display: flex;
+    flex-flow: column;
+    row-gap: 6px;
+}
+
+.account .account_main_block_data .account_main_block_data_row .account_main_block_data_row_info > span {
+    color: #747474;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.account .account_main_block_data .account_main_block_data_row .account_main_block_data_row_info > span:first-child {
+    text-transform: uppercase;
+}
+
+.account .account_main_block_data .account_main_block_data_row .account_main_block_data_row_info > span:last-child {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    color: #ECECEC;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.account .account_main_block_data .account_main_block_data_row .account_main_block_data_row_info > span:last-child span {
+    padding-top: 2px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 12px;
+    color: #05A8FC;
+}
+
+.account .account_main_block_data .account_main_block_data_row button {
+    cursor: pointer;
+    border: 0;
+    display: flex;
+    align-items: center;
+    height: 36px;
+    background-color: #202020;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 12px;
+    padding-inline: 27px;
+    color: white;
+    padding-bottom: 2px;
+}
