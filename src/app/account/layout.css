@@ -47,6 +47,7 @@
     font-size: 14px;
     font-weight: 500;
     color: #B1B1B1;
+    padding-bottom: 1px;
 }
 
 .account-layout .account-layout_sidebar .account-layout_sidebar_block .account-layout_sidebar_block-item.selected,
