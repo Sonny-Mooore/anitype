@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import WatchTogetherKodik from "@/components/watch_together_kodik/WatchTogetherKodik";
 import {URLBase} from "@/utils/constants";
 import axios from "axios";
+import LoadingScreen from "@/components/loadingScreen/LoadingScreen";
 interface WatchTogetherFrameProps{
     id: string
     hubId?: any
@@ -32,7 +33,7 @@ const WatchTogetherFrame = ({id, hubId}: WatchTogetherFrameProps) => {
 
     return (
         <>
-            {data && <WatchTogetherKodik src={data?.sources?.kodik} id={id} hubId={hubId}/>}
+            {data ? <WatchTogetherKodik src={data?.sources?.kodik} id={id} hubId={hubId}/> : <LoadingScreen/>}
         </>
     );
 };

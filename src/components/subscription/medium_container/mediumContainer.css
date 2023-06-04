@@ -1,0 +1,48 @@
+
+.medium_container{
+    display: flex;
+    max-width: 1216px;
+    max-height: 525px;
+    width: 1216px;
+    height: 525px;
+    background: #1a1a1a;
+    border-radius: 25px;
+    padding: 56px;
+}
+
+.medium_container_left_body{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+}
+
+.medium_container_left_header{
+    font-size: 40px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 550;
+    line-height: 44px;
+    color: white;
+}
+.medium_container_left_description{
+    margin-top: 23px;
+    font-family: Montserrat, sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
+.medium_container_left_children{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 32px;
+}
+
+.medium_container_right_src{
+    background-size: contain;
+    overflow: hidden;
+    width: 50%;
+    height: 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    scale: 1.6;
+}

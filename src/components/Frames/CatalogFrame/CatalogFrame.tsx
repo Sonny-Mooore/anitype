@@ -8,6 +8,7 @@ import {capitalizeFirstLetter, getAnimeTitle} from "@/utils/function";
 import CatalogItem from "@/components/catalogItem/CatalogItem";
 import CatalogList from "@/components/catalogList/CatalogList";
 import {Anime} from "@/utils/interfaces";
+import LoadingScreen from "@/components/loadingScreen/LoadingScreen";
 
 const CatalogFrame = () => {
 
@@ -60,7 +61,7 @@ const CatalogFrame = () => {
 
     return (
         <>
-            {data &&
+            {data ?
         <div style={{overflow: "hidden"}}>
             <CatalogList header={"Сейчас смотрят"} isMouseScroll={false} isAutoScroll={true} setIds={setIds} ids={ids} >
                 {popular?.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
@@ -70,8 +71,7 @@ const CatalogFrame = () => {
             </CatalogList>
             {data?.map((item: any) => <CategoriesList title={capitalizeFirstLetter(item?.genre)} ids={ids} setIds={setIds} data={item?.releases} key={item?.genre + "CategoriesList"}/>)}
             <div style={{ height: "40px" }} />
-        </div>
-            }
+        </div> : <LoadingScreen/>}
             </>
     );
 };

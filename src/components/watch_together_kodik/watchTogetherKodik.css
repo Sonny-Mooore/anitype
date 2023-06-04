@@ -3,6 +3,7 @@
 .watch_together_hud{
     height: 25%;
     width: 100%;
+    max-height: 25vh;
     background: #232323;
     padding: 15px 20px;
     transition: .8s;
@@ -21,12 +22,12 @@
 .watch_together_hud_hide_button{
     cursor: pointer;
     fill: white;
-    transform: rotate(270deg);
+    transform: rotate(90deg);
     transition: .3s;
 }
 
 .watch_together_hud_hide_button.close{
-    transform: rotate(90deg);
+    transform: rotate(270deg);
 }
 
 .watch_together_hud_hide_button:hover{
@@ -62,7 +63,7 @@
 
 .watch_together_hud_user_list{
     width: 100%;
-    height: calc(100% - 30px);
+    height: calc(100% - 75px);
     margin-top: 5px;
     overflow: scroll;
 }

@@ -1,0 +1,20 @@
+
+.subscribe_button {
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 64px;
+    padding: 1px 12px;
+    background: linear-gradient(90deg,#ff5c4d,#eb469f 25%,#8341ef 72%,#3f68f9);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.subscribe_button:hover {
+    background: linear-gradient(90deg, #ff4733, #ff2fa2 25%, #7929ff 72%, #2958ff)
+}

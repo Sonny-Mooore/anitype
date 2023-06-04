@@ -1,0 +1,30 @@
+
+.new_list{
+    display: flex;
+    margin-top: 23px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: fit-content;
+    position: relative;
+    padding: 10px 0;
+}
+
+.new_list_item{
+    border-radius: 10px;
+    width: 236px;
+    height: 354px;
+    min-width: 236px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 18px;
+    margin-right: 8px;
+    transition: .3s;
+    z-index: 5;
+}
+
+.new_list_item:hover{
+    transform: scale(1.05);
+}

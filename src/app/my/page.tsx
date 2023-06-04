@@ -30,7 +30,7 @@ const Page = async () => {
             <div className={"separator"} />
             <EpisodeList header={"История просмотра"} isMouseScroll={false} />
             <div className={"separator"} />
-            <EpisodeList header={"Любимые"} isMouseScroll={false} />
+            {/*<EpisodeList header={"Любимые"} isMouseScroll={false} />*/}
         </div>
     );
 };

@@ -57,6 +57,10 @@
     overflow: hidden;
 }
 
+.catalog_item_description.none{
+    color: #ffffff;
+}
+
 .hovered {
     --hover: 0;
     width: 100%;

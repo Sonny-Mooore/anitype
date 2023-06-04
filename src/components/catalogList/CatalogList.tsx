@@ -74,19 +74,20 @@ const CatalogList = ({ isMouseScroll = true, ...props }: CatalogListProps) => {
                         {selectItem ? selectItem?.titles?.ruAlt : null}
                     </div>
                     <div className={"catalog_info_rank_genres_container"}>
-                        <div className={"search_rank_catalog_list"} style={{color: selectItem ? getRankAnime(selectItem).color : ""}} >{selectItem && getRankAnime(selectItem).rank !== 0 ? getRankAnime(selectItem).rank : ""}</div>
-                        <div className={"catalog_info_genres"}>{selectItem?.episodesCount} {episodeDeclension(selectItem?.episodesCount)} · {`${selectItem?.year} · ${selectItem?.genres ? getStringGenres(selectItem?.genres) : ""}`}</div>
+                        {selectItem && getRankAnime(selectItem).rank !== 0 && <div className={"search_rank_catalog_list"}
+                              style={{color: selectItem ? getRankAnime(selectItem).color : ""}}>{getRankAnime(selectItem).rank}</div>}
+                        <div className={"catalog_info_genres"}>{episodeDeclension(selectItem?.episodesCount)} · {`${selectItem?.year} · ${selectItem?.genres ? getStringGenres(selectItem?.genres) : ""}`}</div>
                     </div>
-                    {selectItem?.description != "none" && <div className={"catalog_info_description"}>
+                    {selectItem?.description != "none" ? <div className={"catalog_info_description"}>
                         {selectItem ? sliceText(selectItem?.description, 300) : null}
-                    </div>}
+                    </div> : <div className={"catalog_info_description none"}>Нет описания</div>}
                     <div className={"catalog_info_watch_button_container"}>
                         <Link href={`/player/kodik/${selectItem?.id}`}>
                             <div className={"catalog_info_watch_button"}>
                                 Смотреть
                             </div>
                         </Link>
-                        <WatchTogetherButton id={selectItem?.id?.toString() || "1"}/>
+                        <WatchTogetherButton id={selectItem?.id?.toString() ?? "1"}/>
                         <Link href={`/anime/${selectItem?.id}`}>
                             <div className={"catalog_info_watch_button more_detailed"}>
                                 Подробнее

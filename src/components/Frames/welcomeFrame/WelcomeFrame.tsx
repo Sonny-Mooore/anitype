@@ -8,6 +8,7 @@ import {Anime} from "@/utils/interfaces";
 import {URLBase, URLUsers} from "@/utils/constants";
 import {getJwt} from "@/utils/JWT";
 import axios from "axios";
+import LoadingScreen from "@/components/loadingScreen/LoadingScreen";
 
 const WelcomeFrame = () => {
 
@@ -26,6 +27,7 @@ const WelcomeFrame = () => {
                 return res.data
             }).catch(e => {
                 console.log(e)
+                return []
             })
 
             let data = await axios({
@@ -51,7 +53,7 @@ const WelcomeFrame = () => {
     return (
         <>
             <Header selected={"welcome"} />
-            {data &&
+            {data ?
         <div style={{overflow: "scroll"}}>
 
             <div className="welcome_background">
@@ -61,15 +63,16 @@ const WelcomeFrame = () => {
                 </div>
             </div>
             <div className="container">
-                <CatalogList header={"Сейчас смотрят"} isMouseScroll={true} ids={ids} setIds={setIds} isAutoScroll={true}>
-                    {data && data?.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
-                                                          image={item.poster}
-                                                          numberEpisodes={item?.episodesCount ? item?.episodesCount : 0}
-                                                          key={item.titles.original} item={item}/>)}
-                </CatalogList>
+                {data && <CatalogList header={"Сейчас смотрят"} isMouseScroll={true} ids={ids} setIds={setIds}
+                              isAutoScroll={true}>
+                    {data?.map((item: any) => <CatalogItem title={getAnimeTitle(item)} description={item.description}
+                                                           image={item.poster}
+                                                           numberEpisodes={item?.episodesCount ? item?.episodesCount : 0}
+                                                           key={item.titles.original} item={item}/>)}
+                </CatalogList>}
             </div>
             <div style={{height: "50px", marginTop: "10px"}}/>
-        </div>}
+        </div> : <LoadingScreen/>}
         </>
     );
 };

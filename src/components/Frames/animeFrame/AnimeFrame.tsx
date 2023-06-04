@@ -11,6 +11,7 @@ import {URLBase, URLUsers} from "@/utils/constants";
 import {getJwt} from "@/utils/JWT";
 import "../../../app/anime/[id]/anime.css"
 import WatchTogetherButton from "@/components/watchTogetherButton/WatchTogetherButton";
+import LoadingScreen from "@/components/loadingScreen/LoadingScreen";
 
 interface AnimeFrameProps{
     id: string
@@ -52,7 +53,7 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
 
     return (
         <>
-            {data && <div className={"anime_main_div"}>
+            {data ? <div className={"anime_main_div"}>
                 <Header selected={""}/>
                 <div className={"anime_background_image"} style={{
                     backgroundImage: ` radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 1) 100%),
@@ -69,10 +70,13 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
                             {data?.status === "released" ? <div className={`anime_status ${data?.status}`}>
                                 <Image src={"/done.svg"} width={15} height={15} alt={"done"}/>
                             </div> : <Image style={{marginRight: "7px"}} src={"/car.svg"} width={30} height={30} alt={"done"}/>}
-                            {data?.episodesCount} {episodeDeclension(data?.episodesCount)} · {data?.year} год
-                            · {data?.genres ? getStringGenres(data?.genres) : ""}</div>
-                        <div
-                            className={"anime_central_body_description"}>{data?.description !== "none" ? data?.description : ""}</div>
+                            <div className={"anime_central_body_genres_text"}>
+                                {episodeDeclension(data?.episodesCount)} · {data?.year} год
+                                · {data?.genres ? getStringGenres(data?.genres) : ""}
+                            </div>
+                        </div>
+                        {data?.description !== "none" ? <div className={"anime_central_body_description"}>{data?.description}</div> :
+                            <div  className={"anime_central_body_description none"}>Нет описания</div>}
                         <div className={"catalog_info_watch_button_container"}>
                             <Link href={`/player/kodik/${id}`}>
                                 <div className={"catalog_info_watch_button"}>
@@ -92,7 +96,7 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
                     </div>
                 </div>
                 <div style={{height: "100px"}}></div>
-            </div>}
+            </div> : <LoadingScreen/>}
         </>
 
     );

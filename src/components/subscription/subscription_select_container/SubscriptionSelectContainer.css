@@ -1,0 +1,13 @@
+
+
+.medium_container.select{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+.subscription_select_container_header{
+    color: black;
+}

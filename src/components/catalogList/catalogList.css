@@ -16,6 +16,7 @@
 
 .catalog_button {
     display: flex;
+    cursor: pointer;
     align-items: center;
     margin-left: 2px;
     fill: #ffffff;
@@ -28,10 +29,6 @@
 
 .catalog_button.active {
     fill: #959595;
-}
-
-.catalog_button {
-    cursor: pointer;
 }
 
 .catalog_full_info_container {
@@ -81,15 +78,13 @@
 
 .catalog_info_rank_genres_container {
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    align-items: center;
     margin-top: 8px;
 }
 
 .catalog_info_genres {
     font-size: 15px;
     font-weight: 300;
-    margin-left: 5px;
     color: #686a6b;
     white-space: nowrap;
     z-index: 5;
@@ -101,6 +96,10 @@
     margin-top: 8px;
     width: 520px;
     z-index: 15;
+}
+
+.catalog_info_description.none{
+    color: #3e3e3e;
 }
 
 .catalog_info_watch_button_container {
