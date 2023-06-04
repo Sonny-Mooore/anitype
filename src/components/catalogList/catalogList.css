@@ -16,6 +16,7 @@
 
 .catalog_button {
     display: flex;
+    cursor: pointer;
     align-items: center;
     margin-left: 2px;
     fill: #ffffff;
@@ -28,10 +29,6 @@
 
 .catalog_button.active {
     fill: #959595;
-}
-
-.catalog_button {
-    cursor: pointer;
 }
 
 .catalog_full_info_container {

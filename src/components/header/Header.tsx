@@ -107,7 +107,10 @@ const Header = (props: HeaderProps) => {
             <div className={isSearch ? "header search_show" : "header"}>
                 <div className={isSearch ? "header__part search_show" : "header__part"}>
                     <Link href={"/welcome"}>
-                        <span className="link logo">AniType</span>
+                        <span className="link logo">{"AniType"}</span>
+                    </Link>
+                    <Link href={"/subscription"}>
+                        {props.selected == "subscription" && <span className="link logo subscription">{"samurai"}</span>}
                     </Link>
                 </div>
                 <div className={isSearch ? "header__part search_show" : "header__part"}>

@@ -183,7 +183,6 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                         updateUser(watchLogResultDto, isHost)
                         console.log(watchLogResultDto)
                     });
-
                     setInterval( () => {
                         try {
                             if (watchLogs.current) {

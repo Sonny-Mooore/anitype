@@ -1,0 +1,43 @@
+
+
+.big_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    background: #1a1a1a;
+}
+
+.big_container_top{
+    display: flex;
+    max-width: 1216px;
+    max-height: 525px;
+    width: 1216px;
+    height: 525px;
+    padding: 56px;
+}
+
+.big_container_logo{
+    display: flex;
+
+    margin-bottom: 23px;
+
+    transition: .3s;
+    fill: var(--link_un_active);
+
+    color: white;
+    font-weight: bolder;
+    font-size: 28px;
+}
+
+.big_container_separator{
+    height: 1px;
+    width: 90%;
+    background: #ababab;
+}
+
+.big_container_bottom{
+    width: 1216px;
+    height: 416px;
+}
