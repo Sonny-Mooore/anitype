@@ -20,7 +20,7 @@
 
 .anime_body {
     display: flex;
-    width: fit-content;
+    width: 100%;
     justify-content: center;
     z-index: 2;
     padding: 280px 150px 0 150px;

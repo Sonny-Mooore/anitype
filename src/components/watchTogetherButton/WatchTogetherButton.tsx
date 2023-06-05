@@ -5,6 +5,7 @@ import {getJwt} from "@/utils/JWT";
 import {useRouter} from "next/navigation";
 import "../../app/anime/[id]/anime.css"
 import axios from "axios";
+import {checkUserAuth} from "@/utils/verifications";
 interface WatchTogetherButtonProps{
     id: string
 }
@@ -14,6 +15,12 @@ const WatchTogetherButton = ({ id }:WatchTogetherButtonProps) => {
     const router = useRouter()
 
     async function createHub(){
+
+        if (!await checkUserAuth()) {
+            router.push("/auth")
+            return
+        }
+
         axios({
             method: "post",
             url: URLUsers + "/hubs",
@@ -24,7 +31,7 @@ const WatchTogetherButton = ({ id }:WatchTogetherButtonProps) => {
     }
 
     return (
-        <div className={"catalog_info_watch_button watch_together"} onClick={() => createHub()}>
+        <div className={"catalog_info_watch_button watch_together"} onClick={createHub}>
             Смотреть вместе
         </div>
     );

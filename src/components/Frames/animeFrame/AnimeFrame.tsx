@@ -76,7 +76,7 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
                             </div>
                         </div>
                         {data?.description !== "none" ? <div className={"anime_central_body_description"}>{data?.description}</div> :
-                            <div  className={"anime_central_body_description none"}>Нет описания</div>}
+                            <div className={"anime_central_body_description none"}>Нет описания</div>}
                         <div className={"catalog_info_watch_button_container"}>
                             <Link href={`/player/kodik/${id}`}>
                                 <div className={"catalog_info_watch_button"}>

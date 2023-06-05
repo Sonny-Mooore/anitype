@@ -42,7 +42,6 @@ export async function getAccessTokenOrNullFromServer(refreshToken: Token){
     return await axios({
         method: 'post',
         url: URLUsers + '/auth/access',
-        headers: {"X-Forwarded-For": refreshToken},
         data: {refreshToken: refreshToken},
     }).then(response => {
         confirmTempAuthentication()
@@ -57,7 +56,6 @@ export async function getRefreshAndAccessTokenOrNullFromServer(refreshToken: Tok
     return await axios({
         method: 'post',
         url: URLUsers + '/auth/refresh',
-        headers: {"X-Forwarded-For": refreshToken},
         data: {refreshToken: refreshToken}
     }).then(resp => {
         confirmTempAuthentication()
