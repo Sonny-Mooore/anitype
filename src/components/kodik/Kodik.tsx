@@ -36,6 +36,7 @@ const Kodik = ({id}: KodikProps) => {
     useEffect(() => {
 
         async function getData(id: string) {
+
             await axios({
                 method: "get",
                 url: URLBase + `/anime/id/${id}`
@@ -48,7 +49,6 @@ const Kodik = ({id}: KodikProps) => {
         const kodikMessageListener = (message: any) => {
             if (message.data.key === 'kodik_player_time_update') {
                 time.current = message.data.value
-                console.log(time.current)
             }
             if (message.data.key === "kodik_player_current_episode"){
                 console.log(message.data.value);

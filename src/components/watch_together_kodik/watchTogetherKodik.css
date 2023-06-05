@@ -19,6 +19,20 @@
     opacity: 0;
 }
 
+.watch_together_hud_connect_state{
+    display: flex;
+    font-size: 14px;
+    margin-left: 5px;
+    color: #D1D1D1;
+}
+.watch_together_hud_connect_state.connect{
+    color: green;
+}
+
+.watch_together_hud_connect_state.disconnect{
+    color: darkred;
+}
+
 .watch_together_hud_hide_button{
     cursor: pointer;
     fill: white;

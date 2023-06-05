@@ -1,7 +1,7 @@
 "use client"
 import React, {useEffect, useRef, useState} from 'react';
 import {useRouter} from "next/navigation";
-import "../kodik/kodik.css";
+import "../../app/player/kodik/[id]/kodik.css";
 import "./watchTogetherKodik.css"
 import axios from "axios";
 import {URLUsers} from "@/utils/constants";
@@ -55,6 +55,20 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
     const [userList, setUserList] = useState<Array<User>>()
 
     const [isShowHub, setIsShowHud] = useState(true)
+
+    const [connectionState, setConnectionState] = useState("Не подключён")
+
+    const time= useRef(0)
+
+    function setTime(time: number){
+        sendMethodKodik( {method: "seek", seconds: time})
+    }
+
+    function getConnectionStateClassName(state: string){
+        if (state === "Не подключён") return "watch_together_hud_connect_state"
+        if (state === "Подключён") return "watch_together_hud_connect_state connect"
+        if (state === "Разорвано") return "watch_together_hud_connect_state disconnect"
+    }
 
     const updateUser = (user: User, isHost: boolean) => {
 
@@ -116,20 +130,25 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
         }
     }
 
+    function checkPause(key: string) {
+        if (key === 'kodik_player_pause') {
+            return true
+        }
+        if (key === 'kodik_player_play') {
+            return false
+        }
+        return watchLogs?.current?.isPaused ? watchLogs?.current?.isPaused : false
+    }
+
     useEffect(() => {
+
         const kodikMessageListener = async (message: any) => {
             let Token = (await getJwt()).access;
 
             const {key, value} = message.data;
 
-            function checkPause(key: string) {
-                if (key === 'kodik_player_pause') {
-                    return true
-                }
-                if (key === 'kodik_player_play') {
-                    return false
-                }
-                return watchLogs?.current?.isPaused ? watchLogs?.current?.isPaused : false
+            if (key === 'kodik_player_time_update') {
+                time.current = value
             }
 
             watchLogs.current = {
@@ -177,13 +196,14 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                 setHubTitle(title)
                 const handleConnect = () => {
                     console.log('Соединение установлено.', hubId);
+                    setConnectionState("Подключён")
 
                     stompClient.subscribe(`/topic/watchlogs-${hubId}`, (message: any) => {
                         const watchLogResultDto = JSON.parse(message.body);
                         updateUser(watchLogResultDto, isHost)
                         console.log(watchLogResultDto)
                     });
-                    setInterval( () => {
+                    let interval = setInterval( () => {
                         try {
                             if (watchLogs.current) {
                                 const watchLogDto = watchLogs.current
@@ -196,16 +216,11 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                                 });
                             }
                         } catch (e) {
-                            stompClient = new Client({
-                                webSocketFactory: () => socket,
-                                debug: (str: string) => console.log(str),
-                            });
-
-                            stompClient.subscribe(`/topic/watchlogs-${hubId}`, (message: any) => {
-                                const watchLogResultDto = JSON.parse(message.body);
-                                updateUser(watchLogResultDto, isHost)
-                                console.log(watchLogResultDto)
-                            });
+                            setConnectionState("Разорвано")
+                            stompClient.deactivate()
+                            socket.close()
+                            clearInterval(interval)
+                            startConnection()
                         }
 
                     }, 1000)
@@ -213,13 +228,13 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
 
                 const handleError = (frame: any) => {
                     console.error('Произошла ошибка STOMP:', frame);
+                    setConnectionState("Разорвано")
                 };
 
                 stompClient.onConnect = handleConnect;
                 stompClient.onStompError = handleError;
 
                 stompClient.activate();
-
             }
 
             async function checkHost(stompClient: any, socket: any) {
@@ -229,7 +244,6 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                     headers: {"Authorization": "Bearer " + (await getJwt()).access}
                 }).then(res => {
                     getInfo(stompClient, hubId, res.data, socket).catch(e => console.log(e))
-                    useEffectIterate.current += 1
                 }).catch(e => console.log(e))
             }
 
@@ -240,11 +254,15 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                     headers: {"Authorization": "Bearer " + (await getJwt()).access}
                 }).then(res => {
                     ConnectHub(stompClient, isHost, res.data.title, socket).catch(e => console.log(e))
-                    useEffectIterate.current += 1
                 }).catch(e => console.log(e))
             }
 
             if (useEffectIterate.current === 0) {
+                useEffectIterate.current += 1
+                startConnection()
+            }
+
+            function startConnection(){
                 const socket = new SockJS(URLUsers + '/websocket');
                 const stompClient = new Client({
                     webSocketFactory: () => socket,
@@ -256,6 +274,16 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
 
     return (
             <>
+                <div className={"kodik_button skip"} title={"+80s"} onClick={() => setTime(time.current + 80)}>
+                    <svg height="20px" width="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.2,10.6l-9-5.4c-1-0.6-2.2,0.2-2.2,1.4v3.2L3.2,5.2C2.2,4.6,1,5.4,1,6.6v10.7c0,1.2,1.2,2,2.2,1.4l7.8-4.6   v3.2c0,1.2,1.2,2,2.2,1.4l9-5.4C23.3,12.8,23.3,11.2,22.2,10.6z"/>
+                    </svg>
+                </div>
+                <div className={"kodik_button close"} onClick={() => router.push(`/anime/${id}`)}>
+                    <svg height="20px" viewBox="0 0 512 512" width="20px" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"/>
+                    </svg>
+                </div>
                 <iframe id="kodik-player" style={{border: "none", transition: ".8s"}} allowFullScreen allow="autoplay; fullscreen"
                         width={"100%"} height={isShowHub ? "75%" : "94%"} src={src}/>
                 <div style={{background: "#232323", width: "100%", display: "flex", justifyContent: "space-between", padding: "5px 20px", alignItems: "center"}}>
@@ -268,6 +296,7 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                             <path d="M25,19a1,1,0,0,1-1-1V10a3,3,0,0,1,3-3H49a1,1,0,0,1,0,2H27a1,1,0,0,0-1,1v8A1,1,0,0,1,25,19Z"/>
                         </svg>
                     </div>
+                    <div className={"watch_together_hud_connect_state"}>Статус подключения: <div className={getConnectionStateClassName(connectionState)}>{connectionState}</div> </div>
                     <div className={isShowHub ? "watch_together_hud_hide_button" : "watch_together_hud_hide_button close"} onClick={() => setIsShowHud(!isShowHub)}>
                         <svg width={20} height={20} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16.88,15.53,7,5.66A1,1,0,0,0,5.59,7.07l9.06,9.06-8.8,8.8a1,1,0,0,0,0,1.41h0a1,1,0,0,0,1.42,0l9.61-9.61A.85.85,0,0,0,16.88,15.53Z"/>
