@@ -81,7 +81,7 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
 
                     })
                 }
-                if (!watchLogs.current?.seconds || Math.abs(watchLogs.current?.seconds - user.seconds) > 3){
+                if (!watchLogs.current?.seconds || Math.abs(watchLogs.current?.seconds - user.seconds) > 2){
                     sendMethodKodik({
                         method: "seek",
                         seconds: user.seconds

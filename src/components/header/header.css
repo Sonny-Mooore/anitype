@@ -40,6 +40,9 @@
     margin-right: 15px;
     padding: 5px 0;
 
+    user-select: none;
+    cursor: pointer;
+
     transition: .3s;
     fill: var(--link_un_active);
 }

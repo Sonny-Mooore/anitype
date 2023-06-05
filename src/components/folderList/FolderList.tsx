@@ -27,16 +27,20 @@ const FolderList = ({folderName}: FolderListProps) => {
                 return res.data?.map((e: any)=> e.releaseId)
             }).catch(e => {
                 console.log(e)
+                return []
             })
+            let listAnime = []
 
-            let listAnime =  await axios({
-                method: "get",
-                url: URLBase + `/anime/ids?ids=${listId?.join(",")}`,
-            }).then(res => {
-                return res.data
-            }).catch(e => {
-                console.log(e)
-            })
+            if (listId?.join(",") !== ""){
+                listAnime =  await axios({
+                    method: "get",
+                    url: URLBase + `/anime/ids?ids=${listId?.join(",")}`,
+                }).then(res => {
+                    return res.data
+                }).catch(e => {
+                    console.log(e)
+                })
+            }
 
             setList(listAnime)
             setIds(listId)
