@@ -144,7 +144,7 @@
     margin-left: 10px;
     margin-right: 10px;
     background: #202020;
-    height: 200px;
+    height: 220px;
     border-radius: 10px;
     padding-top: 10px;
 }
@@ -195,6 +195,9 @@
 
 
 .accountDialog_container_right_info_block_change_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px 20px;
     background: #2a2a2a;
     border-radius: 4px;
@@ -202,6 +205,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: .3s;
+    width: 140px;
 }
 
 .accountDialog_container_right_info_block_change_button:hover{
