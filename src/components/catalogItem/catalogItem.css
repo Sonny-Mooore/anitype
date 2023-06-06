@@ -1,8 +1,6 @@
 
 
 .catalog_item {
-    height: 172px;
-    width: 306px;
     min-width: 306px;
     min-height: 172px;
     border-radius: 10px;
@@ -75,4 +73,32 @@
 .hovered:hover {
     background: rgba(0, 0, 0, 0.7);
     --hover: 1;
+}
+
+
+@media screen and (max-width:550px) {
+
+.hovered {
+    align-items: start;
+    justify-content: start;
+
+}
+
+.catalog_item {
+    min-width: 196px;
+    height: 282px;
+}
+
+.catalog_item_container_metadata{
+    padding: 0 10px 15px 10px;
+    max-width: 150px;
+}
+
+
+
+.catalog_item_name{
+    font-size: 12px;
+    font-weight: 300;
+}
+    
 }

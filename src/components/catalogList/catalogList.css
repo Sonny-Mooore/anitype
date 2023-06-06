@@ -6,13 +6,13 @@
     transition: .3s;
 }
 
+
 .list_catalog_header_text {
     font-family: "Manrope", sans-serif;
     font-size: 24px;
     font-weight: bold;
     user-select: none;
 }
-
 
 .catalog_button {
     display: flex;
@@ -213,3 +213,18 @@
     text-justify: auto;
     margin-right: 5px;
 }
+
+
+@media screen and (max-width:550px) {
+  
+    .list_catalog_header {
+        margin-left: 20px;
+    
+    }
+    .list_catalog_header_text {
+    
+        font-size: 18px;
+    
+    }
+    
+    }

@@ -25,6 +25,22 @@
     padding-bottom: 5px;
 }
 
+
+
+
+@media screen and (max-width:550px) {
+    .episode_space{
+        min-width: 256px;
+    }
+}
+@media screen and (max-width:320px) {
+    .episode_list{
+        margin-left: -235px;
+    }
+    
+
+}
+
 .episode_list::-webkit-scrollbar {
     height: 0;
 }
