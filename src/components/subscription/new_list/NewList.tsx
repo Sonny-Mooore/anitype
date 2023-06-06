@@ -14,7 +14,7 @@ const NewList = () => {
         async function getData(){
             await axios({
                 method: "get",
-                url: URLBase + "/anime/find/popular"
+                url: URLBase + "/anime/find/last"
             }).then((response) => {
                 setData(response.data)
             }).catch((error) => {
