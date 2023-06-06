@@ -1,6 +1,6 @@
 .alertBox{
     width: 100%;
-    height: 100%;
+    height:100%;
     position: absolute;
     display: flex;
     z-index: 1;
@@ -11,21 +11,21 @@
 
 .alertBox.active{
     animation: alerts ease-out 1s;
-    margin-top: -44%;
+    margin-top: -50%;
 }
 
 .alertBox.alertClose{
     animation: alertsOff ease-out 1.5s;
-    margin-top: -150%;
+    margin-top: -50%;
 }
 
 @keyframes alerts {
     from {margin-top: -150%}
-    to {margin-top: -44%}
+    to {margin-top: -50%}
 }
 
 @keyframes alertsOff {
-    from {margin-top: -44%}
+    from {margin-top: -50%}
     to {margin-top: -150%}
 }
 
@@ -45,3 +45,100 @@
     box-shadow: red 0 4px;
 }
 
+
+@media screen and (max-width:891px) {
+    @keyframes alerts {
+        from {margin-top: -150%}
+        to {margin-top: -74%}
+    }
+    
+    @keyframes alertsOff {
+        from {margin-top: -74%}
+        to {margin-top: -150%}
+    }
+    .alertBox.active{
+        margin-top: -74%;
+    }
+
+    .alertBox.alertClose{
+        margin-top: -74%;
+    }
+}
+
+@media screen and (max-width:670px) {
+    .alertBox{
+        margin-top: -250%;
+        height:30%;
+    }
+}
+
+@media screen and (max-width:560px) {
+    .alertBox{
+        margin-top: -250%;
+    }
+
+    @keyframes alerts {
+        from {margin-top: -200%}
+        to {margin-top: -94%}
+    }
+    
+    @keyframes alertsOff {
+        from {margin-top: -94%}
+        to {margin-top: -200%}
+    }
+
+    .alertBox.active{
+        margin-top: -94%;
+    }
+
+    .alertBox.alertClose{
+        margin-top: -94%;
+    }
+}
+/* 442 */
+@media screen and (max-width:442px) {
+    .alertBox{
+        margin-top: -450%;
+    }
+
+    @keyframes alerts {
+        from {margin-top: -250%}
+        to {margin-top: -114%}
+    }
+    
+    @keyframes alertsOff {
+        from {margin-top: -114%}
+        to {margin-top: -250%}
+    }
+
+    .alertBox.active{
+        margin-top: -114%;
+    }
+
+    .alertBox.alertClose{
+        margin-top: -114%;
+    }
+}
+@media screen and (max-width:350px) {
+    .alertBox{
+        margin-top: -450%;
+    }
+
+    @keyframes alerts {
+        from {margin-top: -350%}
+        to {margin-top: -174%}
+    }
+    
+    @keyframes alertsOff {
+        from {margin-top: -174%}
+        to {margin-top: -350%}
+    }
+
+    .alertBox.active{
+        margin-top: -174%;
+    }
+
+    .alertBox.alertClose{
+        margin-top: -174%;
+    }
+}
