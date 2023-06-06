@@ -55,7 +55,7 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
         <>
             {data ? <div className={"anime_main_div"}>
                 <Header selected={""}/>
-                <div className={"anime_background_image"} style={{
+                <div className={"anime_background_image_mob"} style={{
                     backgroundImage: ` radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 1) 100%),
     linear-gradient(0deg, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 0) 100%),
     url("${data?.poster}")`

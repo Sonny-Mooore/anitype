@@ -163,8 +163,6 @@
     width: 100%;
     justify-content: center;
     z-index: 2;
-
-    padding: 100px 0;
 }
 
 .anime_left_body_mob {
@@ -227,4 +225,15 @@
 
     display: flex;
     justify-content: space-around;
+}
+
+.anime_background_image_mob {
+    display: flex;
+    align-self: center;
+    justify-self: flex-start;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 60vh;
 }
