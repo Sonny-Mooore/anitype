@@ -19,7 +19,6 @@
 }
 
 .anime_body {
-    display: flex;
     width: 100%;
     justify-content: center;
     z-index: 2;
@@ -135,4 +134,96 @@
 
 .add_rating:hover{
     background: #2a2a2a;
+}
+
+/* мобильные устройства */
+@media (hover: none) and (pointer: coarse) {
+    .anime_body {
+        display: none;
+    }
+    .anime_body_mob {
+        display: flex;
+    }
+}
+
+/* десктопы и ноутбуки, в которых основным механизмом ввода является мышь или тачпад */
+@media (hover: hover) and (pointer: fine) {
+    .anime_body {
+        display: flex;
+    }
+    .anime_body_mob {
+        display: none;
+    }
+}
+
+.anime_body_mob {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    z-index: 2;
+
+    padding: 100px 0;
+}
+
+.anime_left_body_mob {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.anime_body_poster_mob {
+    width: 100%;
+    max-width: 370px;
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 3px;
+}
+
+.anime_central_body_mob {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 370px;
+    margin-top: 30px;
+}
+
+.anime_central_body_title_mob {
+    display: flex;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.anime_central_body_genres_mob {
+    display: flex;
+    align-items: center;
+    color: #D1D1D1;
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.anime_central_body_description_mob {
+    margin-top: 25px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #e7e7e7;
+}
+
+.catalog_info_watch_button_container_mob {
+
+    display: flex;
+}
+
+.anime_right_body_mob {
+    width: 100%;
+    max-width: 370px;
+    margin-top: 25px;
+
+    display: flex;
+    justify-content: space-around;
 }
