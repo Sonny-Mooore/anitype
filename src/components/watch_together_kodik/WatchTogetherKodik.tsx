@@ -60,6 +60,8 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
 
     const time= useRef(0)
 
+    const isCloseConnection = useRef(false)
+
     function setTime(time: number){
         sendMethodKodik( {method: "seek", seconds: time})
     }
@@ -181,6 +183,8 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
     }, [id]);
 
     async function leave() {
+        isCloseConnection.current = true
+
         axios({
             method: "get",
             url: URLUsers + `/hubs/leave/${hubId}`,
@@ -204,6 +208,13 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                         console.log(watchLogResultDto)
                     });
                     let interval = setInterval( () => {
+                        if (isCloseConnection.current){
+                            setConnectionState("Разорвано")
+                            stompClient.deactivate()
+                            socket.close()
+                            clearInterval(interval)
+                            isCloseConnection.current = false
+                        }
                         try {
                             if (watchLogs.current) {
                                 const watchLogDto = watchLogs.current
@@ -270,6 +281,7 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
                 });
                 checkHost(stompClient, socket).catch(e => console.log(e))
             }
+
     }, [hubId, leave, updateUser])
 
     return (

@@ -131,3 +131,32 @@ export function formatTime(seconds: number): string {
 
     return formattedTime;
 }
+
+export async function sendEmailVerificationCode(email: string | undefined){
+    axios({
+        method: "post",
+        url: URLUsers + "/verify/email/send",
+        data: {email: email},
+        headers: {"Authorization": "Bearer " + (await getJwt()).access}
+    }).then((res) => {
+        console.log("code send", res)
+        return true
+    }).catch(e => {
+        console.log(e)
+        return false
+    })
+}
+
+export async function CheckEmailVerificationCode(code: string){
+    axios({
+        method: "get",
+        url: URLUsers + `/verify/email/accept/${code}`,
+        headers: {"Authorization": "Bearer " + (await getJwt()).access}
+    }).then((res) => {
+        console.log("code check", res)
+        return true
+    }).catch(e => {
+        console.log(e)
+        return false
+    })
+}

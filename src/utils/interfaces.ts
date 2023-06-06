@@ -19,6 +19,54 @@ export interface Anime {
     year?: number;
 }
 
+export interface UserInfo{
+    id: string,
+    createdDate: string,
+    username: string,
+    password: string,
+    ip: string,
+    avatar: string,
+    email: string,
+    emailVerified: true,
+    su: true,
+
+    folders: [
+        {
+            id: string,
+            title: string,
+            items: [
+                {
+                    id: string,
+                    releaseId: number,
+                    folder: string
+                }
+            ],
+            user: string
+        }
+    ],
+
+
+    subscriptions: [
+        {
+            id: string,
+            user: string,
+            startDate: string,
+            endDate: string
+        }
+    ],
+
+    comments: [
+        {
+            id: string,
+            createdDate: string,
+            value: string,
+            releaseId: number,
+            user: string
+        }
+    ],
+
+}
+
 export interface CatalogItemProps {
     title: string,
     description: string,
@@ -32,7 +80,7 @@ export interface CatalogItemProps {
 
 export interface CatalogListProps {
     header: string,
-    isMouseScroll?: boolean | true
+    isMouseScroll?: boolean
     children?: any
     ids?: any
     setIds?: any

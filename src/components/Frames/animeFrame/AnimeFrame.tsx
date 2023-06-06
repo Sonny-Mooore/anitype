@@ -55,7 +55,7 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
         <>
             {data ? <div className={"anime_main_div"}>
                 <Header selected={""}/>
-                <div className={"anime_background_image"} style={{
+                <div className={"anime_background_image_mob"} style={{
                     backgroundImage: ` radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 1) 100%),
     linear-gradient(0deg, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 0) 100%),
     url("${data?.poster}")`
@@ -95,6 +95,48 @@ const AnimeFrame = ({id}: AnimeFrameProps) => {
                         <div className={"add_rating"}>Оценить аниме</div>
                     </div>
                 </div>
+
+                {/* Mobile version */}
+                <div className={"anime_body_mob"}>
+                    <div className={"anime_left_body_mob"}>
+                        <div className={"anime_body_poster_mob"} style={{backgroundImage: `url("${data?.poster}")`}}/>
+                    </div>
+                    <div className={"anime_central_body_mob"}>
+                        <div className={"anime_central_body_title_mob"}>{getAnimeTitle(data)}</div>
+                        <div className={"anime_central_body_genres_mob"}>
+                            {data?.status === "released" ? <div className={`anime_status ${data?.status}`}>
+                                <Image src={"/done.svg"} width={15} height={15} alt={"done"}/>
+                            </div> : <Image style={{marginRight: "7px"}} src={"/car.svg"} width={30} height={30} alt={"done"}/>}
+                            <div className={"anime_central_body_genres_text"}>
+                                {episodeDeclension(data?.episodesCount)} · {data?.year} год
+                                · {data?.genres ? getStringGenres(data?.genres) : ""}
+                            </div>
+                        </div>
+
+                        <div className={"catalog_info_watch_button_container_mob"}>
+                            <Link href={`/player/kodik/${id}`}>
+                                <div className={"catalog_info_watch_button"}>
+                                    Смотреть
+                                </div>
+                            </Link>
+                            {/*<WatchTogetherButton id={id}/>*/}
+                            <AddToFavoriteButton id={+id} isActive={ids.includes(data?.id ? data?.id : -1)}
+                                                 setIds={setIds} ids={ids}/>
+                        </div>
+
+                        {data?.description !== "none" ? <div className={"anime_central_body_description_mob"}>{data?.description}</div> :
+                            <div className={"anime_central_body_description none"}>Нет описания</div>}
+
+                    {/*    here be buttons */}
+                    </div>
+                    <div className={"anime_right_body_mob"}>
+                        <div className={"search_rank anime"} style={{color: data ? getRankAnime(data).color : ""}}>
+                            {data && getRankAnime(data).rank !== 0 ? getRankAnime(data).rank : ""}
+                        </div>
+                        <div className={"add_rating"}>Оценить аниме</div>
+                    </div>
+                </div>
+                {/**/}
                 <div style={{height: "100px"}}></div>
             </div> : <LoadingScreen/>}
         </>
