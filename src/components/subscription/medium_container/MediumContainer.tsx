@@ -1,13 +1,8 @@
 import React from 'react';
 import "./mediumContainer.css"
-interface MediumContainerProps{
-    headerText: string
-    description: string
-    src: string
-    children?: any
-}
+import {MediumContainerProps} from "@/utils/interfaces";
 
-const MediumContainer = ({children, src, headerText, description}:MediumContainerProps) => {
+const MediumContainer = ({children, headerText, description}: MediumContainerProps) => {
     return (
         <div className={"medium_container"}>
             <div className={"medium_container_left_body"}>

@@ -46,7 +46,7 @@
 }
 
 .link.logo.subscription{
-    background-image: linear-gradient(167deg, rgba(42, 111, 237, 1) 5%, rgba(155, 97, 186, 0.7484243697478992) 100%);
+    background-image: linear-gradient(90deg, #ff4668, #ff4a6a, #b92f48);
     -webkit-background-clip: text;
     -moz-background-clip: border;
     background-clip: text;

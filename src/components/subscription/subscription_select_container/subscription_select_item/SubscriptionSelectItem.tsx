@@ -1,11 +1,7 @@
 import React from 'react';
 import "./SubscriptionSelectItem.css"
+import {SubscriptionSelectItemProps} from "@/utils/interfaces";
 
-interface SubscriptionSelectItemProps{
-    plusList: Array<string>
-    price: number
-    text: string
-}
 const SubscriptionSelectItem = ({plusList, price, text}: SubscriptionSelectItemProps) => {
     return (
         <div className={"subscription_select_item"}>

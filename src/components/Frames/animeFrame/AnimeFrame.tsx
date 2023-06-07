@@ -5,17 +5,13 @@ import {episodeDeclension, getAnimeTitle, getRankAnime, getStringGenres} from "@
 import Image from "next/image";
 import Link from "next/link";
 import AddToFavoriteButton from "@/components/addToFavoriteButton/AddToFavoriteButton";
-import {Anime} from "@/utils/interfaces";
+import {Anime, AnimeFrameProps} from "@/utils/interfaces";
 import axios from "axios";
 import {URLBase, URLUsers} from "@/utils/constants";
 import {getJwt} from "@/utils/JWT";
 import "../../../app/anime/[id]/anime.css"
 import WatchTogetherButton from "@/components/watchTogetherButton/WatchTogetherButton";
 import LoadingScreen from "@/components/loadingScreen/LoadingScreen";
-
-interface AnimeFrameProps{
-    id: string
-}
 
 const AnimeFrame = ({id}: AnimeFrameProps) => {
 

@@ -5,7 +5,7 @@ interface Props {
     params: { id: string };
 }
 
-const Page = async ({ params: { id } }: Props) => {
+const Page = ({ params: { id } }: Props) => {
 
     return (
         <>

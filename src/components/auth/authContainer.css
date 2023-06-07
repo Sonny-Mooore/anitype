@@ -25,6 +25,7 @@
     padding: 15px;
     transition: .3s;
     cursor: pointer;
+    z-index: 100;
 }
 
 .authBackButton:hover{

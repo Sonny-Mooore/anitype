@@ -9,35 +9,7 @@ import {getJwt} from "@/utils/JWT";
 import SockJS from 'sockjs-client';
 import {Client} from '@stomp/stompjs';
 import {formatTime} from "@/utils/function";
-
-interface WatchTogetherKodikProps {
-    src: string
-    id: string
-    hubId?: any
-}
-
-interface WatchLog {
-    accessToken: string
-    hubId: string
-    seconds: number
-    releaseId: number
-    season: number
-    episode: number
-    translationTitle: string
-    isPaused: boolean
-}
-
-interface User {
-    hubId: string
-    username: string
-    isPaused: boolean
-    main: boolean
-    seconds: number
-    releaseId: number
-    season: number
-    episode: number
-    translationTitle: string
-}
+import {User, WatchLog, WatchTogetherKodikProps} from "@/utils/interfaces";
 
 const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
 
@@ -191,7 +163,7 @@ const WatchTogetherKodik = ({src, id, hubId}: WatchTogetherKodikProps) => {
             headers: {"Authorization": "Bearer " + (await getJwt()).access}
         }).then(() => {
             router.push("/welcome")
-        }).catch(e => router.push("/welcome"))
+        }).catch(() => router.push("/welcome"))
     }
 
     useEffect(() => {

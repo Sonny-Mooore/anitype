@@ -98,7 +98,6 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: url("https://i.pinimg.com/originals/87/90/6b/87906b327d3b28fed0378fc5cd69d8d1.jpg");
     background-position: 50%;
     background-size: cover;
     overflow: hidden;
@@ -144,7 +143,7 @@
     margin-left: 10px;
     margin-right: 10px;
     background: #202020;
-    height: 200px;
+    height: 220px;
     border-radius: 10px;
     padding-top: 10px;
 }
@@ -157,10 +156,12 @@
     width: 100%;
     font-family: "Noto Sans", sans-serif;
     padding: 10px 15px;
+    transition: .3s;
 }
 
 .accountDialog_container_right_info_block.hidden{
     opacity: 0;
+    pointer-events: none;
 }
 
 .accountDialog_container_right_info_block_title{
@@ -195,6 +196,9 @@
 
 
 .accountDialog_container_right_info_block_change_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px 20px;
     background: #2a2a2a;
     border-radius: 4px;
@@ -202,8 +206,30 @@
     font-weight: 600;
     cursor: pointer;
     transition: .3s;
+    width: 140px;
 }
 
 .accountDialog_container_right_info_block_change_button:hover{
     background: #353535;
+}
+
+.accountDialog_container_right_info_block_exit_button{
+    display: flex;
+    width: 95%;
+    border-radius: 10px;
+    height: 30px;
+    border: 1px solid crimson;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+    margin: 10px 10px;
+    user-select: none;
+    font-size: 12px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.accountDialog_container_right_info_block_exit_button:hover{
+    background: crimson;
 }

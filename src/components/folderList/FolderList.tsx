@@ -6,10 +6,7 @@ import CatalogItem from "@/components/catalogItem/CatalogItem";
 import {getAnimeTitle} from "@/utils/function";
 import CatalogList from "@/components/catalogList/CatalogList";
 import {getJwt} from "@/utils/JWT";
-
-interface FolderListProps{
-    folderName: string
-}
+import {FolderListProps} from "@/utils/interfaces";
 
 const FolderList = ({folderName}: FolderListProps) => {
     

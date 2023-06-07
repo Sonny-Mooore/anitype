@@ -4,10 +4,7 @@ import "./kodik.css";
 import {useRouter} from "next/navigation";
 import axios from "axios";
 import {URLBase} from "@/utils/constants";
-interface KodikProps{
-    id: any
-}
-
+import {KodikProps} from "@/utils/interfaces";
 const Kodik = ({id}: KodikProps) => {
 
     const time= useRef(0)
@@ -74,14 +71,6 @@ const Kodik = ({id}: KodikProps) => {
         };
 
     }, [id]);
-
-    function onMouseEnter(){
-        clearInterval(interval.current)
-        setShowHud(true)
-        interval.current = setInterval(() => {
-            setShowHud(false)
-        }, 5000)
-    }
 
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
