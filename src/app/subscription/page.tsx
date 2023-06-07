@@ -1,5 +1,6 @@
 import React from 'react';
 import "./subscription.css"
+import "./subscription_mob.css"
 import Header from "@/components/header/Header";
 
 const Page = () => {

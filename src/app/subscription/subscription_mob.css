@@ -1,0 +1,41 @@
+/* мобильные устройства */
+@media (hover: none) and (pointer: coarse) {
+    .subscription_header {
+        margin-top: 0;
+        height: 250px;
+    }
+
+    .subscription_bonuses h1 {
+        text-align: center;
+    }
+
+    .sub_bonuses_cont {
+        width: 100%;
+        margin-top: 20px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        white-space: break-spaces;
+    }
+
+    .subscription_bonus {
+        max-width: 95%;
+        width: 100%;
+    }
+
+    .subscription_vars {
+        flex-direction: column;
+
+        margin-top: 20px;
+    }
+
+    .subscription_var {
+        margin: 10px 0;
+    }
+
+    .subscription_footer {
+        margin-bottom: 50px;
+    }
+}
