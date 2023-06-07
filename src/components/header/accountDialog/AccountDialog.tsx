@@ -5,7 +5,7 @@ import Image from "next/image";
 import axios from "axios";
 import {URLUserAvatar, URLUsers} from "@/utils/constants";
 import {getJwt} from "@/utils/JWT";
-import {getUserInfo} from "@/utils/UsersCooke";
+import {clearUserInfo, getUserInfo} from "@/utils/UsersCooke";
 import {CheckEmailVerificationCode, sendEmailVerificationCode} from "@/utils/function";
 import {deleteCookie} from "cookies-next";
 import Alert from "@/components/alert/Alert";
@@ -13,9 +13,10 @@ import Alert from "@/components/alert/Alert";
 interface AccountDialogProps{
     active: boolean
     setActive: Dispatch<SetStateAction<boolean>>
+    UserAuthState: any
 }
 
-const AccountDialog = ({active, setActive}: AccountDialogProps) => {
+const AccountDialog = ({active, setActive, UserAuthState}: AccountDialogProps) => {
 
     const [avatar, setAvatar] = useState<string>()
     const [userName, setUserName] = useState<string>()
@@ -141,6 +142,12 @@ const AccountDialog = ({active, setActive}: AccountDialogProps) => {
         })
     }
 
+    function exitAccount(){
+        clearUserInfo()
+        setActive(false)
+        UserAuthState(false)
+    }
+
     return (
         <div className={active ? "accountDialog_background active" : "accountDialog_background"} onClick={() => setActive(false)}>
             <Alert state={alertState} setState={setAlertState} alertMessage={alertText}/>
@@ -192,10 +199,11 @@ const AccountDialog = ({active, setActive}: AccountDialogProps) => {
                                     Код
                                 </div>
                                 <input placeholder={"Введите код"} value={code} onChange={e => setCode(e.target.value)} className={"accountDialog_container_right_info_block_text_input"}/>
-                                </div>
-                                <div className={"accountDialog_container_right_info_block_change_button"} onClick={() => checkCode()}>Подтвердить</div>
                             </div>
+                            <div className={"accountDialog_container_right_info_block_change_button"} onClick={() => checkCode()}>Подтвердить</div>
+                        </div>
                     </div>
+                    <div className={"accountDialog_container_right_info_block_exit_button"} onClick={exitAccount}>Выйти из аккаунта</div>
                 </div>
             </div>
         </div>

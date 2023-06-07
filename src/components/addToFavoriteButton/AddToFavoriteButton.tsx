@@ -2,6 +2,8 @@
 import React from 'react';
 import {addToFavorite, removeToFavorite} from "@/utils/function";
 import "./addToFavoriteButton.css"
+import {checkUserAuth} from "@/utils/verifications";
+import {useRouter} from "next/navigation";
 
 interface AddToFavoriteButtonProps{
     id: number
@@ -10,17 +12,29 @@ interface AddToFavoriteButtonProps{
     ids: any
 }
 const AddToFavoriteButton = ({id, isActive, setIds, ids}: AddToFavoriteButtonProps) => {
+
+    const router = useRouter()
+    router.prefetch("/auth")
+
     return (
-        <div className={isActive ? "catalog_info_watch_button add_to_favorites active" : "catalog_info_watch_button add_to_favorites"} onClick={() => {
+        <div className={isActive ? "catalog_info_watch_button add_to_favorites active" : "catalog_info_watch_button add_to_favorites"} onClick={async () => {
             if (isActive) {
+                if (await checkUserAuth()){
+                    removeToFavorite(id).catch(e => console.log(e))
+                }else{
+                    router.push("/auth")
+                }
                 const newArray: number[] = ids.filter((element: any) => element !== id);
                 setIds(newArray)
-                removeToFavorite(id).catch(e => console.log(e))
             }
             else {
+                if (await checkUserAuth()) {
+                    addToFavorite(id).catch(e => console.log(e))
+                }else{
+                    router.push("/auth")
+                }
                 const copiedArray: number[] = [...ids];
                 setIds([...copiedArray, id])
-                addToFavorite(id).catch(e => console.log(e))
             }
         }}>
             <svg width={20} height={20} xmlns="http://www.w3.org/2000/svg"

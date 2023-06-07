@@ -28,6 +28,7 @@ const Header = (props: HeaderProps) => {
 
     const [accountDialogIsShow, setAccountDialogIsShow] = useState(false)
 
+
     const handleSpanClick = () => {
         if (inputRef.current) {
             inputRef.current.focus();
@@ -46,9 +47,11 @@ const Header = (props: HeaderProps) => {
             setIsAuthed(r)
             if (r) {
                 setUserName(getUserName())
+            }else{
+                setUserName("")
             }
-        }).catch(() => console.log("no"))
-    }, [])
+        })
+    }, [isAuthed])
 
     useEffect(() => {
         clearInterval(searchInterval.current);
@@ -73,7 +76,7 @@ const Header = (props: HeaderProps) => {
     return (
         <div>
 
-            <AccountDialog active={accountDialogIsShow} setActive={setAccountDialogIsShow}/>
+            <AccountDialog active={accountDialogIsShow} setActive={setAccountDialogIsShow} UserAuthState={setIsAuthed}/>
             <div className={isSearch ? "header search_show" : "header"}>
                 <div className={isSearch ? "header__part search_show" : "header__part"}>
                     <Link href={"/welcome"}>

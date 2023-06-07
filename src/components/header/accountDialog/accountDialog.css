@@ -213,3 +213,23 @@
 .accountDialog_container_right_info_block_change_button:hover{
     background: #353535;
 }
+
+.accountDialog_container_right_info_block_exit_button{
+    display: flex;
+    width: 95%;
+    border-radius: 10px;
+    height: 30px;
+    border: 1px solid crimson;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+    margin: 10px 10px;
+    user-select: none;
+    font-size: 12px;
+    transition: .3s;
+}
+
+.accountDialog_container_right_info_block_exit_button:hover{
+    background: crimson;
+}
