@@ -49,7 +49,7 @@
 
     font-size: 14px;
     font-weight: normal;
-    background: #fa5401;
+    background: var(--accent-color);
     border: none;
     border-radius: 2px;
     transition: .3s;
@@ -58,11 +58,11 @@
 }
 
 .search_result_button_mob:hover{
-    background: #be4102;
+    background: rgba(0, 0, 0, 0.13) var(--accent-color);
 }
 
 .search_result_button_mob:active{
-    background: #872d00;
+    background: rgba(0, 0, 0, 0.38) var(--accent-color);
 }
 
 .search_title_mob {

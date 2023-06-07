@@ -165,7 +165,7 @@ const AccountDialog = ({active, setActive, UserAuthState}: AccountDialogProps) =
                         <div className={"accountDialog_container_right_body_avatar"} style={{ backgroundImage: `url(${getAvatar()})`}}>
                             <div className={"accountDialog_container_right_body_pick_avatar"}>
                                 <Image width={40} height={40} src={"/image-upload.svg"} alt={"upload"}/>
-                                <input type="file" className={"accountDialog_container_right_body_pick_avatar_input"} title={""} onChange={e => handleFileChange(e)}/>
+                                <input type="file" accept=".jpg,.jpeg,.png,.gif" className={"accountDialog_container_right_body_pick_avatar_input"} title={""} onChange={e => handleFileChange(e)}/>
                             </div>
                         </div>
                         <div className={"accountDialog_container_right_body_user_name"}>{userName}</div>
