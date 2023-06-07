@@ -53,3 +53,22 @@ html {
 /*        color-scheme: dark;*/
 /*    }*/
 /*}*/
+
+
+
+.info_page {
+    display: flex;
+    flex-direction: column;
+
+    padding: 30px;
+
+    background: white;
+    color: black;
+
+    font-family: sans-serif;
+}
+
+.info_page h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
