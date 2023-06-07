@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, {useEffect} from 'react';
 import {addToFavorite, removeToFavorite} from "@/utils/function";
 import "./addToFavoriteButton.css"
 import {checkUserAuth} from "@/utils/verifications";
@@ -14,7 +14,10 @@ interface AddToFavoriteButtonProps{
 const AddToFavoriteButton = ({id, isActive, setIds, ids}: AddToFavoriteButtonProps) => {
 
     const router = useRouter()
-    router.prefetch("/auth")
+    
+    useEffect(() => {
+        router.prefetch("/auth")
+    }, [router])
 
     return (
         <div className={isActive ? "catalog_info_watch_button add_to_favorites active" : "catalog_info_watch_button add_to_favorites"} onClick={async () => {
