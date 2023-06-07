@@ -14,8 +14,20 @@
     cursor: pointer;
 }
 
+.search_element_mob_root:hover{
+    background: rgba(0, 0, 0, 10%);
+}
+
+.search_element_mob_root:active{
+    background: rgba(51, 51, 51, 0.1);
+}
+
 .search_element_mob:hover {
     background: rgba(0, 0, 0, 10%);
+}
+
+.search_element_mob:active{
+    background: rgba(51, 51, 51, 0.1);
 }
 
 .search_poster_mob {
@@ -43,6 +55,14 @@
     transition: .3s;
 
     padding: 5px 12px;
+}
+
+.search_result_button_mob:hover{
+    background: #be4102;
+}
+
+.search_result_button_mob:active{
+    background: #872d00;
 }
 
 .search_title_mob {

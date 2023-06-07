@@ -43,20 +43,22 @@
 .only_mobile_warning {
     display: none;
     position: absolute;
-
-    left: 25%;
-    top: 25%;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Desktop */
 @media (hover: hover) and (pointer: fine) {
-   .mob_search {
-       display: none;
-   }
+    .mob_search {
+        display: none;
+    }
 
     .only_mobile_warning {
-        display: initial;
+        display: flex;
     }
 }
-
 
