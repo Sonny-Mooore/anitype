@@ -121,7 +121,7 @@
 }
 
 .link.selected {
-    border-bottom: 2px solid #fa5401;
+    border-bottom: 2px solid var(--accent-color);
     color: var(--link_active);
     fill: var(--link_active);
 }
@@ -182,18 +182,18 @@
 }
 
 .link.activated {
-    border-bottom: 2px solid #f8702c;
+    border-bottom: 2px solid var(--accent-color);
     color: var(--link_active);
     fill: var(--link_active);
     animation: activated_link infinite 2s;
 }
 
 @keyframes activated_link {
-    0% {border-bottom: 2px solid #f8702c;}
+    0% {border-bottom: 2px solid var(--accent-color);}
     25% {border-bottom: 2px solid #f8b72c;}
     50% {border-bottom: 2px solid #fffc00;}
     85% {border-bottom: 2px solid #f8b72c;}
-    100% {border-bottom: 2px solid #f8702c;}
+    100% {border-bottom: 2px solid var(--accent-color);}
 }
 
 /* мобильные устройства */

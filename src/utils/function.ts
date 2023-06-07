@@ -154,3 +154,32 @@ export async function CheckEmailVerificationCode(code: string){
         return true
     })
 }
+
+export function getFormatDate(dateList: number[]): string {
+    const year = dateList[0];
+    const month = dateList[1];
+    const day = dateList[2];
+
+    // Массив с названиями месяцев
+    const monthNames = [
+        "января", "февраля", "марта", "апреля", "мая", "июня",
+        "июля", "августа", "сентября", "октября", "ноября", "декабря"
+    ];
+
+    const monthName = monthNames[month - 1];
+
+    const dateString = `${day} ${monthName} ${year}`;
+    return dateString;
+}
+
+export async function checkPromoCode(code: string){
+    return await axios({
+        method: "get",
+        url: URLUsers + `/codes/sub/activate/${code}`,
+        headers: {"Authorization": "Bearer " + (await getJwt()).access}
+    }).then(() => {
+        return true
+    }).catch(() => {
+        return false
+    })
+}

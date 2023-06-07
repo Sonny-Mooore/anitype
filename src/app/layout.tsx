@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: "AniType",
-  description: "AniType"
+  description: "Смотри аниме на AniType!"
 };
 
 export default function RootLayout({

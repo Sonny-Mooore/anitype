@@ -4,6 +4,7 @@ import {useRouter} from "next/navigation";
 import {checkLogin, checkPassword, checkUserInDataBase, registerUser, signIn} from "@/utils/verifications";
 import Alert from "@/components/alert/Alert";
 import "./authContainer.css"
+import Link from "next/link";
 
 const AuthContainer = () => {
     const router = useRouter()
@@ -21,6 +22,8 @@ const AuthContainer = () => {
     const [isVisiblePasswordAcceptButton, setIsVisiblePasswordAcceptButton] = useState(false)
     const [isVisiblePasswordRepeat, setIsVisiblePasswordRepeat] = useState(false)
     const [isVisiblePasswordRepeatAcceptButton, setIsVisiblePasswordRepeatAcceptButton] = useState(false)
+
+    const [agreeBox, setAgreeBox] = useState<boolean>(false)
 
     function getClassNameAuthContainer(){
         if (isVisiblePasswordRepeat) return "authContainer activePasswordRepeat"
@@ -131,12 +134,29 @@ const AuthContainer = () => {
                     </div>
                     <div className={isVisiblePasswordRepeat && isVisiblePassword && authenticationState !== 'log' ? "authInputAndButtonContainer" : "authInputAndButtonContainer unActive"}>
                         <input type="password" className={authenticationState === 'log' ? "authInput repeatPassword" : "authInput repeatPassword active"} placeholder="Повторите пароль" value={passwordRepeat} onChange={e => setPasswordRepeat(e.target.value)}/>
-                        <div onClick={() => registrationUser(login, password, passwordRepeat)} className={isVisiblePasswordRepeat && isVisiblePasswordRepeatAcceptButton ? "authAcceptButton": "authAcceptButton unActive"}>
-                            <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M322.7,128.4L423,233.4c6,5.8,9,13.7,9,22.4c0,8.7-3,16.5-9,22.4L322.7,383.6c-11.9,12.5-31.3,12.5-43.2,0  c-11.9-12.5-11.9-32.7,0-45.2l48.2-50.4h-217C93.7,288,80,273.7,80,256c0-17.7,13.7-32,30.6-32h217l-48.2-50.4  c-11.9-12.5-11.9-32.7,0-45.2C291.4,115.9,310.7,115.9,322.7,128.4z"/>
-                            </svg>
-                        </div>
+                        {
+                            agreeBox &&
+                            <div onClick={() => registrationUser(login, password, passwordRepeat)} className={isVisiblePasswordRepeat && isVisiblePasswordRepeatAcceptButton ? "authAcceptButton": "authAcceptButton unActive"}>
+                                <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M322.7,128.4L423,233.4c6,5.8,9,13.7,9,22.4c0,8.7-3,16.5-9,22.4L322.7,383.6c-11.9,12.5-31.3,12.5-43.2,0  c-11.9-12.5-11.9-32.7,0-45.2l48.2-50.4h-217C93.7,288,80,273.7,80,256c0-17.7,13.7-32,30.6-32h217l-48.2-50.4  c-11.9-12.5-11.9-32.7,0-45.2C291.4,115.9,310.7,115.9,322.7,128.4z"/>
+                                </svg>
+                            </div>
+                        }
                     </div>
+
+                    {
+
+                        isVisiblePasswordRepeat &&
+                        <div className="agreement_block">
+                            <input type="checkbox" checked={agreeBox} onChange={e => setAgreeBox(!agreeBox)} />
+                            <span className={"agreement_block_2"}>
+                                Я согласен с <span> </span>
+                            <Link href={"agreement"}>Пользовательским соглашением</Link> и <span></span>
+                            <Link href={"privacy"}>Политикой конфиденциальности</Link>
+                            </span>
+
+                        </div>
+                    }
                 </div>
             </div>
         </div>

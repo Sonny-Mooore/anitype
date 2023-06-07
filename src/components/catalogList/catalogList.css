@@ -120,7 +120,7 @@
     height: 52px;
     border-radius: 100rem;
     white-space: nowrap;
-    background: linear-gradient(135deg, #f50 69.91%, #d6bb00);
+    background: linear-gradient(135deg, var(--accent-color) 69.91%, #d6bb00);
     margin-right: 15px;
     transition: .3s;
 }

@@ -32,7 +32,7 @@
 .search_result_button_pc {
     font-size: 13px;
     font-weight: normal;
-    background: #fa5401;
+    background: var(--accent-color);
     border: none;
     border-radius: 2px;
     transition: .3s;

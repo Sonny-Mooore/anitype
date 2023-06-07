@@ -14,7 +14,7 @@
     width: 12px;
     height: 12px;
     border-radius: 4px;
-    background-color: #d76a21;
+    background-color: var(--accent-color);
     scale: 5;
 }
 
