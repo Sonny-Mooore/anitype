@@ -8,6 +8,7 @@ import {getJwt} from "@/utils/JWT";
 import {getUserInfo} from "@/utils/UsersCooke";
 import {CheckEmailVerificationCode, sendEmailVerificationCode} from "@/utils/function";
 import {deleteCookie} from "cookies-next";
+import Alert from "@/components/alert/Alert";
 
 interface AccountDialogProps{
     active: boolean
@@ -26,13 +27,17 @@ const AccountDialog = ({active, setActive}: AccountDialogProps) => {
     const [userNameChangeText, setUserNameChangeText] = useState<string | undefined>("")
     const [emailChangeText, setEmailChangeText] = useState<string | undefined>("")
 
-    const [isEmailVerefication, setIsEmailVerefication] = useState(false)
+    const [isEmailVerification, setIsEmailVerification] = useState(false)
 
     const [code, setCode] = useState("")
 
     const [isCodeShow, setIsCodeShow] = useState(false)
 
     const [previewUrl, setPreviewUrl] = useState<string | undefined>(undefined);
+
+    const [alertState, setAlertState] = useState(false)
+
+    const [alertText, setAlertText] = useState("")
 
     useEffect(() => {
         async function getInfo(){
@@ -43,7 +48,7 @@ const AccountDialog = ({active, setActive}: AccountDialogProps) => {
             setUserNameChangeText(UserInfo?.username ? UserInfo?.username : "")
             setEmail(UserInfo?.email)
             setEmailChangeText(UserInfo?.email ? UserInfo?.email : "")
-            setIsEmailVerefication(UserInfo?.emailVerified ? UserInfo?.emailVerified : false)
+            setIsEmailVerification(UserInfo?.emailVerified ? UserInfo?.emailVerified : false)
         }
         getInfo().catch(e => console.log(e))
     }, [])
@@ -80,7 +85,7 @@ const AccountDialog = ({active, setActive}: AccountDialogProps) => {
 
             const formData = new FormData();
 
-            let resizedFile: Blob | null = null;
+            let resizedFile: Blob | null;
 
             if (file.type === 'image/gif') {
                 resizedFile = file
@@ -115,23 +120,30 @@ const AccountDialog = ({active, setActive}: AccountDialogProps) => {
     };
 
     function sendCode(){
-        sendEmailVerificationCode(emailChangeText).then(r => {
+        sendEmailVerificationCode(emailChangeText).then(() => {
             setIsCodeShow(true)
+        }).catch(e => {
+            setAlertText(e.response.data.message)
+            setAlertState(true)
         })
     }
 
     function checkCode(){
         CheckEmailVerificationCode(code).then(() => {
             setIsCodeShow(false)
-            setIsEmailVerefication(true)
+            setIsEmailVerification(true)
             setEmail(emailChangeText)
             setEmailIsChange(false)
             deleteCookie("UserInfoIsNotOutdated")
+        }).catch(e => {
+            setAlertText(e.response.data.message)
+            setAlertState(true)
         })
     }
 
     return (
         <div className={active ? "accountDialog_background active" : "accountDialog_background"} onClick={() => setActive(false)}>
+            <Alert state={alertState} setState={setAlertState} alertMessage={alertText}/>
             <div className={"accountDialog_container"} onClick={e => e.stopPropagation()}>
                 <div className={"accountDialog_container_left_body"}>
                     <div className={"accountDialog_container_left_body_list_item active"}>Основные</div>
@@ -141,7 +153,7 @@ const AccountDialog = ({active, setActive}: AccountDialogProps) => {
                 <div className={"accountDialog_container_separator"}></div>
                 <div className={"accountDialog_container_right_body"}>
                     <div className={"accountDialog_container_right_body_top_container"}>
-                        <div className={"accountDialog_container_right_body_avatar"} style={{ backgroundImage: `url(${previewUrl ? previewUrl : avatar})` }}>
+                        <div className={"accountDialog_container_right_body_avatar"} style={{ backgroundImage: previewUrl || avatar ? `url(${previewUrl ?? avatar})` : undefined }}>
                             <div className={"accountDialog_container_right_body_pick_avatar"}>
                                 <Image width={40} height={40} src={"/image-upload.svg"} alt={"upload"}/>
                                 <input type="file" className={"accountDialog_container_right_body_pick_avatar_input"} title={""} onChange={e => handleFileChange(e)}/>
@@ -171,7 +183,7 @@ const AccountDialog = ({active, setActive}: AccountDialogProps) => {
                                     {email ? email : "ㅤ"}
                                 </div>}
                             </div>
-                            {!isEmailVerefication ? <div className={"accountDialog_container_right_info_block_change_button"}
+                            {!isEmailVerification ? <div className={"accountDialog_container_right_info_block_change_button"}
                                   onClick={() => emailIsChange ? sendCode(): setEmailIsChange(!emailIsChange)}>{!emailIsChange ? "Изменить" : "Отправить код"}</div> : <div/>}
                         </div>
                         <div className={isCodeShow ? "accountDialog_container_right_info_block" : "accountDialog_container_right_info_block hidden"}>

@@ -38,6 +38,7 @@ export async function getUserInfo(): Promise<UserInfo | undefined>{
             url: URLUsers + "/users/my/info",
             headers: {"Authorization": "Bearer " + (await getJwt()).access}
         }).then(res => {
+            console.log(res.data)
             setUserInfo(res.data)
             return res.data
         }).catch(e => {

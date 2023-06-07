@@ -72,6 +72,7 @@ const Header = (props: HeaderProps) => {
 
     return (
         <div>
+
             <AccountDialog active={accountDialogIsShow} setActive={setAccountDialogIsShow}/>
             <div className={isSearch ? "header search_show" : "header"}>
                 <div className={isSearch ? "header__part search_show" : "header__part"}>
