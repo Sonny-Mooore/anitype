@@ -46,8 +46,7 @@ export async function getAccessTokenOrNullFromServer(refreshToken: Token){
     }).then(response => {
         confirmTempAuthentication()
         return response.data.accessToken
-    }).catch(e => {
-        console.log(e.response?.data)
+    }).catch(() => {
         return null
     })
 }
