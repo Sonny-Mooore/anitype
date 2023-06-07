@@ -111,7 +111,7 @@ const AuthContainer = () => {
                 </svg>
             </div>
             <div className={getClassNameAuthContainer()}>
-                <div className="authTitle">{authenticationState === 'log' ? "Вход" : "Создать аккаунт"}</div>
+                <div className="authTitle"> {authenticationState === 'log' ? "Вход" : "Создать аккаунт"}</div>
                 <div className="authInputContainer">
                     <div className="authInputAndButtonContainer">
                         <input className={isVisiblePassword ? "authInput login textChange" : "authInput login"} placeholder="Имя пользователя" value={login} onChange={e => {setLogin(e.target.value); setDefault()}}/>
