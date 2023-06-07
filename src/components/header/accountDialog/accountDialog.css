@@ -227,6 +227,7 @@
     user-select: none;
     font-size: 12px;
     transition: .3s;
+    cursor: pointer;
 }
 
 .accountDialog_container_right_info_block_exit_button:hover{
