@@ -39,3 +39,24 @@
     flex-direction: column;
     align-items: center;
 }
+
+.only_mobile_warning {
+    display: none;
+    position: absolute;
+
+    left: 25%;
+    top: 25%;
+}
+
+/* Desktop */
+@media (hover: hover) and (pointer: fine) {
+   .mob_search {
+       display: none;
+   }
+
+    .only_mobile_warning {
+        display: initial;
+    }
+}
+
+

@@ -1,13 +1,15 @@
 import React from 'react';
 import './mobsearch.css'
 import Header from "@/components/header/Header";
-import SearchElement from "@/components/header/searchElement/SearchElement";
 import MobSearchElement from "@/components/mobSearchElement/mobSearchElement";
 
 const Page = () => {
     return (
             <>
                 <Header selected={"mob-search"}/>
+
+                <p className="only_mobile_warning">Эта страница только для мобильных устройств!</p>
+
                 <div className="mob_search">
 
                     <div className="mob_search_block">
