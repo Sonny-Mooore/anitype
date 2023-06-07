@@ -37,3 +37,57 @@
     font-weight: 500;
 }
 
+@media screen and (max-width:980px) {
+
+
+    .welcome_background{
+        padding: 0 10px 0 10px;
+    }
+    .welcome_text{
+        text-align: center;
+        font-size: 50px;
+    
+    }
+
+    .welcome_description_text{
+        text-align: center;
+        max-width: 600px;
+        font-size: 15px;
+    }
+
+}
+
+@media screen and (max-width:650px) {
+
+    .welcome_background{
+        padding: 0 10px 0 10px;
+
+    }
+    .welcome_text{
+        text-align: center;
+        font-size: 35px;
+    
+    }
+    .welcome_description_text{
+        text-align: center;
+        max-width: 400px;
+        font-size: 15px;
+    }
+
+}
+
+@media screen and (max-width:430px) {
+
+    .welcome_text{
+        text-align: center;
+        font-size: 30px;
+    
+    }
+    
+    .welcome_description_text{
+        text-align: center;
+        max-width: 300px;
+        font-size: 14px;
+    }
+
+}

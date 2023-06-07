@@ -219,12 +219,15 @@
   
     .list_catalog_header {
         margin-left: 20px;
-    
     }
     .list_catalog_header_text {
-    
         font-size: 18px;
-    
     }
     
+}
+
+@media screen and (max-width:550px) {
+    .catalog_full_info_container.active {
+        display: none;
     }
+}

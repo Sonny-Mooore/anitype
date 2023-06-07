@@ -83,3 +83,19 @@
 .right_button_1:hover {
     fill: white;
 }
+
+@media (hover: none) and (max-width:550px) {
+    .left_button_1.active{
+        display: none;
+    }
+    .right_button_1.active{
+        display: none;  
+    }
+    .left_button_1{
+        display: none;
+    }
+    .right_button_1{
+        display: none;  
+    }
+
+}
