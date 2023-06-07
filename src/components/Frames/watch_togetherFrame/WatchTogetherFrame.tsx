@@ -4,10 +4,7 @@ import WatchTogetherKodik from "@/components/watch_together_kodik/WatchTogetherK
 import {URLBase} from "@/utils/constants";
 import axios from "axios";
 import LoadingScreen from "@/components/loadingScreen/LoadingScreen";
-interface WatchTogetherFrameProps{
-    id: string
-    hubId?: any
-}
+import {WatchTogetherFrameProps} from "@/utils/interfaces";
 
 const WatchTogetherFrame = ({id, hubId}: WatchTogetherFrameProps) => {
 

@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import "./alert.css"
+import {AlertProps} from "@/utils/interfaces";
 
-function Alert({state, setState, alertMessage}) {
+
+function Alert({state, setState, alertMessage}: AlertProps) {
 
 
     const [classNameAlertBox, setClassNameAlertBox] = useState("")

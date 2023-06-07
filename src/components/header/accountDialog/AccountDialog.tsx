@@ -1,5 +1,5 @@
 "use client"
-import React, {ChangeEvent, Dispatch, SetStateAction, useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import "./accountDialog.css"
 import Image from "next/image";
 import axios from "axios";
@@ -9,13 +9,7 @@ import {clearUserInfo, getUserInfo} from "@/utils/UsersCooke";
 import {CheckEmailVerificationCode, sendEmailVerificationCode} from "@/utils/function";
 import {deleteCookie} from "cookies-next";
 import Alert from "@/components/alert/Alert";
-
-interface AccountDialogProps{
-    active: boolean
-    setActive: Dispatch<SetStateAction<boolean>>
-    UserAuthState: any
-}
-
+import {AccountDialogProps} from "@/utils/interfaces";
 const AccountDialog = ({active, setActive, UserAuthState}: AccountDialogProps) => {
 
     const [avatar, setAvatar] = useState<string>()

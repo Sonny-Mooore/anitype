@@ -1,4 +1,3 @@
-
 import React from 'react';
 import WatchTogetherFrame from "@/components/Frames/watch_togetherFrame/WatchTogetherFrame";
 import "../../../../../components/kodik/kodik.css"
@@ -7,7 +6,7 @@ interface Props {
 }
 
 
-const Page = async ({ params: { id }, ...props }: Props) => {
+const Page = ({ params: { id }, ...props }: Props) => {
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
             {/*@ts-ignore*/}

@@ -4,13 +4,8 @@ import {addToFavorite, removeToFavorite} from "@/utils/function";
 import "./addToFavoriteButton.css"
 import {checkUserAuth} from "@/utils/verifications";
 import {useRouter} from "next/navigation";
+import {AddToFavoriteButtonProps} from "@/utils/interfaces";
 
-interface AddToFavoriteButtonProps{
-    id: number
-    isActive: boolean
-    setIds: any
-    ids: any
-}
 const AddToFavoriteButton = ({id, isActive, setIds, ids}: AddToFavoriteButtonProps) => {
 
     const router = useRouter()

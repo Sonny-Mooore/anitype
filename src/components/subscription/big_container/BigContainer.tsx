@@ -2,17 +2,9 @@ import React from 'react';
 import "./bigContainer.css"
 import "../medium_container/mediumContainer.css"
 import NewList from "@/components/subscription/new_list/NewList";
+import {BigContainerProps} from "@/utils/interfaces";
 
-interface BigContainerProps{
-    headerText: string
-    description: string
-    children? :any
-    src: string
-}
-
-
-
-const BigContainer = async ({ headerText, children, description, src}:BigContainerProps) => {
+const BigContainer = async ({ headerText, children, description}: BigContainerProps) => {
 
     return (
         <div className={"big_container"}>

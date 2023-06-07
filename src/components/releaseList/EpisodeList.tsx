@@ -2,13 +2,7 @@
 import React, { useState } from "react";
 import "./episodeList.css";
 import List from "@/components/list/List";
-
-interface EpisodeListProps {
-    header: string,
-    isMouseScroll?: boolean | true
-    children?: any
-}
-
+import {EpisodeListProps} from "@/utils/interfaces";
 const ReleaseList = ({ isMouseScroll = true, children, ...props }: EpisodeListProps) => {
 
     const [onHover, setOnHover] = useState(false);

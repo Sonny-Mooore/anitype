@@ -2,8 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {ListProps} from "@/utils/interfaces";
 
-
-
 const List = ({ onHover, isMouseScroll, children }: ListProps) => {
 
     const scrollRef = useRef(null);
