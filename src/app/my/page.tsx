@@ -28,8 +28,8 @@ const Page = async () => {
             <div style={{ height: "100px" }} />
             <FolderList folderName={"Буду смотреть"}/>
             <div className={"separator"} />
-            <EpisodeList header={"История просмотра"} isMouseScroll={false} />
-            <div className={"separator"} />
+            {/*<EpisodeList header={"История просмотра"} isMouseScroll={false} />*/}
+            {/*<div className={"separator"} />*/}
             {/*<EpisodeList header={"Любимые"} isMouseScroll={false} />*/}
         </div>
     );

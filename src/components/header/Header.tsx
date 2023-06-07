@@ -143,7 +143,7 @@ const Header = (props: HeaderProps) => {
                     </div>
                 </div>
                 <div className={isSearch ? "header__part search_show" : "header__part"}>
-                    {isAuthed ? <span onClick={() => setAccountDialogIsShow(true)} className="link">{userName}</span> : <Link href={"/auth"}>
+                    {isAuthed ? <span onClick={() => setAccountDialogIsShow(!accountDialogIsShow)} className="link">{userName}</span> : <Link href={"/auth"}>
                         <span className="link">{userName !== "" ? userName : "Войти"}</span>
                     </Link>}
                 </div>

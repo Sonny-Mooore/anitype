@@ -34,7 +34,7 @@ const AccountDialog = ({active, setActive, UserAuthState}: AccountDialogProps) =
 
     const [isCodeShow, setIsCodeShow] = useState(false)
 
-    const [previewUrl, setPreviewUrl] = useState<string | undefined>(undefined);
+    const [previewUrl, setPreviewUrl] = useState<string | undefined>();
 
     const [alertState, setAlertState] = useState(false)
 
@@ -43,7 +43,6 @@ const AccountDialog = ({active, setActive, UserAuthState}: AccountDialogProps) =
     useEffect(() => {
         async function getInfo(){
             const UserInfo = await getUserInfo()
-            console.log(UserInfo)
             setAvatar(URLUserAvatar + UserInfo?.avatar)
             setUserName(UserInfo?.username)
             setUserNameChangeText(UserInfo?.username ? UserInfo?.username : "")
@@ -97,7 +96,7 @@ const AccountDialog = ({active, setActive, UserAuthState}: AccountDialogProps) =
             formData.append('file', resizedFile);
 
             try{
-                const response = await axios.post(URLUsers + "/users/pictures/upload/avatar", formData, {
+                await axios.post(URLUsers + "/users/pictures/upload/avatar", formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         "Authorization": "Bearer " + (await getJwt()).access
@@ -112,13 +111,22 @@ const AccountDialog = ({active, setActive, UserAuthState}: AccountDialogProps) =
                 };
                 reader.readAsDataURL(resizedFile);
 
-                console.log(response)
             }catch (e){
                 console.error(e);
             }
 
         }
     };
+
+    function getAvatar(){
+        if (previewUrl){
+            return previewUrl
+        }else if (avatar){
+            return avatar
+        }else{
+            return "/image-upload.svg"
+        }
+    }
 
     function sendCode(){
         sendEmailVerificationCode(emailChangeText).then(() => {
@@ -160,7 +168,7 @@ const AccountDialog = ({active, setActive, UserAuthState}: AccountDialogProps) =
                 <div className={"accountDialog_container_separator"}></div>
                 <div className={"accountDialog_container_right_body"}>
                     <div className={"accountDialog_container_right_body_top_container"}>
-                        <div className={"accountDialog_container_right_body_avatar"} style={{ backgroundImage: previewUrl || avatar ? `url(${previewUrl ?? avatar})` : undefined }}>
+                        <div className={"accountDialog_container_right_body_avatar"} style={{ backgroundImage: `url(${getAvatar()})`}}>
                             <div className={"accountDialog_container_right_body_pick_avatar"}>
                                 <Image width={40} height={40} src={"/image-upload.svg"} alt={"upload"}/>
                                 <input type="file" className={"accountDialog_container_right_body_pick_avatar_input"} title={""} onChange={e => handleFileChange(e)}/>
