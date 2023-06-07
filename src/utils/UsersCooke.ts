@@ -49,6 +49,18 @@ export async function getUserInfo(): Promise<UserInfo | undefined>{
 
 }
 
+export async function getSubscription(){
+    return await axios({
+        method: "get",
+        url: URLUsers + "/subscriptions/active",
+        headers: {"Authorization": "Bearer " + (await getJwt()).access}
+    }).then(res => {
+        return res.data
+    }).catch(e => {
+        return []
+    })
+}
+
 
 
 //users/my/info
