@@ -144,6 +144,7 @@ const Header = (props: HeaderProps) => {
                     </Link>}
                 </div>
             </div>
+            {/*Mobile header*/}
             <div className="header_mobile">
                 <div className="header__center header__part">
                     <Link href={"/welcome"}>
@@ -167,15 +168,15 @@ const Header = (props: HeaderProps) => {
                                 <span className={props.selected == "my" ? "link selected" : "link"}>Моё</span>
                             </Link>
                     }
-                    <Link href="/">
-                    <span className="link link_icon">
-                        <svg viewBox="0 0 24 24" width={23} height={23} className="header__icon" version="1.1"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd"
-                                  d="M16.4 11a5.9 5.9 0 1 1-11.8 0 5.9 5.9 0 0 1 11.8 0Zm-1.044 6.977a8.5 8.5 0 1 1 2.121-2.121l4.084 4.083-2.122 2.122-4.083-4.084Z">
-                            </path>
-                        </svg>
-                    </span>
+                    <Link href="/search">
+                        <span className="link link_icon">
+                            <svg viewBox="0 0 24 24" width={23} height={23} className="header__icon" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd"
+                                      d="M16.4 11a5.9 5.9 0 1 1-11.8 0 5.9 5.9 0 0 1 11.8 0Zm-1.044 6.977a8.5 8.5 0 1 1 2.121-2.121l4.084 4.083-2.122 2.122-4.083-4.084Z">
+                                </path>
+                            </svg>
+                        </span>
                     </Link>
                 </div>
             </div>
