@@ -157,10 +157,12 @@
     width: 100%;
     font-family: "Noto Sans", sans-serif;
     padding: 10px 15px;
+    transition: .3s;
 }
 
 .accountDialog_container_right_info_block.hidden{
     opacity: 0;
+    pointer-events: none;
 }
 
 .accountDialog_container_right_info_block_title{

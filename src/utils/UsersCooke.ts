@@ -33,7 +33,7 @@ export async function getUserInfo(): Promise<UserInfo | undefined>{
             return JSON.parse(storedObject)
         }
     }else{
-        axios({
+        return await axios({
             method: "get",
             url: URLUsers + "/users/my/info",
             headers: {"Authorization": "Bearer " + (await getJwt()).access}

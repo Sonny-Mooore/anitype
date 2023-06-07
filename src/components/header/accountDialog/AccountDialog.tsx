@@ -123,7 +123,7 @@ const AccountDialog = ({active, setActive}: AccountDialogProps) => {
         sendEmailVerificationCode(emailChangeText).then(() => {
             setIsCodeShow(true)
         }).catch(e => {
-            setAlertText(e.response.data.message)
+            setAlertText(e.response.data.detail)
             setAlertState(true)
         })
     }
@@ -136,7 +136,7 @@ const AccountDialog = ({active, setActive}: AccountDialogProps) => {
             setEmailIsChange(false)
             deleteCookie("UserInfoIsNotOutdated")
         }).catch(e => {
-            setAlertText(e.response.data.message)
+            setAlertText(e.response.data.detail)
             setAlertState(true)
         })
     }
