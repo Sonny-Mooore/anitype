@@ -2,7 +2,7 @@ import {deleteCookie, getCookie, hasCookie, setCookie} from "cookies-next";
 import {UserInfo} from "@/utils/interfaces";
 import axios from "axios";
 import {URLUsers} from "@/utils/constants";
-import {getJwt} from "@/utils/JWT";
+import {getJwt, removeJwt} from "@/utils/JWT";
 
 export function setUserName(name: string) {
     setCookie('userName', name, {
@@ -18,6 +18,8 @@ export function clearUserInfo() {
     deleteCookie('userName')
     localStorage.removeItem("UserInfo")
     deleteCookie("UserInfoIsNotOutdated")
+    removeJwt()
+    deleteCookie('tempAuthentication')
 }
 
 export function setUserInfo(userInfo: UserInfo){
@@ -33,7 +35,7 @@ export async function getUserInfo(): Promise<UserInfo | undefined>{
             return JSON.parse(storedObject)
         }
     }else{
-        axios({
+        return await axios({
             method: "get",
             url: URLUsers + "/users/my/info",
             headers: {"Authorization": "Bearer " + (await getJwt()).access}

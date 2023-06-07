@@ -20,7 +20,7 @@ const SearchElement = ({ id, imageUrl, searchRank, date, title}: SearchElementPr
                         </div>
                         {/*<div className={`search_status ${status}`}>{status === "released" ? "Вышел" : "Онгоинг"}</div>*/}
                     </div>
-                    <button className={"search_result_button"}>Смотреть</button>
+                    <button className={"search_result_button_pc"}>Смотреть</button>
                 </div>
             </div>
         </Link>

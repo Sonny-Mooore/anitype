@@ -28,6 +28,7 @@ const Header = (props: HeaderProps) => {
 
     const [accountDialogIsShow, setAccountDialogIsShow] = useState(false)
 
+
     const handleSpanClick = () => {
         if (inputRef.current) {
             inputRef.current.focus();
@@ -46,9 +47,11 @@ const Header = (props: HeaderProps) => {
             setIsAuthed(r)
             if (r) {
                 setUserName(getUserName())
+            }else{
+                setUserName("")
             }
-        }).catch(() => console.log("no"))
-    }, [])
+        })
+    }, [isAuthed])
 
     useEffect(() => {
         clearInterval(searchInterval.current);
@@ -72,7 +75,8 @@ const Header = (props: HeaderProps) => {
 
     return (
         <div>
-            <AccountDialog active={accountDialogIsShow} setActive={setAccountDialogIsShow}/>
+
+            <AccountDialog active={accountDialogIsShow} setActive={setAccountDialogIsShow} UserAuthState={setIsAuthed}/>
             <div className={isSearch ? "header search_show" : "header"}>
                 <div className={isSearch ? "header__part search_show" : "header__part"}>
                     <Link href={"/welcome"}>
@@ -139,11 +143,12 @@ const Header = (props: HeaderProps) => {
                     </div>
                 </div>
                 <div className={isSearch ? "header__part search_show" : "header__part"}>
-                    {isAuthed ? <span onClick={() => setAccountDialogIsShow(true)} className="link">{userName}</span> : <Link href={"/auth"}>
+                    {isAuthed ? <span onClick={() => setAccountDialogIsShow(!accountDialogIsShow)} className="link">{userName}</span> : <Link href={"/auth"}>
                         <span className="link">{userName !== "" ? userName : "Войти"}</span>
                     </Link>}
                 </div>
             </div>
+            {/*Mobile header*/}
             <div className="header_mobile">
                 <div className="header__center header__part">
                     <Link href={"/welcome"}>
@@ -167,15 +172,15 @@ const Header = (props: HeaderProps) => {
                                 <span className={props.selected == "my" ? "link selected" : "link"}>Моё</span>
                             </Link>
                     }
-                    <Link href="/">
-                    <span className="link link_icon">
-                        <svg viewBox="0 0 24 24" width={23} height={23} className="header__icon" version="1.1"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd"
-                                  d="M16.4 11a5.9 5.9 0 1 1-11.8 0 5.9 5.9 0 0 1 11.8 0Zm-1.044 6.977a8.5 8.5 0 1 1 2.121-2.121l4.084 4.083-2.122 2.122-4.083-4.084Z">
-                            </path>
-                        </svg>
-                    </span>
+                    <Link href="/search">
+                        <span className="link link_icon">
+                            <svg viewBox="0 0 24 24" width={23} height={23} className="header__icon" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd"
+                                      d="M16.4 11a5.9 5.9 0 1 1-11.8 0 5.9 5.9 0 0 1 11.8 0Zm-1.044 6.977a8.5 8.5 0 1 1 2.121-2.121l4.084 4.083-2.122 2.122-4.083-4.084Z">
+                                </path>
+                            </svg>
+                        </span>
                     </Link>
                 </div>
             </div>

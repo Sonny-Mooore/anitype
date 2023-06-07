@@ -1,3 +1,5 @@
+import {Dispatch, SetStateAction} from "react";
+
 export interface Anime {
     id?: number;
     status: string
@@ -115,4 +117,106 @@ export interface EpisodeItemProps {
     time: string,
     image: string,
     watch?: { fullTime: number, viewed: number }
+}
+
+export interface AddToFavoriteButtonProps{
+    id: number
+    isActive: boolean
+    setIds: any
+    ids: any
+}
+
+export interface AlertProps {
+    state: boolean,
+    setState: Dispatch<SetStateAction<boolean>>,
+    alertMessage: string
+}
+
+export interface CategoriesListProps{
+    title: string
+    ids: any
+    setIds: any
+    data: any
+}
+
+export interface FolderListProps{
+    folderName: string
+}
+
+export interface AnimeFrameProps{
+    id: string
+}
+
+export interface WatchTogetherFrameProps{
+    id: string
+    hubId?: any
+}
+
+export interface AccountDialogProps{
+    active: boolean
+    setActive: Dispatch<SetStateAction<boolean>>
+    UserAuthState: any
+}
+
+export interface KodikProps{
+    id: any
+}
+
+export interface EpisodeListProps {
+    header: string,
+    isMouseScroll?: boolean
+    children?: any
+}
+
+export interface BigContainerProps{
+    headerText: string
+    description: string
+    children? :any
+    src: string
+}
+
+export interface MediumContainerProps{
+    headerText: string
+    description: string
+    src: string
+    children?: any
+}
+
+export interface SubscriptionSelectItemProps{
+    plusList: Array<string>
+    price: number
+    text: string
+}
+
+export interface WatchTogetherKodikProps {
+    src: string
+    id: string
+    hubId?: any
+}
+
+export interface WatchLog {
+    accessToken: string
+    hubId: string
+    seconds: number
+    releaseId: number
+    season: number
+    episode: number
+    translationTitle: string
+    isPaused: boolean
+}
+
+export interface User {
+    hubId: string
+    username: string
+    isPaused: boolean
+    main: boolean
+    seconds: number
+    releaseId: number
+    season: number
+    episode: number
+    translationTitle: string
+}
+
+export interface WatchTogetherButtonProps{
+    id: string
 }

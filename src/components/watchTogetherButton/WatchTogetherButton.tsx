@@ -6,9 +6,7 @@ import {useRouter} from "next/navigation";
 import "../../app/anime/[id]/anime.css"
 import axios from "axios";
 import {checkUserAuth} from "@/utils/verifications";
-interface WatchTogetherButtonProps{
-    id: string
-}
+import {WatchTogetherButtonProps} from "@/utils/interfaces";
 
 const WatchTogetherButton = ({ id }:WatchTogetherButtonProps) => {
 

@@ -3,7 +3,7 @@ import "./welcomePage.css";
 import WelcomeFrame from "@/components/Frames/welcomeFrame/WelcomeFrame";
 
 
-const Page = async () => {
+const Page = () => {
 
     return (
         <WelcomeFrame/>

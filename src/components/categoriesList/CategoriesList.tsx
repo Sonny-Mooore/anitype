@@ -3,12 +3,7 @@ import CatalogItem from "@/components/catalogItem/CatalogItem";
 import {getAnimeTitle} from "@/utils/function";
 import CatalogList from "@/components/catalogList/CatalogList";
 import "../../app/my/my.css";
-interface CategoriesListProps{
-    title: string
-    ids: any
-    setIds: any
-    data: any
-}
+import {CategoriesListProps} from "@/utils/interfaces";
 
 const CategoriesList = ({data, title, ids, setIds}: CategoriesListProps) => {
 
